@@ -1,0 +1,111 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: RachelWaffle
+ * Date: 15/12/23
+ * Time: 上午11:38
+ */
+
+include_once 'cores/themes.php';
+
+function featured_display_block_info(){
+
+    $blocks['display_resource']=get_blocks('Display Resource');
+    $blocks['display_application']=get_blocks('Display Application');
+    $blocks['display_trade']=get_blocks('Display Trade');
+    $blocks['display_perception']=get_blocks('Display Perception');
+    return $blocks;
+}
+
+
+function featured_display_page_build(){
+    drupal_add_css(drupal_get_path('module', 'featured_display') . '/css/featured_display.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
+}
+/**
+ * Implements hook_block_view
+ */
+function featured_display_block_view($delta = '')
+{
+    switch ($delta) {
+        case 'display_resource': // 如果调用了数据资源
+            if (user_access('access content')) {
+                $content_getter = new ContentGetter();
+                $content_data = new ContentData();
+                $data = array();
+                $data['#items_b']=array(array("#title_b" => '12', '#data_b' => '22'),array("#title_b" => '22', '#data_b' => '32'));
+
+                $data ='<div class="resource-wrap">';
+                $data .='<h2>数据资源</h2>';
+                $data .= $content_getter->get_resource_content($content_data).$content_getter->get_resource_content($content_data).$content_getter->get_resource_content($content_data);
+                $data .= '</div>';
+                $block['content'] = $data;
+                unset($content_getter);
+                unset($content_data);
+                return $block;
+
+            }
+            break;
+
+        case 'display_application': // 如果调用了数据应用
+            if (user_access('access content')) {
+
+                $content_getter = new ContentGetter();
+                $content_data = new ContentData();
+
+                $data ='<div class="resource-wrap">';
+                $data .='<h2>数据应用</h2>';
+                $data .= $content_getter->get_application_content($content_data).$content_getter->get_application_content($content_data).$content_getter->get_application_content($content_data).$content_getter->get_application_content($content_data).$content_getter->get_application_content($content_data).$content_getter->get_application_content($content_data);
+                $data .= '</div>';
+
+                $block['content'] = $data;
+                unset($content_getter);
+                unset($content_data);
+                return $block;
+            }
+            break;
+
+        case 'display_trade': // 如果调用了数据交易
+            if (user_access('access content')) {
+                $content_getter = new ContentGetter();
+                $content_data = new ContentData();
+                $data = array();
+                $data['#items_b']=array(array("#title_b" => '12', '#data_b' => '22'),array("#title_b" => '22', '#data_b' => '32'));
+
+                $data ='<div class="trade-wrap">';
+                $data .='<h2>数据交易</h2>';
+                $data .= $content_getter->get_trade_content($content_data).$content_getter->get_trade_content($content_data).$content_getter->get_trade_content($content_data);
+                $data .= '</div>';
+                $block['content'] = $data;
+                unset($content_getter);
+                unset($content_data);
+                return $block;
+
+            }
+            break;
+
+        case 'display_perception': // 如果调用了物联感知
+
+            if (user_access('access content')) {
+                $content_getter = new ContentGetter();
+                $content_data = new ContentData();
+                $data = array();
+                $data['#items_b']=array(array("#title_b" => '12', '#data_b' => '22'),array("#title_b" => '22', '#data_b' => '32'));
+
+                $data ='<div class="perception-wrap">';
+                $data .='<h2>物联感知</h2>';
+                $data .= $content_getter->get_perception_content($content_data).$content_getter->get_perception_content($content_data).$content_getter->get_perception_content($content_data);
+                $data .= '</div>';
+                $block['content'] = $data;
+                unset($content_getter);
+                unset($content_data);
+                return $block;
+
+            }
+            break;
+        default : ;
+    }
+
+}
+
+
+
