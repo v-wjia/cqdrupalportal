@@ -170,18 +170,6 @@
 
 
 
-  <?php if($page['header']) : ?>
-    <div id="header-block">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <?php print render($page['header']); ?>
-          </div>
-        </div>
-      </div>
-    </div>
-  <?php endif; ?>
-
   <?php if($page['data_resource']) : ?>
     <div id="data-resource-block">
       <div class="container">
@@ -268,7 +256,7 @@
     <div class="container">
       <div class="row">
         <div class="fcred col-sm-12">
-          <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?>, <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>. <?php print t('Theme by'); ?>  <a href="http://www.devsaran.com" target="_blank">Devsaran</a>.
+          <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?>, <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>
         </div>
       </div>
     </div>

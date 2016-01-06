@@ -29,14 +29,15 @@ function featured_display_block_view($delta = '')
     switch ($delta) {
         case 'display_resource': // 如果调用了数据资源
             if (user_access('access content')) {
+                $category = '数据资源';
                 $content_getter = new ContentGetter();
                 $content_data = new ContentData();
                 $data = array();
                 $data['#items_b']=array(array("#title_b" => '12', '#data_b' => '22'),array("#title_b" => '22', '#data_b' => '32'));
-
                 $data ='<div class="resource-wrap">';
                 $data .='<h2>数据资源</h2>';
-                $data .= $content_getter->get_resource_content($content_data).$content_getter->get_resource_content($content_data).$content_getter->get_resource_content($content_data);
+                $data .= $content_getter->get_resource_content($content_data);
+                $data .= '<div class="more"><br><a href=/taxonomy/term/' . $content_getter->get_tid($category) . '>更多</a></div>';
                 $data .= '</div>';
                 $block['content'] = $data;
                 unset($content_getter);
@@ -49,12 +50,14 @@ function featured_display_block_view($delta = '')
         case 'display_application': // 如果调用了数据应用
             if (user_access('access content')) {
 
+                $category = '数据应用';
                 $content_getter = new ContentGetter();
                 $content_data = new ContentData();
 
                 $data ='<div class="resource-wrap">';
                 $data .='<h2>数据应用</h2>';
-                $data .= $content_getter->get_application_content($content_data).$content_getter->get_application_content($content_data).$content_getter->get_application_content($content_data).$content_getter->get_application_content($content_data).$content_getter->get_application_content($content_data).$content_getter->get_application_content($content_data);
+                $data .= $content_getter->get_application_content($content_data);
+                $data .= '<div class="more"><br><a href=/taxonomy/term/' . $content_getter->get_tid($category) . '>更多</a></div>';
                 $data .= '</div>';
 
                 $block['content'] = $data;
@@ -64,7 +67,7 @@ function featured_display_block_view($delta = '')
             }
             break;
 
-        case 'display_trade': // 如果调用了数据交易
+        case 'display_trade' : // 如果调用了数据交易
             if (user_access('access content')) {
                 $content_getter = new ContentGetter();
                 $content_data = new ContentData();
@@ -86,6 +89,7 @@ function featured_display_block_view($delta = '')
         case 'display_perception': // 如果调用了物联感知
 
             if (user_access('access content')) {
+                $category = '物联感知';
                 $content_getter = new ContentGetter();
                 $content_data = new ContentData();
                 $data = array();
@@ -93,7 +97,8 @@ function featured_display_block_view($delta = '')
 
                 $data ='<div class="perception-wrap">';
                 $data .='<h2>物联感知</h2>';
-                $data .= $content_getter->get_perception_content($content_data).$content_getter->get_perception_content($content_data).$content_getter->get_perception_content($content_data);
+                $data .= $content_getter->get_perception_content($content_data);
+                $data .= '<div class="more"><br><a href=/taxonomy/term/' . $content_getter->get_tid($category) . '>更多</a></div>';
                 $data .= '</div>';
                 $block['content'] = $data;
                 unset($content_getter);
