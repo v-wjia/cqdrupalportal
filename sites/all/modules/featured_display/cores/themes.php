@@ -111,7 +111,9 @@ class ContentGetter {
     if (count($nids) < 1) {
       return array();
     }
-    $query->condition('nid', $nids, 'IN');
+    $query->condition('nid', $nids, 'IN')
+          //只显示推上首页内容
+          ->condition('promote',1);
 
 
     return $query->execute();
