@@ -37,7 +37,7 @@ function featured_display_block_view($delta = '')
                 $data ='<div class="resource-wrap">';
                 $data .='<h2>数据资源</h2>';
                 $data .= $content_getter->get_resource_content($content_data);
-                $data .= '<div class="more"><br><a href=/taxonomy/term/' . $content_getter->get_tid($category) . '>更多</a></div>';
+                $data .= '<div class="more"><br><a href=/'.drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
                 $data .= '</div>';
                 $block['content'] = $data;
                 unset($content_getter);
@@ -57,7 +57,7 @@ function featured_display_block_view($delta = '')
                 $data ='<div class="resource-wrap">';
                 $data .='<h2>数据应用</h2>';
                 $data .= $content_getter->get_application_content($content_data);
-                $data .= '<div class="more"><br><a href=/taxonomy/term/' . $content_getter->get_tid($category) . '>更多</a></div>';
+                $data .= '<div class="more"><br><a href=/'.drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
                 $data .= '</div>';
 
                 $block['content'] = $data;
@@ -71,8 +71,6 @@ function featured_display_block_view($delta = '')
             if (user_access('access content')) {
                 $content_getter = new ContentGetter();
                 $content_data = new ContentData();
-                $data = array();
-                $data['#items_b']=array(array("#title_b" => '12', '#data_b' => '22'),array("#title_b" => '22', '#data_b' => '32'));
 
                 $data ='<div class="trade-wrap">';
                 $data .='<h2>数据交易</h2>';
@@ -98,7 +96,7 @@ function featured_display_block_view($delta = '')
                 $data ='<div class="perception-wrap">';
                 $data .='<h2>物联感知</h2>';
                 $data .= $content_getter->get_perception_content($content_data);
-                $data .= '<div class="more"><br><a href=/taxonomy/term/' . $content_getter->get_tid($category) . '>更多</a></div>';
+                $data .= '<div class="more"><br><a href=/'.drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
                 $data .= '</div>';
                 $block['content'] = $data;
                 unset($content_getter);

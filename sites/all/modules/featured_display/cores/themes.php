@@ -146,7 +146,7 @@ class ContentGetter {
     $output .= '</ul>';
     $this->add_content($data, $output);
     $this->add_wrapped_div($data, 'more');
-    $this->add_content($data, '<a href=/taxonomy/term/' . $this->get_tid('数据交易') . '>更多</a>');
+    $this->add_content($data, '<a href=/'.drupal_get_path_alias('taxonomy/term/' . $this->get_tid('数据交易')) . '>更多</a>');
     return $this->execute($data);
   }
 
