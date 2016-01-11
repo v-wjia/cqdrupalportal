@@ -40,3 +40,13 @@
     text-align: center;
 }
 
+.loginbar {
+    float: left;
+    margin: 0;
+}
+.loginbar li {    
+    float: left;
+    padding: 0 12px 0 0;
+    list-style: outside none none;
+}
+

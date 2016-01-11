@@ -111,11 +111,11 @@ function featured_display_block_view($delta = '')
         case 'login_bar' :  //如果调用了登录条
             if (user_is_logged_in()) {
                 //如果登录了
-                $block['content']='<div>'.l(t('My account '),drupal_get_path_alias('user')).l(t('Log out'),drupal_get_path_alias('user/logout')).'</div>';
+                $block['content']='<ul class="loginbar">'.'<li>'.l(t('My account'),drupal_get_path_alias('user')).'</li>'.'<li>'.l(t('Log out'),drupal_get_path_alias('user/logout')).'</li>'.'</ul>';
                 return $block;
             } else {
                 //如果未登录
-                $block['content']=l(t('Login '),drupal_get_path_alias('user/login')).l(t('Register'),drupal_get_path_alias('user/register'));
+                $block['content']='<ul class="loginbar"><li>'.l(t('User login'),drupal_get_path_alias('user/login')).'</li><li>'.l(t('Create new account'),drupal_get_path_alias('user/register')).'</li></ul>';
                 return $block;
             }
 
