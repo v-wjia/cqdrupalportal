@@ -8,19 +8,23 @@
 
 include_once 'cores/themes.php';
 
-function featured_display_block_info(){
+function featured_display_block_info()
+{
 
-    $blocks['display_resource']=get_blocks('Display Resource');
-    $blocks['display_application']=get_blocks('Display Application');
-    $blocks['display_trade']=get_blocks('Display Trade');
-    $blocks['display_perception']=get_blocks('Display Perception');
+    $blocks['display_resource'] = get_blocks('Display Resource');
+    $blocks['display_application'] = get_blocks('Display Application');
+    $blocks['display_trade'] = get_blocks('Display Trade');
+    $blocks['display_perception'] = get_blocks('Display Perception');
+    $blocks['login_bar'] = get_blocks('Login Bar');
     return $blocks;
 }
 
 
-function featured_display_page_build(){
+function featured_display_page_build()
+{
     drupal_add_css(drupal_get_path('module', 'featured_display') . '/css/featured_display.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
 }
+
 /**
  * Implements hook_block_view
  */
@@ -33,11 +37,11 @@ function featured_display_block_view($delta = '')
                 $content_getter = new ContentGetter();
                 $content_data = new ContentData();
                 $data = array();
-                $data['#items_b']=array(array("#title_b" => '12', '#data_b' => '22'),array("#title_b" => '22', '#data_b' => '32'));
-                $data ='<div class="resource-wrap">';
-                $data .='<h2>数据资源</h2>';
+                $data['#items_b'] = array(array("#title_b" => '12', '#data_b' => '22'), array("#title_b" => '22', '#data_b' => '32'));
+                $data = '<div class="resource-wrap">';
+                $data .= '<h2>数据资源</h2>';
                 $data .= $content_getter->get_resource_content($content_data);
-                $data .= '<div class="more"><br><a href=/'.drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
+                $data .= '<div class="more"><br><a href=/' . drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
                 $data .= '</div>';
                 $block['content'] = $data;
                 unset($content_getter);
@@ -54,10 +58,10 @@ function featured_display_block_view($delta = '')
                 $content_getter = new ContentGetter();
                 $content_data = new ContentData();
 
-                $data ='<div class="resource-wrap">';
-                $data .='<h2>数据应用</h2>';
+                $data = '<div class="resource-wrap">';
+                $data .= '<h2>数据应用</h2>';
                 $data .= $content_getter->get_application_content($content_data);
-                $data .= '<div class="more"><br><a href=/'.drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
+                $data .= '<div class="more"><br><a href=/' . drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
                 $data .= '</div>';
 
                 $block['content'] = $data;
@@ -72,9 +76,9 @@ function featured_display_block_view($delta = '')
                 $content_getter = new ContentGetter();
                 $content_data = new ContentData();
 
-                $data ='<div class="trade-wrap">';
-                $data .='<h2>数据交易</h2>';
-                $data .= $content_getter->get_trade_content($content_data).$content_getter->get_trade_content($content_data).$content_getter->get_trade_content($content_data);
+                $data = '<div class="trade-wrap">';
+                $data .= '<h2>数据交易</h2>';
+                $data .= $content_getter->get_trade_content($content_data) . $content_getter->get_trade_content($content_data) . $content_getter->get_trade_content($content_data);
                 $data .= '</div>';
                 $block['content'] = $data;
                 unset($content_getter);
@@ -90,13 +94,11 @@ function featured_display_block_view($delta = '')
                 $category = '物联感知';
                 $content_getter = new ContentGetter();
                 $content_data = new ContentData();
-                $data = array();
-                $data['#items_b']=array(array("#title_b" => '12', '#data_b' => '22'),array("#title_b" => '22', '#data_b' => '32'));
 
-                $data ='<div class="perception-wrap">';
-                $data .='<h2>物联感知</h2>';
+                $data = '<div class="perception-wrap">';
+                $data .= '<h2>物联感知</h2>';
                 $data .= $content_getter->get_perception_content($content_data);
-                $data .= '<div class="more"><br><a href=/'.drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
+                $data .= '<div class="more"><br><a href=/' . drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
                 $data .= '</div>';
                 $block['content'] = $data;
                 unset($content_getter);
@@ -105,7 +107,21 @@ function featured_display_block_view($delta = '')
 
             }
             break;
-        default : ;
+
+        case 'login_bar' :  //如果调用了登录条
+            if (user_is_logged_in()) {
+                //如果登录了
+                $block['content']='<div>'.l(t('My account '),drupal_get_path_alias('user')).l(t('Log out'),drupal_get_path_alias('user/logout')).'</div>';
+                return $block;
+            } else {
+                //如果未登录
+                $block['content']=l(t('Login '),drupal_get_path_alias('user/login')).l(t('Register'),drupal_get_path_alias('user/register'));
+                return $block;
+            }
+
+            break;
+        default :
+            ;
     }
 
 }

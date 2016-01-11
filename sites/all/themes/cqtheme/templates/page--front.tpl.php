@@ -87,9 +87,21 @@
               }
               print drupal_render($main_menu_tree);
             ?>
+
+
+
           </div>
+          <div class="row">
+            <?php if ($page['front_side']): ?>
+                <aside id="sidebar" class="col-sm-4" role="complementary">
+                    <?php print render($page['front_side']); ?>
+                </aside>
+             <?php endif; ?>
+          </div>
+
         </nav>
       </div>
+
     </div>
   </header>
 
@@ -262,3 +274,11 @@
     </div>
   </div>
 </div>
+<?php
+
+//module_load_include('inc','phpexcel');
+//$data = phpexcel_import('test-data.xlsx',TRUE,TRUE);
+//print_r($data);
+//$ddd= drupal_get_path_alias('taxonomy/term/11');
+//echo $ddd;
+?>

@@ -88,6 +88,15 @@
               }
               print drupal_render($main_menu_tree);
             ?>
+
+
+          </div>
+          <div class="row">
+            <?php if ($page['front_side']): ?>
+              <aside id="sidebar" class="col-sm-4" role="complementary">
+                <?php print render($page['front_side']); ?>
+              </aside>
+            <?php endif; ?>
           </div>
         </nav>
       </div>

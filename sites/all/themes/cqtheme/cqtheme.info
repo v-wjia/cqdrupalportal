@@ -24,6 +24,7 @@ regions[footer_third]   = Third Bottom
 regions[footer_fourth]  = Fourth Bottom
 
 ;首页区块
+regions[front_side]  = Front Side
 regions[data_resource]  = Data Resource
 regions[data_application]  = Data Application
 regions[data_trade]  = Data Trade
