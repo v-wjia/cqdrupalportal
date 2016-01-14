@@ -33,18 +33,27 @@ function featured_display_block_view($delta = '')
     switch ($delta) {
         case 'display_resource': // 如果调用了数据资源
             if (user_access('access content')) {
-                $category = '数据资源';
+                $category='数据资源';
                 $content_getter = new ContentGetter();
-                $content_data = new ContentData();
-                $data = array();
-                $data['#items_b'] = array(array("#title_b" => '12', '#data_b' => '22'), array("#title_b" => '22', '#data_b' => '32'));
-                $data = '<div class="resource-wrap">';
-                $data .= '<h2>数据资源</h2>';
-                $data .= $content_getter->get_resource_content($content_data);
-                $data .= '<div class="more"><br><a href=/' . drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
-                $data .= '</div>';
+                $content_wrap = new ContentData();
+                $content_getter->add_wrapped_div($content_wrap,'','con con3bg');
+                $content_getter->add_wrapped_div($content_wrap,'','con3');
+                $content_getter->add_content($content_wrap,'<div style="height:0px; overflow:hidden;">&nbsp;</div>');
+                $content_getter->add_head($content_wrap,'数据资源',3,'c31');
+                $content_getter->add_head($content_wrap,'提供各行业数据资源，以及大数据分析处理能力',4,'c32');
+
+                $content_data= new ContentData();
+                $content_getter->add_wrapped_div($content_data,'','c33');
+                foreach(variable_get('data_resource_data') as $item){
+                    $content_getter->get_resource_content($content_data,$item);
+                }
+                $content_getter->add_content($content_wrap,$content_getter->execute($content_data));
+
+                $content_getter->add_content($content_wrap,$content_getter->get_more_button('数据资源'));
+                $data = $content_getter->execute($content_wrap);
                 $block['content'] = $data;
                 unset($content_getter);
+                unset($content_wrap);
                 unset($content_data);
                 return $block;
 
@@ -56,16 +65,24 @@ function featured_display_block_view($delta = '')
 
                 $category = '数据应用';
                 $content_getter = new ContentGetter();
-                $content_data = new ContentData();
+                $content_wrap = new ContentData();
 
-                $data = '<div class="resource-wrap">';
-                $data .= '<h2>数据应用</h2>';
-                $data .= $content_getter->get_application_content($content_data);
-                $data .= '<div class="more"><br><a href=/' . drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
-                $data .= '</div>';
+                $content_getter->add_wrapped_div($content_wrap,'','con con4bg');
+                $content_getter->add_wrapped_div($content_wrap,'','con4');
+                $content_getter->add_content($content_wrap,'<div style="height:0px; overflow:hidden;">&nbsp;</div>');
+                $content_getter->add_image($content_wrap,cqtheme_get_path().'/img/arrow_4.png','',' class="arr"');
+                $content_getter->add_head($content_wrap,'数据应用',3,'c41');
 
-                $block['content'] = $data;
+                $content_data= new ContentData();
+                $content_getter->get_application_content($content_data);
+                //取出的数据添加到主内容
+                $content_getter->add_content($content_wrap,$content_getter->execute($content_data));
+                //添加『更多』按钮
+                $content_getter->add_content($content_wrap,$content_getter->get_more_button($category));
+
+                $block['content'] = $content_getter->execute($content_wrap);
                 unset($content_getter);
+                unset($content_wrap);
                 unset($content_data);
                 return $block;
             }
@@ -73,17 +90,20 @@ function featured_display_block_view($delta = '')
 
         case 'display_trade' : // 如果调用了数据交易
             if (user_access('access content')) {
-                $content_getter = new ContentGetter();
-                $content_data = new ContentData();
-
-                $data = '<div class="trade-wrap">';
-                $data .= '<h2>数据交易</h2>';
-                $data .= $content_getter->get_trade_content($content_data) . $content_getter->get_trade_content($content_data) . $content_getter->get_trade_content($content_data);
-                $data .= '</div>';
-                $block['content'] = $data;
-                unset($content_getter);
-                unset($content_data);
-                return $block;
+//                $content_getter = new ContentGetter();
+//                $content_wrap = new ContentData();
+//
+//                $content_getter->add_wrapped_div($content_wrap,'','con con5bg');
+//                $content_getter->add_wrapped_div($content_wrap,'','con5');
+//                $content_getter->add_content($content_wrap,'<div style="height:0px; overflow:hidden;">&nbsp;</div>');
+//                $content_getter->add_image($content_wrap,cqtheme_get_path().'/img/arrow_5.png','',' class="arr"');
+//                $content_getter->add_head($content_wrap,'数据交易',3,'c51');
+//
+//                $data = $content_getter->get_trade_content($content_wrap,'数据下载排行',array('theme'=>2)) . $content_getter->get_trade_content($content_wrap,'最新发布数据',array('theme'=>4)) . $content_getter->get_trade_content($content_wrap,'平台动态',array('theme'=>1));
+//                $block['content'] = $data;
+//                unset($content_getter);
+//                unset($content_wrap);
+//                return $block;
 
             }
             break;
@@ -93,16 +113,16 @@ function featured_display_block_view($delta = '')
             if (user_access('access content')) {
                 $category = '物联感知';
                 $content_getter = new ContentGetter();
-                $content_data = new ContentData();
+                $content_wrap = new ContentData();
 
                 $data = '<div class="perception-wrap">';
                 $data .= '<h2>物联感知</h2>';
-                $data .= $content_getter->get_perception_content($content_data);
+                $data .= $content_getter->get_perception_content($content_wrap);
                 $data .= '<div class="more"><br><a href=/' . drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
                 $data .= '</div>';
                 $block['content'] = $data;
                 unset($content_getter);
-                unset($content_data);
+                unset($content_wrap);
                 return $block;
 
             }
@@ -127,4 +147,20 @@ function featured_display_block_view($delta = '')
 }
 
 
+function cqtheme_get_path(){
 
+    return drupal_get_path('theme','cqtheme');
+}
+
+variable_set('data_resource_data',array(
+    array('name'=>'医疗卫生','category'=>'医疗卫生','img'=>cqtheme_get_path().'/img/3-1-n.png','head_class'=>'c33divt'),
+    array('name'=>'社会保障','category'=>'社会保障','img'=>cqtheme_get_path().'/img/3-2-n.png','head_class'=>'c33divt'),
+    array('name'=>'教育文化','category'=>'教育文化','img'=>cqtheme_get_path().'/img/3-3-n.png','head_class'=>'c33divt'),
+    array('name'=>'交通旅游','category'=>'交通旅游','img'=>cqtheme_get_path().'/img/3-4-n.png','head_class'=>'c33divt'),
+    array('name'=>'资源环境','category'=>'资源环境','img'=>cqtheme_get_path().'/img/3-5-n.png','head_class'=>'c33divt'),
+    array('name'=>'工业经济','category'=>'工业经济','img'=>cqtheme_get_path().'/img/3-6-n.png','head_class'=>'c33divt'),
+    array('name'=>'农业生产','category'=>'农业生产','img'=>cqtheme_get_path().'/img/3-7-n.png','head_class'=>'c33divt'),
+    array('name'=>'商贸物流','category'=>'商贸物流','img'=>cqtheme_get_path().'/img/3-8-n.png','head_class'=>'c33divt'),
+    array('name'=>'公共安全','category'=>'公共安全','img'=>cqtheme_get_path().'/img/3-9-n.png','head_class'=>'c33divt'),
+    array('name'=>'社会生活','category'=>'社会生活','img'=>cqtheme_get_path().'/img/3-10-n.png','head_class'=>'c33divt'),
+));

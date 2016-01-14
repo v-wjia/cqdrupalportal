@@ -28,13 +28,15 @@ class ContentData {
   }
 }
 
-class ContentGetter {
+class ContentGetter
+{
 
 
   /**
    * Implements hook_action_info().
    */
-  function business_fours_add($variables) {
+  function business_fours_add($variables)
+  {
     $output = '<div id="resource" class="resource">';
     $items = $variables['#items_b'];
     foreach ($items as $item) {
@@ -56,11 +58,12 @@ class ContentGetter {
    * @param $category_name
    * @return int
    */
-  function get_tid($category_name) {
+  function get_tid($category_name)
+  {
     $tag_data = db_select('taxonomy_term_data', 'n')
-      ->fields('n', array('tid'))
-      ->condition('name', $category_name)
-      ->execute();
+        ->fields('n', array('tid'))
+        ->condition('name', $category_name)
+        ->execute();
     $tag_id = -1;
     foreach ($tag_data as $tag) {
       $tag_id = $tag->tid;
@@ -69,17 +72,23 @@ class ContentGetter {
   }
 
 
-  function get_tag_alias($category_name) {
-    $tag_id = $this->get_tid($category_name);
+
+
+  function get_tag_alias_by_tid($tid){
     $query = db_select('url_alias', 'n')
-      ->fields('n', array('alias'))
-      ->condition('source', 'taxonomy/term/' . $tag_id)
-      ->execute();
+        ->fields('n', array('alias'))
+        ->condition('source', 'taxonomy/term/' . $tid)
+        ->execute();
     $tag_alias = 'node';
     foreach ($query as $alias) {
       $tag_alias = $alias->alias;
     }
     return $tag_alias;
+  }
+
+  function get_tag_alias_by_tag($category_name) {
+    $tid = $this->get_tid($category_name);
+    return $this->get_tag_alias_by_tid($tid);
   }
 
   /**
@@ -129,28 +138,6 @@ class ContentGetter {
     return $query;
   }
 
-  /**
-   * 获取数据交易的内容
-   */
-  public function get_trade_content($data) {
-
-    if ($data->output != '') {
-      $data->clear();
-    }
-
-    $this->add_wrapped_div($data, 'trade', 'trade');
-    $this->add_head($data, '数据交易');
-    $output = "<ul>";
-    $datas = $this->query_by_tag('数据交易');
-    foreach ($datas as $item) {
-      $output .= '<li>' . l($item->title, 'node/' . $item->nid) . '</li><br>';
-    }
-    $output .= '</ul>';
-    $this->add_content($data, $output);
-    $this->add_wrapped_div($data, 'more');
-    $this->add_content($data, '<a href=/'.drupal_get_path_alias('taxonomy/term/' . $this->get_tid('数据交易')) . '>更多</a>');
-    return $this->execute($data);
-  }
 
   /**
    * 根据nid获得对应node的image的url
@@ -178,29 +165,41 @@ class ContentGetter {
    * @param $data
    * @return string
    */
-  public function get_resource_content($data) {
+  public function get_resource_content($data,$attr) {
 
     if ($data->output != '') {
       $data->clear();
     }
+//
+//    $result = "";
+//    $datas = $this->query_by_tag('数据资源',3);
+//    foreach ($datas as $item) {
+//      $temp_data = new ContentData();
+//
+//      $this->add_wrapped_div($temp_data, 'resource', 'resource');
+//
+//      $output = '<img src="' . $this->get_node_image_url($item->nid) . '"><br>';
+//      $output .= l($item->title, 'node/' . $item->nid) . '<br>';
+//      $this->add_content($temp_data, $output);
+//      $result .= $this->execute($temp_data);
+//      unset($temp_data);
+//    }
+//    $this->add_content($data, $result);
+//    return $this->execute($data);
+      $result = "";
+    $temp_data = new ContentData();
+    $this->add_wrapped_div($temp_data,'','c33div');
+    $tid = $this->get_tid($attr['category']);
+    $this->add_wrap($temp_data,'<a href='.$this->get_tag_alias_by_tid($tid).'>','</a>');
+    $this->add_image($temp_data,$attr['img'],$attr['name'],'class=c33divimg');
+    $this->add_head($temp_data,$attr['name'],4,$attr['head_class']);
+    $term = taxonomy_term_load($tid);
+    $this->add_content($temp_data,'<p class="c33divp">'.$term->description.'</p>');
 
-    $result = "";
-    $datas = $this->query_by_tag('数据资源',3);
-    foreach ($datas as $item) {
-      $temp_data = new ContentData();
+//    print_r($term);
 
-      $this->add_wrapped_div($temp_data, 'resource', 'resource');
-
-      $output = '<img src="' . $this->get_node_image_url($item->nid) . '"><br>';
-      $output .= l($item->title, 'node/' . $item->nid) . '<br>';
-      $this->add_content($temp_data, $output);
-      $result .= $this->execute($temp_data);
-      unset($temp_data);
-    }
-    $this->add_content($data, $result);
-    return $this->execute($data);
-
-
+    $this->add_content($data,$this->execute($temp_data));
+//    return $this->execute($data);
   }
 
   /**
@@ -215,14 +214,17 @@ class ContentGetter {
 
     $result = "";
     $datas = $this->query_by_tag('数据应用',6);
+    $this->add_wrapped_div($data,'','c42');
     foreach ($datas as $item) {
       $temp_data = new ContentData();
 
-      $this->add_wrapped_div($temp_data, 'application', 'application');
+      $url =drupal_get_path_alias('node/'.$item->nid);
 
-      $output = '<img src="' . $this->get_node_image_url($item->nid) . '"><br>';
-      $output .= l($item->title, 'node/' . $item->nid) . '<br>';
-      $this->add_content($temp_data, $output);
+      $this->add_wrapped_div($temp_data, '', 'c42div');
+      $this->add_content($temp_data,'<a href="'.$url.'">');
+      $this->add_image($temp_data,$this->get_node_image_url($item->nid) ,'','class="c42img"');
+      $this->add_content($temp_data,'</a>');
+      $this->add_content($temp_data,'<p class="c42p">'.$item->title.$this->get_button('详细',$url,'c42btn').'</p>');
       $result .= $this->execute($temp_data);
       unset($temp_data);
     }
@@ -230,6 +232,34 @@ class ContentGetter {
     return $this->execute($data);
   }
 
+  /**
+   * 获取数据交易的内容
+   */
+  public function get_trade_content($data,$head,$attr,$more='') {
+    if($more==''){
+      $more=$head;
+    }
+    if ($data->output != '') {
+      $data->clear();
+    }
+
+    $this->add_wrapped_div($data, 'trade', 'trade');
+    $this->add_head($data, $head);
+//    $output = "<ul>";
+    $datas = $this->query_by_tag($head);
+//    foreach ($datas as $item) {
+//      $output .= '<li>' . l($item->title, 'node/' . $item->nid) . '</li><br>';
+//    }
+//    $output .= '</ul>';
+    $output = '';
+
+    $output.=RenderFactory::render_query($datas,$attr);
+
+    $this->add_content($data, $output);
+    $this->add_wrapped_div($data, 'more');
+    $this->add_content($data, $this->get_more_links($more));
+    return $this->execute($data);
+  }
 
   /**
    * 获得物联感知的内容
@@ -244,8 +274,8 @@ class ContentGetter {
 
       $this->add_wrapped_div($temp_data, 'perception', 'perception');
 
-      $output = '<img src="' . $this->get_node_image_url($item->nid) . '"><br>';
-      $output .= l($item->title, 'node/' . $item->nid) . '<br>';
+      $output = '<img src="' . $this->get_node_image_url($item->nid) . '">';
+      $output .= l($item->title, 'node/' . $item->nid) . '';
       $this->add_content($temp_data, $output);
       $result .= $this->execute($temp_data);
       unset($temp_data);
@@ -261,17 +291,21 @@ class ContentGetter {
    * @param string $head h几
    * @return $this
    */
-  function add_head($data, $header, $head = '3') {
-    $this->add_wrap($data, "<h$head>$header<br></h$head>");
+  function add_head($data, $header, $head = '3',$class='') {
+    if($class!=''){
+      $class = ' class='.$class;
+    }
+    $this->add_wrap($data, "<h$head".$class.">$header</h$head>");
     return $this;
   }
 
-  function add_image($data, $url, $alt = '') {
+  function add_image($data, $url, $alt = '',$option='') {
     $url = ' src="' . $url . '"';
+    $option=' '.$option;
     if ($alt != '') {
       $alt = ' alt="' . $alt . '"';
     }
-    $output = '<img' . $url . $alt . '>';
+    $output = '<img' . $url . $alt . $option.'>';
     $this->add_wrap($data, $output);
     return $this;
   }
@@ -281,8 +315,8 @@ class ContentGetter {
     return $this;
   }
 
-  function add_wrapped_div($data, $id_name = '', $class_name = '') {
-    $this->add_wrap($data, '<div' . ($id_name != '' ? ' id="' . $id_name . '"' : '') . ($class_name != '' ? ' class="' . $class_name . '"' : '') . '>', '</div>');
+  function add_wrapped_div($data, $id_name = '', $class_name = '',$option='') {
+    $this->add_wrap($data, '<div' . ($id_name != '' ? ' id="' . $id_name . '"' : '') . ($class_name != '' ? ' class="' . $class_name . '"' : '') .' '.$option. '>', '</div>');
     return $this;
   }
 
@@ -297,18 +331,127 @@ class ContentGetter {
     $data->layer++;
   }
 
+  function add_long_link($data,$url){
+    $this->add_wrap($data,'<a href="'.$url.'">','</a>');
+    return $this;
+  }
+
   function execute($data) {
     $data->output = '';
     for ($i = 0; $i < $data->layer; $i++) {
       $data->output .= $data->wrapped_tag[$i];
     }
-    for ($i = 0; $i < $data->layer; $i++) {
+    for ($i = $data->layer-1; $i >=0 ; $i--) {
       $data->output .= $data->close_tag[$i];
     }
     return $data->output;
   }
+
+  /**
+   * 根据分类名称获得more输出
+   * @param $category_name
+   * @param string $text
+   * @return string
+   */
+  function get_more_links($category_name,$text='更多') {
+    return '<div class="more">'.l($text,drupal_get_path_alias('taxonomy/term/' . $this->get_tid($category_name))).'</div>';
+  }
+
+  /**
+   * 根据分类名称获得more按钮
+   * @param $category_name
+   * @param string $text
+   * @return string
+   */
+  function get_more_button($category_name,$text='更多',$class='more_btn') {
+    return $this->get_button($text,drupal_get_path_alias(drupal_get_path_alias('taxonomy/term/' . $this->get_tid($category_name))),$class);
+  }
+
+  function get_button($text,$url,$class=''){
+    if($class!=''){
+      $class = ' class="'.$class.'"';
+    }
+    return '<button '.$class.' onclick="javascript:window.location.href=\''.$url.'\';">'.$text.'</button>';
+  }
+}
+
+class RenderFactory{
+  static function render_query($query,$attr){
+    switch($attr['theme']){
+      case '2':
+      case 'simple_ol':
+            return self::format_li_simple($query,'ol');
+      case '3':
+      case 'simple_ul':
+            return self::format_li_simple($query);
+      case '4':
+      case 'time_ul':
+            return self::format_li_time($query);
+      default :
+            return self::format_simple($query);
+    }
+
+  }
+
+
+  /**
+   * 简单的列表
+   * @param $query
+   * @return string
+   */
+  static function format_li_simple($query, $format='ul'){
+    $output = '<'.$format.'>';
+    foreach ($query as $item) {
+      $output .='<li>'.l($item->title, drupal_get_path_alias('node/' . $item->nid)).'</li>';
+    }
+    $output .='</'.$format.'>';
+    return $output;
+  }
+  /**
+   * 简单的列表
+   * @param $query
+   * @return string
+   */
+  static function format_li_time($query, $format='ul'){
+    $output = '<'.$format.'>';
+    foreach ($query as $item) {
+      $output .='<li>'.l(date("[Y-m-d]", $item->created).$item->title, drupal_get_path_alias('node/' . $item->nid)).'</li>';
+    }
+    $output .='</'.$format.'>';
+    return $output;
+  }
+
+
+  /**
+   * 简单的把数据取出来
+   * @param $query
+   * @return string 返回HTML
+   */
+  static function format_simple($query){
+    $output = '';
+    foreach ($query as $item) {
+      $output .='<br>'.l(substring_dot($item->title), drupal_get_path_alias('node/' . $item->nid));
+    }
+    return $output;
+  }
+
+}
+
+/**
+ * 截取字符串并且用剩余长度补全
+ * @param $string
+ * @param int $count
+ * @param string $fill
+ * @return string
+ */
+function substring_dot($string,$count=15,$fill='...'){
+  if(strlen($string)>$count){
+    return mb_substr($string,0,$count,'utf-8').$fill;
+  }
+  return $string;
 }
 
 function get_blocks($info, $cache = DRUPAL_CACHE_PER_ROLE) {
   return array('info' => $info, $cache);
 }
+
