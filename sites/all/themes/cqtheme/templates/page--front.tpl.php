@@ -65,85 +65,78 @@
  */
 ?>
 <div id="page">
-  <header id="masthead" class="site-header container" role="banner">
-    <div class="row">
-      <div id="logo" class="site-branding col-sm-6">
-        <?php if ($logo): ?><div id="site-logo"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-        </a></div><?php endif; ?>
-        <h1 id="site-title">
-          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
-        </h1>
-      </div>
-      <div class="col-sm-6 mainmenu">
-        <div class="mobilenavi"></div>
-        <nav id="navigation" role="navigation">
-          <div id="main-menu">
-            <?php 
-              if (module_exists('i18n_menu')) {
-                $main_menu_tree = i18n_menu_translated_tree(variable_get('menu_main_links_source', 'main-menu'));
-              } else {
-                $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
-              }
-              print drupal_render($main_menu_tree);
-            ?>
 
 
 
-          </div>
-          <div class="row">
-            <?php if ($page['front_side']): ?>
-                <aside id="sidebar" class="col-sm-4" role="complementary">
-                    <?php print render($page['front_side']); ?>
-                </aside>
-             <?php endif; ?>
-          </div>
 
-        </nav>
-      </div>
-
-    </div>
-  </header>
 
 
   <?php if ($is_front): ?>
   <?php if (theme_get_setting('slideshow_display','cqtheme')): ?>
-  <?php 
+  <?php
     $slide1_head = check_plain(theme_get_setting('slide1_head','cqtheme'));   $slide1_desc = check_markup(theme_get_setting('slide1_desc','cqtheme'), 'full_html'); $slide1_url = check_plain(theme_get_setting('slide1_url','cqtheme'));
     $slide2_head = check_plain(theme_get_setting('slide2_head','cqtheme'));   $slide2_desc = check_markup(theme_get_setting('slide2_desc','cqtheme'), 'full_html'); $slide2_url = check_plain(theme_get_setting('slide2_url','cqtheme'));
     $slide3_head = check_plain(theme_get_setting('slide3_head','cqtheme'));   $slide3_desc = check_markup(theme_get_setting('slide3_desc','cqtheme'), 'full_html'); $slide3_url = check_plain(theme_get_setting('slide3_url','cqtheme'));
   ?>
-  <div id="slidebox" class="flexslider">
+  <div id="slidebox">
     <ul class="slides">
       <li>
-        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-1.jpg'; ?>"/>
-        <?php if($slide1_head || $slide1_desc) : ?>
-          <div class="flex-caption">
-            <h2><?php print $slide1_head; ?></h2><?php print $slide1_desc; ?>
-            <a class="frmore" href="<?php print url($slide1_url); ?>"> <?php print t('READ MORE'); ?> </a>
+        <div class="con con1bg">
+          <div class="con1">
+            <div class="con1_1">
+
+              <div class="con1_logo">
+                <img src="<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con1_1_1"/>
+                <img src="<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con1_1_2"/>
+              </div>
+              <div id="logo" class="site-branding col-sm-6">
+                <?php if ($logo): ?><div id="site-logo"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+                  </a></div><?php endif; ?>
+                <h1 id="site-title">
+                  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
+                </h1>
+              </div>
+              <ul class="con1_nav">
+                <?php
+                $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
+                print drupal_render($main_menu_tree); ?>
+              </ul>
+              <div class="con1_4">
+                <p class="c141">重庆开放数据<br />创新应用大赛</p>
+                <p class="c142">平台将开放星图数据自有灵敏据体系，并引入第三方数据源和数据开发者，<br />高校及研究机构、个人提供大数据应用服务，构建多方共赢的大数据商业化生态圈。</p>
+                <p class="c143">平台将开放星图数据自有灵敏据体系，并引入<br />第三方数据源和数据开发者，面向各行业企业、<br />高校及研究机构、个人提供大数据应用服务，<br />构建多方共赢的大数据商业化生态圈。</p>
+                <button class="c144 more_btn">更多</button>
+              </div>
+
+              <div class="mobilenavi"></div>
+              <nav id="navigation" role="navigation">
+
+                <div class="row">
+                  <?php if ($page['front_side']): ?>
+                    <aside id="sidebar" class="col-sm-4" role="complementary">
+                      <?php print render($page['front_side']); ?>
+                    </aside>
+                  <?php endif; ?>
+                </div>
+
+              </nav>
+
+            </div>
           </div>
-        <?php endif; ?>
+        </div>
+
       </li>
+<!--      <li>-->
+<!---->
+<!--        <img src="--><?php //print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-2.jpg'; ?><!--"/>-->
+<!--      </li>-->
       <li>
-        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-2.jpg'; ?>"/>
-        <?php if($slide2_head || $slide2_desc) : ?>
-          <div class="flex-caption">
-            <h2><?php print $slide2_head; ?></h2><?php print $slide2_desc; ?>
-            <a class="frmore" href="<?php print url($slide2_url); ?>"> <?php print t('READ MORE'); ?> </a>
-          </div>
-        <?php endif; ?>
-      </li>
-      <li>
-        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-3.jpg'; ?>"/>
-        <?php if($slide3_head || $slide3_desc) : ?>
-          <div class="flex-caption">
-            <h2><?php print $slide3_head; ?></h2><?php print $slide3_desc; ?>
-            <a class="frmore" href="<?php print url($slide3_url); ?>"> <?php print t('READ MORE'); ?> </a>
-          </div>
-        <?php endif; ?>
+
+        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-3s.jpg'; ?>"/>
       </li>
     </ul><!-- /slides -->
-    <div class="doverlay"></div>
+<!--    <div class="doverlay"></div>-->
   </div>
   <?php endif; ?>
   <?php endif; ?>
@@ -181,54 +174,26 @@
 
 
 
+  <?php if($page['search']) : ?>
+    <?php print render($page['search']); ?>
+  <?php endif; ?>
 
   <?php if($page['data_resource']) : ?>
-    <div id="data-resource-block">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <?php print render($page['data_resource']); ?>
-          </div>
-        </div>
-      </div>
-    </div>
+      <?php print render($page['data_resource']); ?>
   <?php endif; ?>
 
   <?php if($page['data_application']) : ?>
-    <div id="data-application-block">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <?php print render($page['data_application']); ?>
-          </div>
-        </div>
-      </div>
-    </div>
+      <?php print render($page['data_application']); ?>
   <?php endif; ?>
 
   <?php if($page['data_trade']) : ?>
-    <div id="data-trade-block">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <?php print render($page['data_trade']); ?>
-          </div>
-        </div>
-      </div>
-    </div>
+      <?php print render($page['data_trade']); ?>
   <?php endif; ?>
 
   <?php if($page['data_perception']) : ?>
-    <div id="data-perception-block">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <?php print render($page['data_perception']); ?>
-          </div>
-        </div>
-      </div>
-    </div>
+      <?php print render($page['data_perception']); ?>
   <?php endif; ?>
+
 
   <?php if($page['footer']) : ?>
     <div id="footer-block">
@@ -268,12 +233,37 @@
     <div class="container">
       <div class="row">
         <div class="fcred col-sm-12">
-          <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?>, <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>
+          <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?> <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+  <div class="con confootbg">
+    <div class="confoot">
+      <div style="height:0px; overflow:hidden;">&nbsp;</div>
+      <div class="foot1">
+        <img src="<?php echo cqtheme_get_path(); ?>/img/cqlogo.jpg">
+        <p class="foot12">Copyright 2015 www.cq.gov.cn All Rights Reserved.重庆市人民政府版权所有 重庆市人民政府办公厅主办<br />ICP备案：渝ICP备05003300号 国际联网备案：渝公网备500000012-00013</p>
+      </div>
+      <div class="foot2">
+        <img src="<?php echo cqtheme_get_path(); ?>/img/red.png" />
+        <img src="<?php echo cqtheme_get_path(); ?>/img/cqnet110.gif" />
+      </div>
+      <div class="foot3">
+        <div class="foot3div" style="margin-left:28px">
+          <img src="<?php echo cqtheme_get_path(); ?>/img/qq.png">
+          <p>重庆市政府网<br />腾讯微博</p>
+        </div>
+        <div class="foot3div">
+          <img src="<?php echo cqtheme_get_path(); ?>/img/sina.png">
+          <p>重庆市政府网<br />新浪微博</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <?php
 
 //module_load_include('inc','phpexcel');

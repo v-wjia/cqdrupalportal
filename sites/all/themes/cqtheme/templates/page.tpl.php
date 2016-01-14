@@ -244,7 +244,7 @@
     <div class="container">
       <div class="row">
         <div class="fcred col-sm-12">
-          <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?>, <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>
+          <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?> <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>
         </div>
       </div>
     </div>

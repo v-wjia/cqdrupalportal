@@ -135,4 +135,3 @@ function cqtheme_form_alter(&$form, &$form_state, $form_id) {
     $form['search_block_form']['#attributes']['placeholder'] = array("搜索相关数据");
   }
 }
-
