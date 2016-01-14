@@ -1174,3 +1174,24 @@ border-left: 1px solid; border-right: 1px solid; height: 40px; margin-left: -36p
 #footer-block{
   background: #444444;
 }
+
+.c21 .form-submit{
+    background: #fd5f47 url("img/icon-search.png") no-repeat scroll 25px center;
+    border: 1px solid #c52a13;
+    display: block;
+    float: left;
+    height: 43px;
+    text-align: center;
+    width: 190px;
+    border-radius:0px;
+    box-shadow: 0 0px 0 0 white inset;
+    text-shadow: 0 0px 0 white;
+    color:#ffffff
+}
+.c21 .form-submit:hover{
+    background: #fd5f47 url("img/icon-search.png") no-repeat scroll 25px center;
+    border-radius:0px;
+    box-shadow: 0 0px 0 0 white inset;
+    text-shadow: 0 0px 0 white;
+    color:#ffffff
+}

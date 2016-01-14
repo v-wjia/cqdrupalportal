@@ -175,7 +175,15 @@
 
 
   <?php if($page['search']) : ?>
+    <div class="con con2bg">
+    	<div class="con2">
+            <img src="<?php echo cqtheme_get_path(); ?>/img/arrow_search.png" class="arr">
+            <div style="height:0px; overflow:hidden;">&nbsp;</div>
+            <div class="c21">
     <?php print render($page['search']); ?>
+            </div>
+        </div>
+    </div>
   <?php endif; ?>
 
   <?php if($page['data_resource']) : ?>
