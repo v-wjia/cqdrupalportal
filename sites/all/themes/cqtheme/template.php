@@ -116,3 +116,5 @@ if (drupal_is_front_page()) {
   drupal_add_js(drupal_get_path('theme', 'cqtheme') . '/js/slide.js');
 }
 
+
+

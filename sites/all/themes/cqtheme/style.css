@@ -215,7 +215,7 @@ h5 { font-size: 16px; }
 h6 { font-size: 14px; }
 
 p {
-  margin: 0 0 20px;
+  /*margin: 0 0 20px;*/
 }
 
 p img {
@@ -423,7 +423,7 @@ h1#site-title a:link, h1#site-title a:visited{
 /* Slider */
 
 #slidebox{
-  max-height: 550px;
+  height: 710px;
   position: relative;
   background: #000;
 }
