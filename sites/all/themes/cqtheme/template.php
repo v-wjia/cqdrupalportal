@@ -116,3 +116,23 @@ if (drupal_is_front_page()) {
   drupal_add_js(drupal_get_path('theme', 'cqtheme') . '/js/slide.js');
 }
 
+function cqtheme_form_alter(&$form, &$form_state, $form_id) {
+  if ($form_id == 'search_block_form') {
+    $form['search_block_form']['#title'] = t('Search'); // Change the text on the label element
+    $form['search_block_form']['#title_display'] = 'invisible'; // Toggle label visibility
+//    $form['search_block_form']['#default_value'] = t('搜索相关数据'); // Set a default value for the textfield
+    $form['actions']['submit']['#value'] = t('GO!'); // Change the text on the submit button
+    $form['actions']['submit']['#attributes']['alt'] = "Search Button"; //add alt tag
+    $form['actions']['submit']['#value'] = "全站搜索";
+//    unset($form['actions']['submit']['#value']); // Remove the value attribute from the input tag, since it is not valid when input type = image
+
+//    $form['actions']['submit'] = array('#type' => 'image_button', '#src' => base_path() . path_to_theme() . '/images/icon-search.png');
+
+// Add extra attributes to the text box
+//    $form['search_block_form']['#attributes']['onblur'] = "if (this.value == '') {this.value = '搜索相关数据';}";
+//    $form['search_block_form']['#attributes']['onfocus'] = "if (this.value == '搜索相关数据') {this.value = '';}";
+    $form['search_block_form']['#attributes']['class'] = array("c211");
+    $form['search_block_form']['#attributes']['placeholder'] = array("搜索相关数据");
+  }
+}
+
