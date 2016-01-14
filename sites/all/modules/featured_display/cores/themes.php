@@ -91,6 +91,14 @@ class ContentGetter
     return $this->get_tag_alias_by_tid($tid);
   }
 
+  function get_url_by_tid($tid){
+    return drupal_get_path_alias('taxonomy/term/' . $tid);
+  }
+
+  function get_url_by_tag($category_name){
+    return $this->get_url_by_tid($this->get_tid($category_name));
+  }
+
   /**
    * 根据分类名字取得数据
    * @param $category_name
@@ -111,7 +119,7 @@ class ContentGetter
       'title',
       'nid',
       'created'
-    ));
+    ))->orderBy('created', 'DESC');
     $nids = array();
     foreach ($nid_data as $nid) {
       $nids[] = $nid->nid;
@@ -170,31 +178,16 @@ class ContentGetter
     if ($data->output != '') {
       $data->clear();
     }
-//
-//    $result = "";
-//    $datas = $this->query_by_tag('数据资源',3);
-//    foreach ($datas as $item) {
-//      $temp_data = new ContentData();
-//
-//      $this->add_wrapped_div($temp_data, 'resource', 'resource');
-//
-//      $output = '<img src="' . $this->get_node_image_url($item->nid) . '"><br>';
-//      $output .= l($item->title, 'node/' . $item->nid) . '<br>';
-//      $this->add_content($temp_data, $output);
-//      $result .= $this->execute($temp_data);
-//      unset($temp_data);
-//    }
-//    $this->add_content($data, $result);
-//    return $this->execute($data);
+
       $result = "";
     $temp_data = new ContentData();
-    $this->add_wrapped_div($temp_data,'','c33div');
+    $this->add_wrapped_div($temp_data,'',$attr['div_class']);
     $tid = $this->get_tid($attr['category']);
     $this->add_wrap($temp_data,'<a href='.$this->get_tag_alias_by_tid($tid).'>','</a>');
-    $this->add_image($temp_data,$attr['img'],$attr['name'],'class=c33divimg');
+    $this->add_image($temp_data,$attr['img'],$attr['name'],'class="'.$attr['img_class'].'"');
     $this->add_head($temp_data,$attr['name'],4,$attr['head_class']);
     $term = taxonomy_term_load($tid);
-    $this->add_content($temp_data,'<p class="c33divp">'.$term->description.'</p>');
+    $this->add_content($temp_data,'<p class="'.$attr['des_class'].'">'.$term->description.'</p>');
 
 //    print_r($term);
 
@@ -235,7 +228,7 @@ class ContentGetter
   /**
    * 获取数据交易的内容
    */
-  public function get_trade_content($data,$head,$attr,$more='') {
+  public function get_trade_content($data,$head,$attr,$wrapped_class='c52div',$more='') {
     if($more==''){
       $more=$head;
     }
@@ -243,21 +236,14 @@ class ContentGetter
       $data->clear();
     }
 
-    $this->add_wrapped_div($data, 'trade', 'trade');
+    $this->add_wrapped_div($data, '', $wrapped_class);
     $this->add_head($data, $head);
-//    $output = "<ul>";
     $datas = $this->query_by_tag($head);
-//    foreach ($datas as $item) {
-//      $output .= '<li>' . l($item->title, 'node/' . $item->nid) . '</li><br>';
-//    }
-//    $output .= '</ul>';
     $output = '';
-
     $output.=RenderFactory::render_query($datas,$attr);
 
     $this->add_content($data, $output);
-    $this->add_wrapped_div($data, 'more');
-    $this->add_content($data, $this->get_more_links($more));
+    $this->add_content($data, $this->get_button('更多',$this->get_url_by_tag($more),'c52div_more_btn'));
     return $this->execute($data);
   }
 
@@ -373,6 +359,8 @@ class ContentGetter
     }
     return '<button '.$class.' onclick="javascript:window.location.href=\''.$url.'\';">'.$text.'</button>';
   }
+
+
 }
 
 class RenderFactory{
@@ -380,15 +368,15 @@ class RenderFactory{
     switch($attr['theme']){
       case '2':
       case 'simple_ol':
-            return self::format_li_simple($query,'ol');
+            return self::format_li_simple($query,$attr['max_length'],'ol');
       case '3':
       case 'simple_ul':
-            return self::format_li_simple($query);
+            return self::format_li_simple($query,$attr['max_length']);
       case '4':
       case 'time_ul':
-            return self::format_li_time($query);
+            return self::format_li_time($query,$attr['max_length']);
       default :
-            return self::format_simple($query);
+            return self::format_simple($query,$attr['max_length']);
     }
 
   }
@@ -399,10 +387,10 @@ class RenderFactory{
    * @param $query
    * @return string
    */
-  static function format_li_simple($query, $format='ul'){
+  static function format_li_simple($query,$max_length, $format='ul'){
     $output = '<'.$format.'>';
     foreach ($query as $item) {
-      $output .='<li>'.l($item->title, drupal_get_path_alias('node/' . $item->nid)).'</li>';
+      $output .='<li>'.l(substring_dot($item->title,$max_length), drupal_get_path_alias('node/' . $item->nid)).'</li>';
     }
     $output .='</'.$format.'>';
     return $output;
@@ -412,10 +400,10 @@ class RenderFactory{
    * @param $query
    * @return string
    */
-  static function format_li_time($query, $format='ul'){
+  static function format_li_time($query,$max_length, $format='ul'){
     $output = '<'.$format.'>';
     foreach ($query as $item) {
-      $output .='<li>'.l(date("[Y-m-d]", $item->created).$item->title, drupal_get_path_alias('node/' . $item->nid)).'</li>';
+      $output .='<li><span>'.date("[Y-m-d]", $item->created).'</span>'.l(substring_dot($item->title,$max_length), drupal_get_path_alias('node/' . $item->nid)).'</li>';
     }
     $output .='</'.$format.'>';
     return $output;
@@ -427,10 +415,10 @@ class RenderFactory{
    * @param $query
    * @return string 返回HTML
    */
-  static function format_simple($query){
+  static function format_simple($query,$max_length){
     $output = '';
     foreach ($query as $item) {
-      $output .='<br>'.l(substring_dot($item->title), drupal_get_path_alias('node/' . $item->nid));
+      $output .='<br>'.l(substring_dot($item->title,$max_length), drupal_get_path_alias('node/' . $item->nid));
     }
     return $output;
   }
@@ -445,7 +433,10 @@ class RenderFactory{
  * @return string
  */
 function substring_dot($string,$count=15,$fill='...'){
-  if(strlen($string)>$count){
+  if($count<1){
+    return $string;
+  }
+  if(mb_strlen($string)>$count){
     return mb_substr($string,0,$count,'utf-8').$fill;
   }
   return $string;

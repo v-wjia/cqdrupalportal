@@ -90,20 +90,32 @@ function featured_display_block_view($delta = '')
 
         case 'display_trade' : // 如果调用了数据交易
             if (user_access('access content')) {
-//                $content_getter = new ContentGetter();
-//                $content_wrap = new ContentData();
-//
-//                $content_getter->add_wrapped_div($content_wrap,'','con con5bg');
-//                $content_getter->add_wrapped_div($content_wrap,'','con5');
-//                $content_getter->add_content($content_wrap,'<div style="height:0px; overflow:hidden;">&nbsp;</div>');
-//                $content_getter->add_image($content_wrap,cqtheme_get_path().'/img/arrow_5.png','',' class="arr"');
-//                $content_getter->add_head($content_wrap,'数据交易',3,'c51');
-//
-//                $data = $content_getter->get_trade_content($content_wrap,'数据下载排行',array('theme'=>2)) . $content_getter->get_trade_content($content_wrap,'最新发布数据',array('theme'=>4)) . $content_getter->get_trade_content($content_wrap,'平台动态',array('theme'=>1));
-//                $block['content'] = $data;
-//                unset($content_getter);
-//                unset($content_wrap);
-//                return $block;
+                $content_getter = new ContentGetter();
+                $content_wrap = new ContentData();
+                $content_wrap_2 = new ContentData();
+                $content_data = new ContentData();
+
+                $content_getter->add_wrapped_div($content_wrap,'','con con5bg');
+                $content_getter->add_wrapped_div($content_wrap,'','con5');
+                $content_getter->add_content($content_wrap,'<div style="height:0px; overflow:hidden;">&nbsp;</div>');
+                $content_getter->add_image($content_wrap,cqtheme_get_path().'/img/arrow_5.png','',' class="arr"');
+                $content_getter->add_head($content_wrap,'数据交易',3,'c51');
+
+                $content_getter->add_wrapped_div($content_wrap_2,'','c52');
+
+                $content_getter->add_content($content_wrap_2,$content_getter->get_trade_content($content_data,'数据下载排行',array('theme'=>'simple_ol','max_length'=>20))) ;
+                $content_getter->add_content($content_wrap_2,$content_getter->get_trade_content($content_data,'最新发布数据',array('theme'=>'time_ul','max_length'=>14))) ;
+                $content_getter->add_content($content_wrap_2,$content_getter->get_trade_content($content_data,'平台动态',array('theme'=>'simple_ul','max_length'=>20),'c52div end'));
+
+                $content_getter->add_content($content_wrap,$content_getter->execute($content_wrap_2));
+                $content_getter->add_content($content_wrap,'<p class="c53">注：上述数据已通过重庆政府数据服务网开放，如需下载请登陆 <span>www.datachongqing.gov.cn</span></p>');
+
+                $block['content'] = $content_getter->execute($content_wrap);
+                unset($content_getter);
+                unset($content_wrap);
+                unset($content_wrap_2);
+                unset($content_data);
+                return $block;
 
             }
             break;
@@ -111,20 +123,28 @@ function featured_display_block_view($delta = '')
         case 'display_perception': // 如果调用了物联感知
 
             if (user_access('access content')) {
-                $category = '物联感知';
+
                 $content_getter = new ContentGetter();
                 $content_wrap = new ContentData();
+                $content_getter->add_wrapped_div($content_wrap,'','con con6bg');
+                $content_getter->add_wrapped_div($content_wrap,'','con6');
+                $content_getter->add_content($content_wrap,'<div style="height:0px; overflow:hidden;">&nbsp;</div>');
+                $content_getter->add_image($content_wrap,cqtheme_get_path().'/img/arrow_6.png','',' class="arr"');
+                $content_getter->add_head($content_wrap,'物联感知',3,'c61');
 
-                $data = '<div class="perception-wrap">';
-                $data .= '<h2>物联感知</h2>';
-                $data .= $content_getter->get_perception_content($content_wrap);
-                $data .= '<div class="more"><br><a href=/' . drupal_get_path_alias('taxonomy/term/' . $content_getter->get_tid($category)) . '>更多</a></div>';
-                $data .= '</div>';
+                $content_data= new ContentData();
+                $content_getter->add_wrapped_div($content_data,'','c62');
+                foreach(variable_get('data_perception_data') as $item){
+                    $content_getter->get_resource_content($content_data,$item);
+                }
+                $content_getter->add_content($content_wrap,$content_getter->execute($content_data));
+
+                $data = $content_getter->execute($content_wrap);
                 $block['content'] = $data;
                 unset($content_getter);
                 unset($content_wrap);
+                unset($content_data);
                 return $block;
-
             }
             break;
 
@@ -153,14 +173,21 @@ function cqtheme_get_path(){
 }
 
 variable_set('data_resource_data',array(
-    array('name'=>'医疗卫生','category'=>'医疗卫生','img'=>cqtheme_get_path().'/img/3-1-n.png','head_class'=>'c33divt'),
-    array('name'=>'社会保障','category'=>'社会保障','img'=>cqtheme_get_path().'/img/3-2-n.png','head_class'=>'c33divt'),
-    array('name'=>'教育文化','category'=>'教育文化','img'=>cqtheme_get_path().'/img/3-3-n.png','head_class'=>'c33divt'),
-    array('name'=>'交通旅游','category'=>'交通旅游','img'=>cqtheme_get_path().'/img/3-4-n.png','head_class'=>'c33divt'),
-    array('name'=>'资源环境','category'=>'资源环境','img'=>cqtheme_get_path().'/img/3-5-n.png','head_class'=>'c33divt'),
-    array('name'=>'工业经济','category'=>'工业经济','img'=>cqtheme_get_path().'/img/3-6-n.png','head_class'=>'c33divt'),
-    array('name'=>'农业生产','category'=>'农业生产','img'=>cqtheme_get_path().'/img/3-7-n.png','head_class'=>'c33divt'),
-    array('name'=>'商贸物流','category'=>'商贸物流','img'=>cqtheme_get_path().'/img/3-8-n.png','head_class'=>'c33divt'),
-    array('name'=>'公共安全','category'=>'公共安全','img'=>cqtheme_get_path().'/img/3-9-n.png','head_class'=>'c33divt'),
-    array('name'=>'社会生活','category'=>'社会生活','img'=>cqtheme_get_path().'/img/3-10-n.png','head_class'=>'c33divt'),
+    array('name'=>'医疗卫生','category'=>'医疗卫生','img'=>cqtheme_get_path().'/img/3-1-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+    array('name'=>'社会保障','category'=>'社会保障','img'=>cqtheme_get_path().'/img/3-2-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+    array('name'=>'教育文化','category'=>'教育文化','img'=>cqtheme_get_path().'/img/3-3-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+    array('name'=>'交通旅游','category'=>'交通旅游','img'=>cqtheme_get_path().'/img/3-4-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+    array('name'=>'资源环境','category'=>'资源环境','img'=>cqtheme_get_path().'/img/3-5-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+    array('name'=>'工业经济','category'=>'工业经济','img'=>cqtheme_get_path().'/img/3-6-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+    array('name'=>'农业生产','category'=>'农业生产','img'=>cqtheme_get_path().'/img/3-7-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+    array('name'=>'商贸物流','category'=>'商贸物流','img'=>cqtheme_get_path().'/img/3-8-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+    array('name'=>'公共安全','category'=>'公共安全','img'=>cqtheme_get_path().'/img/3-9-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+    array('name'=>'社会生活','category'=>'社会生活','img'=>cqtheme_get_path().'/img/3-10-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+));
+
+variable_set('data_perception_data',array(
+    array('name'=>'农业类','category'=>'农业类','img'=>cqtheme_get_path().'/img/6-1-n.png','head_class'=>'c62h4','div_class'=>'c62div','img_class'=>'c62img','des_class'=>'c62p'),
+    array('name'=>'建筑类','category'=>'建筑类','img'=>cqtheme_get_path().'/img/6-2-n.png','head_class'=>'c62h4','div_class'=>'c62div','img_class'=>'c62img','des_class'=>'c62p'),
+    array('name'=>'医疗类','category'=>'医疗类','img'=>cqtheme_get_path().'/img/6-3-n.png','head_class'=>'c62h4','div_class'=>'c62div','img_class'=>'c62img','des_class'=>'c62p'),
+
 ));
