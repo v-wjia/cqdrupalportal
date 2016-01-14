@@ -5,9 +5,6 @@
   <?php print $scripts; ?>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>海绵城市数据监控平台</title>
-  <link rel="stylesheet" href="../css/bootstrap.min.css">
-  <link rel="stylesheet" href="../css/cssreset-min.css">
-  <link rel="stylesheet" href="../css/index.css">
   <style>
     .con{ width:100%; }
 
@@ -35,7 +32,7 @@
     .con2 .arr{ position: absolute; top:0; left:50%; margin-left:-29px}
     .c21{ width:1024px; height:45px; margin-top:38px;}
     .c21 .c211{ display:block; float:left; width:810px; height:43px; background:#c52a13; border:0; color:#fff; font-size:14px; text-indent:20px}
-    .c21 .c212{ display:block; float:left; width:210px; height:43px; background: url(img/icon-search.png) no-repeat 25px center #fd5f47; border:1px solid #c52a13; text-align:center; }
+    .c21 .c212{ display:block; float:left; width:210px; height:43px; background: url(<?php echo cqtheme_get_path() ?>/img/icon-search.png) no-repeat 25px center #fd5f47; border:1px solid #c52a13; text-align:center; }
     .c21 .c212 span{ color:#fff; line-height:43px; font-size:18px;}
 
     .con3{ width:1024px; height:700px; margin:0 auto; position:relative}
@@ -84,39 +81,31 @@
     .con6 .c62div .c62h4{ font-size:18px; font-weight:bold; text-align:center; margin-top:20px; color:#fff; }
     .con6 .c62div .c62p{ width:60%; margin:10px auto 0; font-size:12px; line-height:180%; text-align:center; color:#fff; }
 
-    .confoot{ width:1024px; height:160px; margin:0 auto; position:relative; color:#fff; }
-    .confootbg{ background:#2e3139}
-    .confoot .foot1{ float:left; width:590px; font-size:12px; font-family:Tahoma, Geneva, sans-serif; line-height:200%; margin-top:38px}
-    .confoot .foot1 .foot12{ margin-top:18px}
-    .confoot .foot2{ float:left; width:140px; margin-top:50px}
-    .confoot .foot3{ float:right; width:240px; margin-top:18px}
-    .confoot .foot3 .foot3div{ float:right; text-align:center}
-    .confoot .foot3 .foot3div p{ margin-top:6px;}
 
   </style>
-  <script src="<?php echo cqtheme_get_path() ?>/js/jquery-1.11.3.js"></script>
+<!--  <script src="--><?php //echo cqtheme_get_path() ?><!--/js/jquery-1.11.3.js"></script>-->
   <script>
-    $(function() {
-      $(".c33div").mouseover(function(){
-        var index = $(this).index(".c33div");
+    jQuery(function() {
+      jQuery(".c33div").mouseover(function(){
+        var index = jQuery(this).index(".c33div");
         index++;
-        $(this).find(".c33divimg").attr("src","<?php echo cqtheme_get_path() ?>/img/3-" + index + "-h.png" );
+        jQuery(this).find(".c33divimg").attr("src","<?php echo cqtheme_get_path() ?>/img/3-" + index + "-h.png" );
       });
-      $(".c33div").mouseout(function(){
-        var index = $(this).index(".c33div");
+      jQuery(".c33div").mouseout(function(){
+        var index = jQuery(this).index(".c33div");
         index++;
-        $(this).find(".c33divimg").attr("src","<?php echo cqtheme_get_path() ?>/img/3-" + index + "-n.png" );
+        jQuery(this).find(".c33divimg").attr("src","<?php echo cqtheme_get_path() ?>/img/3-" + index + "-n.png" );
       });
 
-      $(".c62div").mouseover(function(){
-        var index = $(this).index(".c62div");
+      jQuery(".c62div").mouseover(function(){
+        var index = jQuery(this).index(".c62div");
         index++;
-        $(this).find(".c62img").attr("src","<?php echo cqtheme_get_path() ?>/img/6-" + index + "-h.png" );
+        jQuery(this).find(".c62img").attr("src","<?php echo cqtheme_get_path() ?>/img/6-" + index + "-h.png" );
       });
-      $(".c62div").mouseout(function(){
-        var index = $(this).index(".c62div");
+      jQuery(".c62div").mouseout(function(){
+        var index = jQuery(this).index(".c62div");
         index++;
-        $(this).find(".c62img").attr("src","<?php echo cqtheme_get_path() ?>/img/6-" + index + "-n.png" );
+        jQuery(this).find(".c62img").attr("src","<?php echo cqtheme_get_path() ?>/img/6-" + index + "-n.png" );
       });
 
     });

@@ -240,13 +240,38 @@
     </div>
   <?php endif; ?>
 
-  <footer id="colophon" class="site-footer" role="contentinfo">
-    <div class="container">
-      <div class="row">
-        <div class="fcred col-sm-12">
-          <?php print t('Copyright'); ?> &copy; <?php echo date("Y"); ?> <a href="<?php print $front_page; ?>"><?php print $site_name; ?></a>
+<!--  <footer id="colophon" class="site-footer" role="contentinfo">-->
+<!--    <div class="container">-->
+<!--      <div class="row">-->
+<!--        <div class="fcred col-sm-12">-->
+<!--          --><?php //print t('Copyright'); ?><!-- &copy; --><?php //echo date("Y"); ?><!-- <a href="--><?php //print $front_page; ?><!--">--><?php //print $site_name; ?><!--</a>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+  <div class="con confootbg">
+    <div class="confoot">
+      <div style="height:0px; overflow:hidden;">&nbsp;</div>
+      <div class="foot1">
+        <img src="/<?php echo cqtheme_get_path(); ?>/img/cqlogo.jpg">
+        <p class="foot12">Copyright 2015 www.cq.gov.cn All Rights Reserved.重庆市人民政府版权所有 重庆市人民政府办公厅主办<br />ICP备案：渝ICP备05003300号 国际联网备案：渝公网备500000012-00013</p>
+      </div>
+      <div class="foot2">
+        <img src="/<?php echo cqtheme_get_path(); ?>/img/red.png" />
+        <img src="/<?php echo cqtheme_get_path(); ?>/img/cqnet110.gif" />
+      </div>
+      <div class="foot3">
+        <div class="foot3div" style="margin-left:28px">
+          <img src="/<?php echo cqtheme_get_path(); ?>/img/qq.png">
+          <p>重庆市政府网<br />腾讯微博</p>
+        </div>
+        <div class="foot3div">
+          <img src="/<?php echo cqtheme_get_path(); ?>/img/sina.png">
+          <p>重庆市政府网<br />新浪微博</p>
         </div>
       </div>
     </div>
   </div>
+
+  </div>
 </div>
+

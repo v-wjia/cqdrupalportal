@@ -4,6 +4,16 @@ www.devsaran.com
 
 @import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
 
+.confoot{ width:1024px; height:160px; margin:0 auto; position:relative; color:#fff; }
+.confootbg{ background:#2e3139}
+.confoot .foot1{ float:left; width:590px; font-size:12px; font-family:Tahoma, Geneva, sans-serif; line-height:200%; margin-top:38px}
+.confoot .foot1 .foot12{ margin-top:18px}
+.confoot .foot2{ float:left; width:140px; margin-top:50px}
+.confoot .foot3{ float:right; width:240px; margin-top:18px}
+.confoot .foot3 .foot3div{ float:right; text-align:center}
+.confoot .foot3 .foot3div p{ margin-top:6px;}
+
+
 
 /* Reset
 ================================================== */
