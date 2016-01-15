@@ -6,21 +6,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <title>海绵城市数据监控平台</title>
   <style>
-.con{ width:100%; }
 
-.con0{ width:1024px; height:80px; margin:0 auto; position:relative}
-.con0 ul li {list-style: outside none none;}
-.con0bg{ background:#2e313a}
-.con0_logo{ width:200px; float:left; margin-top:12px}
-.con0_logo .con0_1_1{ display:block; float:left}
-.con0_logo .con0_1_2{ display:block; float:left}
-.con0 .con0_nav{ height:40px; color:#fff; float:left; margin-top:10px}
-.con0 .con0_nav li{ padding:0 20px; line-height:40px; float:left}
-.con0 .con0_nav li a{ color:#fff; text-decoration:none}
-.con0 .con0_nav li a.active{ color:#fd5f47; text-decoration:none}
-.con0_user{ width:202px; float:right; margin-top:17px}
-.con0_user .con0_user_p{ line-height:200%; color:#fff; background:#fd5f47; float:left; padding:0 20px; border-radius:20px; margin-left:10px}
-.con0_user img { display:block; float:left; }
 
 
 .con1{ width:1024px; height:710px; margin:0 auto; position:relative}
