@@ -79,11 +79,17 @@
                     <?php
                     $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
                     print drupal_render($main_menu_tree); ?>
+
                 </ul>
-<!--                <div class="con0_user">
-                    <img src="img/user.png">
-                    <p class="con0_user_p"><span>hi, </span><span>rex</span><span> | 个人中心</span></p>
-                </div>-->
+                <ul class="con0_nav">
+                  <?php if ($page['front_side']): ?>
+                     <?php print render($page['front_side']); ?>
+                 <?php endif; ?>
+                </ul>
+              <!--                <div class="con0_user">
+                                  <img src="img/user.png">
+                                  <p class="con0_user_p"><span>hi, </span><span>rex</span><span> | 个人中心</span></p>
+                              </div>-->
             </div>
         </div>
     </div>
