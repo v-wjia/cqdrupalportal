@@ -9,6 +9,7 @@
 .con{ width:100%; }
 
 .con0{ width:1024px; height:80px; margin:0 auto; position:relative}
+.con0 ul li {list-style: outside none none;}
 .con0bg{ background:#2e313a}
 .con0_logo{ width:200px; float:left; margin-top:12px}
 .con0_logo .con0_1_1{ display:block; float:left}
@@ -38,7 +39,7 @@
 .con1_4 .c141{ color:#fff; font-size:30px; border:1px solid #fff; width:190px; text-align:center; float:right; clear:both}
 .con1_4 .c142{ color:#fff; font-size:14px; text-align:right; margin-top:25px; clear:both; float:right; color:#c5c5c5}
 .con1_4 .c143{ color:#fff; font-size:14px; text-align:right; margin-top:25px; clear:both; float:right; color:#c5c5c5}
-.con1_4 .c144{ color:#fff; font-size:18px; border: 1px solid #fff; background:none; padding:5px 30px; border-radius:10px; margin-top:20px; clear:both; float:right; display:block}
+.con1_4 .c144{ color:#fff; font-size:18px; border: 1px solid #fff; background:none; padding:5px 30px; border-radius:10px; margin-top:20px; clear:both; float:right; display:block; font-weight:normal;box-shadow:0 0 0 white!important; text-shadow:0 0 0 white!important}
 
 
 .con2{ width:1024px; height:118px; margin:0 auto; position:relative}
