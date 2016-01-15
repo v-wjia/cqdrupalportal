@@ -68,7 +68,25 @@
 
 
 
-
+    <div class="con con0bg">
+        <div class="con0">
+            <div class="con0_1">
+                <div class="con0_logo">
+                    <img src="<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con0_1_1"/>
+                    <img src="<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con0_1_2"/>
+                </div>
+                <ul class="con0_nav">
+                    <?php
+                    $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
+                    print drupal_render($main_menu_tree); ?>
+                </ul>
+<!--                <div class="con0_user">
+                    <img src="img/user.png">
+                    <p class="con0_user_p"><span>hi, </span><span>rex</span><span> | 个人中心</span></p>
+                </div>-->
+            </div>
+        </div>
+    </div>
 
 
   <?php if ($is_front): ?>
@@ -80,28 +98,13 @@
   ?>
   <div id="slidebox">
     <ul class="slides">
+      
       <li>
-        <div class="con con1bg">
-          <div class="con1">
+        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-1s.jpg'; ?>"/>
+        <div class="con " style="position: absolute; top: 0px; left: 0px;">  
+        <div class="con1">
             <div class="con1_1">
 
-              <div class="con1_logo">
-                <img src="<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con1_1_1"/>
-                <img src="<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con1_1_2"/>
-              </div>
-              <div id="logo" class="site-branding col-sm-6">
-                <?php if ($logo): ?><div id="site-logo"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-                  </a></div><?php endif; ?>
-                <h1 id="site-title">
-                  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
-                </h1>
-              </div>
-              <ul class="con1_nav">
-                <?php
-                $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
-                print drupal_render($main_menu_tree); ?>
-              </ul>
               <div class="con1_4">
                 <p class="c141">重庆开放数据<br />创新应用大赛</p>
                 <p class="c142">平台将开放星图数据自有灵敏据体系，并引入第三方数据源和数据开发者，<br />高校及研究机构、个人提供大数据应用服务，构建多方共赢的大数据商业化生态圈。</p>
@@ -124,16 +127,67 @@
 
             </div>
           </div>
-        </div>
-
-      </li>
-<!--      <li>-->
-<!---->
-<!--        <img src="--><?php //print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-2.jpg'; ?><!--"/>-->
-<!--      </li>-->
+            </div>
+      </li>      
       <li>
+        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-2s.jpg'; ?>"/>
+        <div class="con " style="position: absolute; top: 0px; left: 0px;">  
+        <div class="con1">
+            <div class="con1_1">
 
+              <div class="con1_4">
+                <p class="c141">重庆开放数据<br />创新应用大赛</p>
+                <p class="c142">平台将开放星图数据自有灵敏据体系，并引入第三方数据源和数据开发者，<br />高校及研究机构、个人提供大数据应用服务，构建多方共赢的大数据商业化生态圈。</p>
+                <p class="c143">平台将开放星图数据自有灵敏据体系，并引入<br />第三方数据源和数据开发者，面向各行业企业、<br />高校及研究机构、个人提供大数据应用服务，<br />构建多方共赢的大数据商业化生态圈。</p>
+                <button class="c144 more_btn">更多</button>
+              </div>
+
+              <div class="mobilenavi"></div>
+              <nav id="navigation" role="navigation">
+
+                <div class="row">
+                  <?php if ($page['front_side']): ?>
+                    <aside id="sidebar" class="col-sm-4" role="complementary">
+                      <?php print render($page['front_side']); ?>
+                    </aside>
+                  <?php endif; ?>
+                </div>
+
+              </nav>
+
+            </div>
+          </div>
+            </div>
+      </li>
+      <li>
         <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-3s.jpg'; ?>"/>
+        <div class="con " style="position: absolute; top: 0px; left: 0px;">  
+        <div class="con1">
+            <div class="con1_1">
+
+              <div class="con1_4">
+                <p class="c141">重庆开放数据<br />创新应用大赛</p>
+                <p class="c142">平台将开放星图数据自有灵敏据体系，并引入第三方数据源和数据开发者，<br />高校及研究机构、个人提供大数据应用服务，构建多方共赢的大数据商业化生态圈。</p>
+                <p class="c143">平台将开放星图数据自有灵敏据体系，并引入<br />第三方数据源和数据开发者，面向各行业企业、<br />高校及研究机构、个人提供大数据应用服务，<br />构建多方共赢的大数据商业化生态圈。</p>
+                <button class="c144 more_btn">更多</button>
+              </div>
+
+              <div class="mobilenavi"></div>
+              <nav id="navigation" role="navigation">
+
+                <div class="row">
+                  <?php if ($page['front_side']): ?>
+                    <aside id="sidebar" class="col-sm-4" role="complementary">
+                      <?php print render($page['front_side']); ?>
+                    </aside>
+                  <?php endif; ?>
+                </div>
+
+              </nav>
+
+            </div>
+          </div>
+            </div>
       </li>
     </ul><!-- /slides -->
 <!--    <div class="doverlay"></div>-->
