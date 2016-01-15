@@ -60,18 +60,18 @@
 .con3 .c33 .c33div .c33divimg{ display:block; margin:10px auto}
 .con3 .c33 .c33div .c33divt{ font-size:18px; color:#4a4d51; text-align:center; font-weight:bold; margin-top:20px}
 .con3 .c33 .c33div .c33divp{ font-size:14px; color:#9d9d9d; width:85%; margin:0 auto; font-size:12px; line-height:200%; margin-top:10px}
-.con3 .more_btn{ color:#4a4a4a; font-size:18px; display:block; margin:0 auto; border: 1px solid #4a4a4a; background:none; padding:5px 30px; border-radius:10px; margin-top:25px; }
+.con3 .more_btn{ text-shadow:none;box-shadow:none; font-weight:normal;color:#4a4a4a; font-size:18px; display:block; margin:0 auto; border: 1px solid #4a4a4a; background:none; padding:5px 30px; border-radius:10px; margin-top:25px; }
 
 .con4{ width:1024px; height:700px; margin:0 auto; position:relative}
 .con4bg{ background:#2e3139}
 .con4 .arr{ position: absolute; top:0; left:50%; margin-left:-29px}
 .con4 .c41{ text-align:center; font-size:26px; color:#d8d8d8; margin-top:50px;}
-.con4 .more_btn{ color:#9d9d9d; font-size:18px; display:block; margin:0 auto; border: 1px solid #9d9d9d; background:none; padding:5px 30px; border-radius:10px; margin-top:25px; }
+.con4 .more_btn{ text-shadow:none;box-shadow:none; font-weight:normal;color:#9d9d9d; font-size:18px; display:block; margin:0 auto; border: 1px solid #9d9d9d; background:none; padding:5px 30px; border-radius:10px; margin-top:25px; }
 .con4 .c42{ overflow:hidden; margin-top:30px}
 .con4 .c42 .c42div{ margin:20px 5px; display:inline-block; position:relative}
 .con4 .c42 .c42div:hover .c42p{ display:block}
 .con4 .c42 .c42div .c42p{ display:none; position:absolute; bottom:0; left:0; background:#4a4a4a; width:100%; height:46px; line-height:46px; font-size:13px; color:#fff; text-indent:50px}
-.con4 .c42 .c42div .c42btn{ display:block; line-height:26px; background:none; border:1px solid #f5a623; border-radius:15px; font-size:12px; padding:0 28px; color:#f5a623; float:right; margin-top:9px; margin-right:20px; text-indent:0}
+.con4 .c42 .c42div .c42btn{ text-shadow:none;box-shadow:none; font-weight:normal;display:block; line-height:26px; background:none; border:1px solid #f5a623; border-radius:15px; font-size:12px; padding:0 28px; color:#f5a623; float:right; margin-top:9px; margin-right:20px; text-indent:0}
 
 .con5{ width:1024px; height:660px; margin:0 auto; position:relative}
 .con5bg{ background:url(<?php echo cqtheme_get_path() ?>/img/c3bg.png) no-repeat center center #f1f2f6}
@@ -82,6 +82,8 @@
 .con5 .c52 .c52div.end{ margin-right:0;}
 .con5 .c52 .c52div h3{ background:#fd5f47; font-size:16px; font-weight:bold; color:#fff; line-height:200%; text-align:center}
 .con5 .c52 .c52div li span{ color:#fd5f47; padding-right:6px}
+.con5 .c52 .c52div li{list-style: outside none none;}
+.con5 .c52 .c52div ul{margin:0px;}
 .con5 .c52 .c52div .c52div_more_btn{ color:#606060; font-size:16px; display:block; margin:0 auto; border: 1px solid #606060; background:none; padding:5px 25px; line-height:150%; border-radius:10px; margin-top:25px; }
 .con5 .c53{ text-align:center; font-size:12px; color:#888888; }
 .con5 .c53 span{ color:#fb715c; } 

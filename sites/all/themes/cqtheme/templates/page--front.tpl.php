@@ -92,102 +92,67 @@
   <?php if ($is_front): ?>
   <?php if (theme_get_setting('slideshow_display','cqtheme')): ?>
   <?php
-    $slide1_head = check_plain(theme_get_setting('slide1_head','cqtheme'));   $slide1_desc = check_markup(theme_get_setting('slide1_desc','cqtheme'), 'full_html'); $slide1_url = check_plain(theme_get_setting('slide1_url','cqtheme'));
-    $slide2_head = check_plain(theme_get_setting('slide2_head','cqtheme'));   $slide2_desc = check_markup(theme_get_setting('slide2_desc','cqtheme'), 'full_html'); $slide2_url = check_plain(theme_get_setting('slide2_url','cqtheme'));
-    $slide3_head = check_plain(theme_get_setting('slide3_head','cqtheme'));   $slide3_desc = check_markup(theme_get_setting('slide3_desc','cqtheme'), 'full_html'); $slide3_url = check_plain(theme_get_setting('slide3_url','cqtheme'));
+//      $slide1_head = check_plain(theme_get_setting('slide1_head','cqtheme'));
+    $slide1_head = theme_get_setting('slide1_head','cqtheme');   $slide1_desc = theme_get_setting('slide1_desc','cqtheme'); $slide1_url = check_plain(theme_get_setting('slide1_url','cqtheme'));
+    $slide2_head = theme_get_setting('slide2_head','cqtheme');   $slide2_desc = theme_get_setting('slide2_desc','cqtheme'); $slide2_url = check_plain(theme_get_setting('slide2_url','cqtheme'));
+    $slide3_head = theme_get_setting('slide3_head','cqtheme');   $slide3_desc = theme_get_setting('slide3_desc','cqtheme'); $slide3_url = check_plain(theme_get_setting('slide3_url','cqtheme'));
   ?>
-  <div id="slidebox">
+  <div id="slidebox" class="flexslider">
     <ul class="slides">
       
       <li>
-        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-1s.jpg'; ?>"/>
-        <div class="con " style="position: absolute; top: 0px; left: 0px;">  
-        <div class="con1">
+      <?php if($slide1_head || $slide1_desc) : ?>
+        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-1.jpg'; ?>"/>
+        <div class="con " style="position: absolute; top: 0px; left: 0px;">
+          <div class="con1">
             <div class="con1_1">
-
               <div class="con1_4">
-                <p class="c141">重庆开放数据<br />创新应用大赛</p>
-                <p class="c142">平台将开放星图数据自有灵敏据体系，并引入第三方数据源和数据开发者，<br />高校及研究机构、个人提供大数据应用服务，构建多方共赢的大数据商业化生态圈。</p>
-                <p class="c143">平台将开放星图数据自有灵敏据体系，并引入<br />第三方数据源和数据开发者，面向各行业企业、<br />高校及研究机构、个人提供大数据应用服务，<br />构建多方共赢的大数据商业化生态圈。</p>
-                <button class="c144 more_btn">更多</button>
+                <?php print $slide1_head; ?>
+                <?php print $slide1_desc; ?>
+                <button class="c144 more_btn"<?php echo ' onclick="javascript:window.location.href=\''.$slide1_url.'\';"' ?>>更多</button>
               </div>
-
-              <div class="mobilenavi"></div>
-              <nav id="navigation" role="navigation">
-
-                <div class="row">
-                  <?php if ($page['front_side']): ?>
-                    <aside id="sidebar" class="col-sm-4" role="complementary">
-                      <?php print render($page['front_side']); ?>
-                    </aside>
-                  <?php endif; ?>
-                </div>
-
-              </nav>
-
             </div>
           </div>
-            </div>
+        </div>
+
+<!--            <a class="frmore" href="--><?php //print url($slide1_url); ?><!--"> --><?php //print t('READ MORE'); ?><!-- </a>-->
+        <?php endif; ?>
+
+
+
       </li>      
       <li>
-        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-2s.jpg'; ?>"/>
-        <div class="con " style="position: absolute; top: 0px; left: 0px;">  
+        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-2.jpg'; ?>"/>
+    <?php if($slide2_head || $slide2_desc) : ?>
+      <div class="con " style="position: absolute; top: 0px; left: 0px;">
         <div class="con1">
-            <div class="con1_1">
-
-              <div class="con1_4">
-                <p class="c141">重庆开放数据<br />创新应用大赛</p>
-                <p class="c142">平台将开放星图数据自有灵敏据体系，并引入第三方数据源和数据开发者，<br />高校及研究机构、个人提供大数据应用服务，构建多方共赢的大数据商业化生态圈。</p>
-                <p class="c143">平台将开放星图数据自有灵敏据体系，并引入<br />第三方数据源和数据开发者，面向各行业企业、<br />高校及研究机构、个人提供大数据应用服务，<br />构建多方共赢的大数据商业化生态圈。</p>
-                <button class="c144 more_btn">更多</button>
-              </div>
-
-              <div class="mobilenavi"></div>
-              <nav id="navigation" role="navigation">
-
-                <div class="row">
-                  <?php if ($page['front_side']): ?>
-                    <aside id="sidebar" class="col-sm-4" role="complementary">
-                      <?php print render($page['front_side']); ?>
-                    </aside>
-                  <?php endif; ?>
-                </div>
-
-              </nav>
-
+          <div class="con1_1">
+            <div class="con1_4">
+              <?php print $slide2_head; ?>
+              <?php print $slide2_desc; ?>
+              <button class="c144 more_btn"<?php echo ' onclick="javascript:window.location.href=\''.$slide2_url.'\';"' ?>>更多</button>
             </div>
           </div>
-            </div>
+        </div>
+      </div>
+    <?php endif; ?>
+
       </li>
       <li>
-        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-3s.jpg'; ?>"/>
-        <div class="con " style="position: absolute; top: 0px; left: 0px;">  
-        <div class="con1">
-            <div class="con1_1">
-
-              <div class="con1_4">
-                <p class="c141">重庆开放数据<br />创新应用大赛</p>
-                <p class="c142">平台将开放星图数据自有灵敏据体系，并引入第三方数据源和数据开发者，<br />高校及研究机构、个人提供大数据应用服务，构建多方共赢的大数据商业化生态圈。</p>
-                <p class="c143">平台将开放星图数据自有灵敏据体系，并引入<br />第三方数据源和数据开发者，面向各行业企业、<br />高校及研究机构、个人提供大数据应用服务，<br />构建多方共赢的大数据商业化生态圈。</p>
-                <button class="c144 more_btn">更多</button>
-              </div>
-
-              <div class="mobilenavi"></div>
-              <nav id="navigation" role="navigation">
-
-                <div class="row">
-                  <?php if ($page['front_side']): ?>
-                    <aside id="sidebar" class="col-sm-4" role="complementary">
-                      <?php print render($page['front_side']); ?>
-                    </aside>
-                  <?php endif; ?>
+        <img src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/images/slide-image-3.jpg'; ?>"/>
+        <?php if($slide3_head || $slide3_desc) : ?>
+          <div class="con " style="position: absolute; top: 0px; left: 0px;">
+            <div class="con1">
+              <div class="con1_1">
+                <div class="con1_4">
+                  <?php print $slide3_head; ?>
+                  <?php print $slide3_desc; ?>
+                  <button class="c144 more_btn"<?php echo ' onclick="javascript:window.location.href=\''.$slide3_url.'\';"' ?>>更多</button>
                 </div>
-
-              </nav>
-
+              </div>
             </div>
           </div>
-            </div>
+        <?php endif; ?>
       </li>
     </ul><!-- /slides -->
 <!--    <div class="doverlay"></div>-->

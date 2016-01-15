@@ -103,7 +103,7 @@ function featured_display_block_view($delta = '')
 
                 $content_getter->add_wrapped_div($content_wrap_2,'','c52');
 
-                $content_getter->add_content($content_wrap_2,$content_getter->get_trade_content($content_data,'数据下载排行',array('theme'=>'simple_ol','max_length'=>20))) ;
+                $content_getter->add_content($content_wrap_2,$content_getter->get_trade_content($content_data,'数据下载排行',array('theme'=>'ordered_ul','max_length'=>20))) ;
                 $content_getter->add_content($content_wrap_2,$content_getter->get_trade_content($content_data,'最新发布数据',array('theme'=>'time_ul','max_length'=>14))) ;
                 $content_getter->add_content($content_wrap_2,$content_getter->get_trade_content($content_data,'平台动态',array('theme'=>'simple_ul','max_length'=>20),'c52div end'));
 

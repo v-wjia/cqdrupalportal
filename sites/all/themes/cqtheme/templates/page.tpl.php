@@ -66,6 +66,27 @@
 ?>
 
 <div id="page">
+
+  <div class="con con0bg">
+    <div class="con0">
+      <div class="con0_1">
+        <div class="con0_logo">
+          <img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con0_1_1"/>
+          <img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con0_1_2"/>
+        </div>
+        <ul class="con0_nav">
+          <?php
+          $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
+          print drupal_render($main_menu_tree); ?>
+        </ul>
+        <!--                <div class="con0_user">
+                            <img src="img/user.png">
+                            <p class="con0_user_p"><span>hi, </span><span>rex</span><span> | 个人中心</span></p>
+                        </div>-->
+      </div>
+    </div>
+  </div>
+
   <header id="masthead" class="site-header container" role="banner">
     <div class="row">
       <div id="logo" class="site-branding col-sm-6">

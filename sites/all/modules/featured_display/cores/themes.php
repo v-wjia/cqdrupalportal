@@ -375,6 +375,9 @@ class RenderFactory{
       case '4':
       case 'time_ul':
             return self::format_li_time($query,$attr['max_length']);
+      case '5':
+      case 'ordered_ul':
+            return self::format_li_order($query,$attr['max_length']);
       default :
             return self::format_simple($query,$attr['max_length']);
     }
@@ -395,6 +398,23 @@ class RenderFactory{
     $output .='</'.$format.'>';
     return $output;
   }
+
+  /**
+   * 简单的排序表
+   * @param $query
+   * @return string
+   */
+  static function format_li_order($query,$max_length, $format='ul'){
+    $output = '<'.$format.'>';
+    $counter = 1;
+    foreach ($query as $item) {
+      $output .='<li>'.l($counter.'、'.substring_dot($item->title,$max_length), drupal_get_path_alias('node/' . $item->nid)).'</li>';
+      $counter++;
+    }
+    $output .='</'.$format.'>';
+    return $output;
+  }
+
   /**
    * 简单的列表
    * @param $query
