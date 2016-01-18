@@ -4,6 +4,7 @@ www.devsaran.com
 
 @import url(http://fonts.googleapis.com/css?family=Oxygen:400,300,700);
 
+
 .confoot{ width:1024px; height:160px; margin:0 auto; position:relative; color:#fff; }
 .confootbg{ background:#2e3139}
 .confoot .foot1{ float:left; width:590px; font-size:12px; font-family:Tahoma, Geneva, sans-serif; line-height:200%; margin-top:38px}
@@ -28,6 +29,44 @@ www.devsaran.com
 .con0_user{ width:202px; float:right; margin-top:17px}
 .con0_user .con0_user_p{ line-height:200%; color:#fff; background:#fd5f47; float:left; padding:0 20px; border-radius:20px; margin-left:10px}
 .con0_user img { display:block; float:left; }
+
+.cs0{ width:200px; height:45px; margin-top:38px; margin-right:24px; float:left; line-height:45px; color:#fff; font-size:16px}
+.cs1{ width:800px; height:45px; margin-top:38px; float:left}
+.cs1 .c211{ display:block; float:left; width:600px; height:43px; background:#c52a13; border:0; color:#fff; font-size:14px; text-indent:20px}
+.cs1 .c212{ display:block; float:left; width:200px; height:43px; background: url(img/icon-search.png) no-repeat 25px center #fd5f47; border:1px solid #c52a13; text-align:center; }
+.cs1 .c212 span{ color:#fff; line-height:43px; font-size:18px;}
+
+
+.con2{ width:1024px; height:118px; margin:0 auto; position:relative}
+.con2bg{ background:#fd5f47}
+.con2 .arr{ position: absolute; top:0; left:50%; margin-left:-29px}
+.c21{ width:1024px; height:45px; margin-top:38px;}
+.c21 .c211{ display:block; float:left; width:810px; height:43px; background:#c52a13; border:0; color:#fff; font-size:14px; text-indent:20px}
+.c21 .c212{ display:block; float:left; width:210px; height:43px; background: url(img/icon-search.png) no-repeat 25px center #fd5f47; border:1px solid #c52a13; text-align:center; }
+.c21 .c212 span{ color:#fff; line-height:43px; font-size:18px;}
+
+
+.condetail{ width:1024px; margin:0 auto; position:relative; margin-top:20px; overflow:hidden; padding-bottom:30px}
+.condetailbg{ background:url(img/c3bg.png) repeat-y center center #f1f2f6}
+.condetail .cd_nav{width:224px; float:left;}
+.condetail .cd_nav li{ line-height:300%; color:#424242}
+.condetail .cd_nav li.active a{ line-height:300%; color:#fff; background:#fd5f47; display:block; width:100%}
+.condetail .cd_nav li a{ text-decoration: none; color:#424242; display:block; width:100%}
+.condetail .cd_nav li a:hover{ color:#fd5f47;}
+.condetail .cd_nav li.active a:hover{ color:#fff;}
+.condetail .cd_nav .cd_nav_p_node{ text-indent:2em;}
+/*1*/
+.condetail .cd_nav .views-field span{ text-indent:2em;}
+.condetail .cd_nav .cd_nav_s_node{ text-indent:4em;}
+.condetail .cd_content{width:800px; float:left; border-top:1px solid #ebebeb}
+.condetail .cd_content .cd_content_list{ border-bottom:1px solid #ebebeb; padding:20px; background:#fff; overflow:hidden; position:relative}
+.condetail .cd_content .cd_content_list .cd_content_listh3{ color:#313131; font-size:15px; font-weight:bold;}
+.condetail .cd_content .cd_content_list .cd_content_listp{ color:#ababab; font-size:12px; line-height:180%; margin-top:10px}
+.condetail .cd_content .cd_content_list .cd_content_listspan{ position:absolute; bottom:12px; right:20px;color:#ababab; font-size:12px; line-height:200%;}
+.condetail .cd_content .cd_content_list img{ display:block; float:left; margin:0px 0px 0 0}
+.condetail .cd_content .cd_content_file_list{ display:block; float:left; margin:0px 0px 0 0; border-radius: 5px;border:10px silver;
+  height:auto; width: auto;background: #33CC33;padding: 0 5px 0 5px}
+
 
 /* Reset
 ================================================== */
@@ -593,11 +632,10 @@ a.frmore{
   float: left;
 }
 .page-node #content-wrap img {
-  border: 1px solid #CCCCCC;
-  padding: 6px;
+  border: 6px solid #33CC33;
   height: auto;
   max-width: 97.4%;
-  margin: 0.5em 1em 0.5em 0;
+  margin: 0.5em 1em 0em 0;
 }
 
 .region-content-top {

@@ -91,8 +91,11 @@ function cqtheme_preprocess_node(&$variables) {
   if ($variables['view_mode'] == 'full' && node_is_page($variables['node'])) {
     $variables['classes_array'][] = 'node-full';
   }
-  $variables['date'] = t('!datetime', array('!datetime' =>  date('j F Y', $variables['created'])));
+  $variables['date'] = t('!datetime', array('!datetime' =>  date('Y-m-d', $variables['created'])));
+
+
 }
+
 
 function cqtheme_page_alter($page) {
   // <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>

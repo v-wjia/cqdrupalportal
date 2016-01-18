@@ -74,61 +74,30 @@
  * @see template_process()
  */
 ?>
+<div class="cd_content_list" id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+
+
+<?php print render($title_prefix); ?>
 <?php if (!$page): ?>
-  <div class="cd_content_list" id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+    <h3 class="cd_content_listh3" <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
 <?php endif; ?>
-  <?php if (!$page): ?>
-      <header>
-  <?php endif; ?>
-      <?php print render($title_prefix); ?>
-      <?php if (!$page): ?>
-      <h3 class="cd_content_listh3" <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
-      <?php endif; ?>
-      <?php print render($title_suffix); ?>
-  
-      <?php if ($display_submitted && $page): ?>
-        <ul class="meta clearfix">
-          <li><strong>Posted on:</strong> <?php print $date; ?></li>
-          <li><strong>By:</strong> <?php print $name; ?></li>   
-        </ul>
-      <?php endif; ?>
-
-    <?php if (!$page): ?>
-      </header>
-  <?php endif; ?>
+<?php print render($title_suffix); ?>
 
 
-    <?php if($page): ?>
-        <div class="content"<?php print $content_attributes; ?>>
-        <?php
-          // Hide comments and links now so that we can render them later.
-          hide($content['comments']);
-          hide($content['links']);
-          print render($content);
-        ?>
-         </div>
-    <?php endif; ?>
 
-    <?php if(!$page): ?>
-        <p class="cd_content_listp">
+    <div class="cd_content_listp">
         <?php
         // Hide comments and links now so that we can render them later.
         hide($content['comments']);
         hide($content['links']);
         hide($content['field_image']);
+        hide($content['field_file']);
         print render($content);
         ?>
         <span class="cd_content_listspan"><?php print $date; ?></span>
-        <img src="/<?php echo cqtheme_get_path() ?>/img/doclogo.png">
-    <?php endif; ?>
-
-  <?php if (!empty($content['links']) && $page): ?>
-    <footer>
-      <?php print render($content['links']); ?>
-    </footer>
-  <?php endif; ?>
-
-  <?php print render($content['comments']); ?>
+        <?php print render($content['field_file']); ?>
+    </div>
+<?php print render($content['comments']); ?>
 <?php if (!$page): ?>
-  </div> <!-- /.node -->
+    </div> <!-- /.node -->
 <?php endif; ?>

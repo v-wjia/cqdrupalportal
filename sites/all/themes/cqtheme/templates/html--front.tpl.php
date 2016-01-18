@@ -28,13 +28,6 @@
 .con1_4 .c144{ color:#fff; font-size:18px; border: 1px solid #fff; background:none; padding:5px 30px; border-radius:10px; margin-top:20px; clear:both; float:right; display:block; font-weight:normal;box-shadow:0 0 0 white!important; text-shadow:0 0 0 white!important}
 
 
-.con2{ width:1024px; height:118px; margin:0 auto; position:relative}
-.con2bg{ background:#fd5f47}
-.con2 .arr{ position: absolute; top:0; left:50%; margin-left:-29px}
-.c21{ width:1024px; height:45px; margin-top:38px;}
-.c21 .c211{ display:block; float:left; width:810px; height:43px; background:#c52a13; border:0; color:#fff; font-size:14px; text-indent:20px}
-    .c21 .c212{ display:block; float:left; width:210px; height:43px; background: url(<?php echo cqtheme_get_path() ?>/img/icon-search.png) no-repeat 25px center #fd5f47; border:1px solid #c52a13; text-align:center; }
-.c21 .c212 span{ color:#fff; line-height:43px; font-size:18px;}
 
 .con3{ width:1024px; height:700px; margin:0 auto; position:relative}
 .con3bg{ background:url(<?php echo cqtheme_get_path() ?>/img/c3bg.png) no-repeat center center #f1f2f6}

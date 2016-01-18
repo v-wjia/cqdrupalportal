@@ -71,8 +71,8 @@
     <div class="con0">
       <div class="con0_1">
         <div class="con0_logo">
-          <img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con0_1_1"/>
-          <img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con0_1_2"/>
+          <a href="http://localhost"><img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con0_1_1"/>
+          <img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con0_1_2"/></a>
         </div>
         <ul class="con0_nav">
           <?php
@@ -91,6 +91,18 @@
       </div>
     </div>
   </div>
+
+  <?php if($page['search']) : ?>
+    <div class="con con2bg">
+      <div class="con2">
+        <div style="height:0px; overflow:hidden;">&nbsp;</div>
+        <div class="c21">
+          <?php print render($page['search']); ?>
+        </div>
+      </div>
+    </div>
+  <?php endif; ?>
+
 
   <header id="masthead" class="site-header container" role="banner">
     <div class="row">
@@ -155,6 +167,9 @@
   <?php endif; ?>
   <?php endif; ?>
 
+
+
+
   <?php if($page['preface_first'] || $page['preface_middle'] || $page['preface_last']) : ?>
     <?php $preface_col = ( 12 / ( (bool) $page['preface_first'] + (bool) $page['preface_middle'] + (bool) $page['preface_last'] ) ); ?>
     <div id="preface-area">
@@ -174,6 +189,7 @@
     </div>
   <?php endif; ?>
 
+
   <?php if($page['header']) : ?>
     <div id="header-block">
       <div class="container">
@@ -186,12 +202,25 @@
     </div>
   <?php endif; ?>
 
-    <div id="main-content">
-    <div class="container"> 
+<!--    <div id="main-content">-->
+<!--    <div class="container"> -->
       <div class="row">
+        <div class="con condetailbg">
+          <div style="height:0px; overflow:hidden;">&nbsp;</div>
+          <div class="condetail">
+            <div style="height:0px; overflow:hidden;">&nbsp;</div>
+
         <?php if($page['sidebar_first']) { $primary_col = 8; } else { $primary_col = 12; } ?>
+        <?php if ($page['sidebar_first']): ?>
+
+                <div class="cd_nav">
+                 <?php print render($page['sidebar_first']); ?>
+               </div>
+
+
+        <?php endif; ?>
         <div id="primary" class="content-area col-sm-<?php print $primary_col; ?>">
-          <section id="content" role="main" class="clearfix">
+<!--          <section id="content" role="main" class="clearfix">-->
             <?php if (theme_get_setting('breadcrumbs')): ?><?php if ($breadcrumb): ?><div id="breadcrumbs"><?php print $breadcrumb; ?></div><?php endif;?><?php endif; ?>
             <?php print $messages; ?>
             <?php if ($page['content_top']): ?><div id="content_top"><?php print render($page['content_top']); ?></div><?php endif; ?>
@@ -202,18 +231,19 @@
               <?php if (!empty($tabs['#primary'])): ?><div class="tabs-wrapper clearfix"><?php print render($tabs); ?></div><?php endif; ?>
               <?php print render($page['help']); ?>
               <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
+              <div class="cd_content">
               <?php print render($page['content']); ?>
-            </div>
-          </section>
-        </div>
-        <?php if ($page['sidebar_first']): ?>
-          <aside id="sidebar" class="col-sm-4" role="complementary">
-           <?php print render($page['sidebar_first']); ?>
-          </aside> 
-        <?php endif; ?>
-      </div>
+                </div>
+              </div>
+<!--          </section>-->
+<!--        </div>-->
+
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+
     </div>
-  </div>
+    </div>
 
   <?php if($page['footer']) : ?>
     <div id="footer-block">

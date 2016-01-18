@@ -72,8 +72,8 @@
         <div class="con0">
             <div class="con0_1">
                 <div class="con0_logo">
-                    <img src="<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con0_1_1"/>
-                    <img src="<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con0_1_2"/>
+                    <a href="http://localhost"><img src="<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con0_1_1"/>
+                    <img src="<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con0_1_2"/></a>
                 </div>
                 <ul class="con0_nav">
                     <?php
