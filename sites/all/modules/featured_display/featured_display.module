@@ -148,10 +148,30 @@ function featured_display_block_view($delta = '')
             }
             break;
 
-        case 'login_bar' :  //如果调用了登录条
+        case 'login_bar' :  //登录bar,editor系统跳转
             if (user_is_logged_in()) {
+                global $user;
+                $userRole = '';
+                $sysUrl = 'http://www.microsoft.com/index.aspx?userid='.$user->uid.'&username='.$user->name;
+                $block['content'] = '<ul class="loginbar">';
+                
+                if (in_array('editor', $user->roles) || in_array('manager', $user->roles)){
+                    if ($user->roles[4] == 'manager') {
+                        $userRole = 'manager';
+                        $sysUrl .= '&roleid=4';
+                    } elseif ($user->roles[5] == 'editor') {
+                        $userRole = 'editor';
+                        $sysUrl .= '&roleid=5';
+                    }
+                    if(!empty($userRole)) {
+                        $block['content'] .= '<li>'.'<a href="'.$sysUrl.'">系统对接</a>'.'</li>';
+                    }
+                }
+                
+                
                 //如果登录了
-                $block['content']='<ul class="loginbar">'.'<li>'.l(t('My account'),drupal_get_path_alias('user')).'</li>'.'<li>'.l(t('Log out'),drupal_get_path_alias('user/logout')).'</li>'.'</ul>';
+                $block['content'] .= '<li>'.l(t('My account'),drupal_get_path_alias('user')).'</li>'.'<li>'.l(t('Log out'),drupal_get_path_alias('user/logout')).'</li>'.'</ul>';
+                
                 return $block;
             } else {
                 //如果未登录
@@ -172,22 +192,38 @@ function cqtheme_get_path(){
     return drupal_get_path('theme','cqtheme');
 }
 
-variable_set('data_resource_data',array(
-    array('name'=>'医疗卫生','category'=>'医疗卫生','img'=>cqtheme_get_path().'/img/3-1-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
-    array('name'=>'社会保障','category'=>'社会保障','img'=>cqtheme_get_path().'/img/3-2-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
-    array('name'=>'教育文化','category'=>'教育文化','img'=>cqtheme_get_path().'/img/3-3-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
-    array('name'=>'交通旅游','category'=>'交通旅游','img'=>cqtheme_get_path().'/img/3-4-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
-    array('name'=>'资源环境','category'=>'资源环境','img'=>cqtheme_get_path().'/img/3-5-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
-    array('name'=>'工业经济','category'=>'工业经济','img'=>cqtheme_get_path().'/img/3-6-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
-    array('name'=>'农业生产','category'=>'农业生产','img'=>cqtheme_get_path().'/img/3-7-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
-    array('name'=>'商贸物流','category'=>'商贸物流','img'=>cqtheme_get_path().'/img/3-8-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
-    array('name'=>'公共安全','category'=>'公共安全','img'=>cqtheme_get_path().'/img/3-9-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
-    array('name'=>'社会生活','category'=>'社会生活','img'=>cqtheme_get_path().'/img/3-10-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
-));
+//variable_set('data_resource_data',array(
+//    array('name'=>'医疗卫生','category'=>'医疗卫生','img'=>cqtheme_get_path().'/img/3-1-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+//    array('name'=>'社会保障','category'=>'社会保障','img'=>cqtheme_get_path().'/img/3-2-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+//    array('name'=>'教育文化','category'=>'教育文化','img'=>cqtheme_get_path().'/img/3-3-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+//    array('name'=>'交通旅游','category'=>'交通旅游','img'=>cqtheme_get_path().'/img/3-4-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+//    array('name'=>'资源环境','category'=>'资源环境','img'=>cqtheme_get_path().'/img/3-5-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+//    array('name'=>'工业经济','category'=>'工业经济','img'=>cqtheme_get_path().'/img/3-6-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+//    array('name'=>'农业生产','category'=>'农业生产','img'=>cqtheme_get_path().'/img/3-7-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+//    array('name'=>'商贸物流','category'=>'商贸物流','img'=>cqtheme_get_path().'/img/3-8-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+//    array('name'=>'公共安全','category'=>'公共安全','img'=>cqtheme_get_path().'/img/3-9-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+//    array('name'=>'社会生活','category'=>'社会生活','img'=>cqtheme_get_path().'/img/3-10-n.png','head_class'=>'c33divt','div_class'=>'c33div','img_class'=>'c33divimg','des_class'=>'c33divp'),
+//));
+//
+//variable_set('data_perception_data',array(
+//    array('name'=>'农业类','category'=>'农业类','img'=>cqtheme_get_path().'/img/6-1-n.png','head_class'=>'c62h4','div_class'=>'c62div','img_class'=>'c62img','des_class'=>'c62p'),
+//    array('name'=>'建筑类','category'=>'建筑类','img'=>cqtheme_get_path().'/img/6-2-n.png','head_class'=>'c62h4','div_class'=>'c62div','img_class'=>'c62img','des_class'=>'c62p'),
+//    array('name'=>'医疗类','category'=>'医疗类','img'=>cqtheme_get_path().'/img/6-3-n.png','head_class'=>'c62h4','div_class'=>'c62div','img_class'=>'c62img','des_class'=>'c62p'),
+//
+//));
 
-variable_set('data_perception_data',array(
-    array('name'=>'农业类','category'=>'农业类','img'=>cqtheme_get_path().'/img/6-1-n.png','head_class'=>'c62h4','div_class'=>'c62div','img_class'=>'c62img','des_class'=>'c62p'),
-    array('name'=>'建筑类','category'=>'建筑类','img'=>cqtheme_get_path().'/img/6-2-n.png','head_class'=>'c62h4','div_class'=>'c62div','img_class'=>'c62img','des_class'=>'c62p'),
-    array('name'=>'医疗类','category'=>'医疗类','img'=>cqtheme_get_path().'/img/6-3-n.png','head_class'=>'c62h4','div_class'=>'c62div','img_class'=>'c62img','des_class'=>'c62p'),
+function cqtheme_menu() {
+  $items['verifyuser'] = array(
+    'title' => 'verify user by external system',
+    'page callback' => 'verifyUser',
+    "access callback" => TRUE,
+//    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
 
-));
+  return $items;
+}
+
+function verifyUser() {
+    exit('verifyUser');
+}
