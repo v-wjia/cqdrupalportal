@@ -212,10 +212,11 @@ function cqtheme_get_path(){
 //
 //));
 
-function cqtheme_menu() {
-  $items['verifyuser'] = array(
+function featured_display_menu() {
+  $items['verifyuser/userid/%/roleid/%'] = array(
     'title' => 'verify user by external system',
     'page callback' => 'verifyUser',
+    'page arguments' => array(2, 4),
     "access callback" => TRUE,
 //    'access arguments' => array('access content'),
     'type' => MENU_CALLBACK,
@@ -224,6 +225,21 @@ function cqtheme_menu() {
   return $items;
 }
 
-function verifyUser() {
-    exit('verifyUser');
+function verifyUser($userid, $roleid) {
+    //set external allowed ip
+    $allowedIp = '';
+    if(ip_address != $allowedIp) {
+        return drupal_json_output(array('status' => FALSE, 'pass' => ''));
+    }
+
+    if(!empty($userid) && !empty($roleid)) {
+        $account = user_load($userid);
+        if ($account['roles'][$roleid] == 'manager' || $account['roles'][$roleid] == 'editor'){
+            return drupal_json_output(array('status' => TRUE, 'pass' => $account['pass']));
+        }
+    } else {
+        return drupal_json_output(array('status' => FALSE, 'pass' => ''));
+    }
+    
+
 }
