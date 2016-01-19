@@ -50,13 +50,22 @@ www.devsaran.com
 .condetailbg{ background:url(img/c3bg.png) repeat-y center center #f1f2f6}
 .condetail .cd_nav{width:224px; float:left;}
 .condetail .cd_nav li{ line-height:300%; color:#424242}
+/*add*/
+.condetail .cd_nav .field-content{ line-height:300%; color:#424242}
+.condetail .cd_nav .field-content a.active{ line-height:300%; color:#fff; background:#fd5f47; display:block; width:100%}
+.condetail .cd_nav ul li{list-style: outside none none;}
+.condetail .cd_nav ul li ul li{list-style: outside none none;}
+.condetail .cd_nav ul li{ text-indent:2em;}
+.condetail .cd_nav ul{ margin: 0px;padding: 0px}
+.condetail .cd_nav ul li ul li{ text-indent:4em;}
+.condetail .cd_content .cd_content_file_list{ display:block; float:left; margin:0px 0px 0 0; border-radius: 7px;border:10px silver;height:auto; width: auto;background: #33CC33;padding: 0 9px 0 9px}
+.condetail .cd_content .cd_content_file_list a{ color: #ffffff;}
+/*add end*/
 .condetail .cd_nav li.active a{ line-height:300%; color:#fff; background:#fd5f47; display:block; width:100%}
 .condetail .cd_nav li a{ text-decoration: none; color:#424242; display:block; width:100%}
 .condetail .cd_nav li a:hover{ color:#fd5f47;}
 .condetail .cd_nav li.active a:hover{ color:#fff;}
 .condetail .cd_nav .cd_nav_p_node{ text-indent:2em;}
-/*1*/
-.condetail .cd_nav .views-field span{ text-indent:2em;}
 .condetail .cd_nav .cd_nav_s_node{ text-indent:4em;}
 .condetail .cd_content{width:800px; float:left; border-top:1px solid #ebebeb}
 .condetail .cd_content .cd_content_list{ border-bottom:1px solid #ebebeb; padding:20px; background:#fff; overflow:hidden; position:relative}
@@ -64,8 +73,7 @@ www.devsaran.com
 .condetail .cd_content .cd_content_list .cd_content_listp{ color:#ababab; font-size:12px; line-height:180%; margin-top:10px}
 .condetail .cd_content .cd_content_list .cd_content_listspan{ position:absolute; bottom:12px; right:20px;color:#ababab; font-size:12px; line-height:200%;}
 .condetail .cd_content .cd_content_list img{ display:block; float:left; margin:0px 0px 0 0}
-.condetail .cd_content .cd_content_file_list{ display:block; float:left; margin:0px 0px 0 0; border-radius: 5px;border:10px silver;
-  height:auto; width: auto;background: #33CC33;padding: 0 5px 0 5px}
+  
 
 
 /* Reset
@@ -632,10 +640,11 @@ a.frmore{
   float: left;
 }
 .page-node #content-wrap img {
-  border: 6px solid #33CC33;
+  border: 1px solid #CCCCCC;
+  padding: 6px;
   height: auto;
   max-width: 97.4%;
-  margin: 0.5em 1em 0em 0;
+  margin: 0.5em 1em 0.5em 0;
 }
 
 .region-content-top {

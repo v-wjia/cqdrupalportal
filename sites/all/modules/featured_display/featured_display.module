@@ -240,3 +240,38 @@ function verifyUser($userid, $roleid) {
     } 
     return drupal_json_output(array('status' => FALSE, 'pass' => ''));
 }
+
+
+/**
+ * Implements hook_node_view().
+ */
+function featured_display_node_view($node, $view_mode, $langcode = NULL)
+{
+
+    if($view_mode=='full') {
+        $field_terms = current($node->field_resource);
+        $field_term = current($field_terms);
+        if (isset($field_term)) {
+            $breadcrumb = array();
+            $breadcrumb[] = l(t('Home'), '<front>');
+            add_breadcrumb_path($breadcrumb,$field_term['tid']);
+            $breadcrumb[] = l(t($field_term['taxonomy_term']->name), drupal_get_path_alias('taxonomy/term/' . $field_term['tid']));
+// Set Breadcrumbs
+            drupal_set_breadcrumb($breadcrumb);
+        }
+    }
+}
+
+
+
+/**
+ * find all parents and add to breadcrumb path
+ */
+function add_breadcrumb_path(&$breadcrumb,$tid){
+    $parents=taxonomy_get_parents($tid);
+    if(!empty($parents)){
+        $parent = current($parents);
+        add_breadcrumb_path($breadcrumb,$parent->tid);
+        $breadcrumb[]= l(t($parent->name),drupal_get_path_alias('taxonomy/term/'.$parent->tid));
+    }
+}

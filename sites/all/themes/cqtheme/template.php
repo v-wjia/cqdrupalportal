@@ -24,6 +24,7 @@ $breadcrumb[] = drupal_get_title();
   }
 }
 
+
 /**
  * Override or insert variables into the page template.
  */
