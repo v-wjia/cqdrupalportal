@@ -229,17 +229,14 @@ function verifyUser($userid, $roleid) {
     //set external allowed ip
     $allowedIp = '';
     if(ip_address != $allowedIp) {
-        return drupal_json_output(array('status' => FALSE, 'pass' => ''));
+//        return drupal_json_output(array('status' => FALSE, 'pass' => ''));
     }
 
     if(!empty($userid) && !empty($roleid)) {
         $account = user_load($userid);
-        if ($account['roles'][$roleid] == 'manager' || $account['roles'][$roleid] == 'editor'){
-            return drupal_json_output(array('status' => TRUE, 'pass' => $account['pass']));
+        if ($account->roles[$roleid] == 'manager' || $account->roles[$roleid] == 'editor'){
+            return drupal_json_output(array('status' => TRUE, 'pass' => $account->pass));
         }
-    } else {
-        return drupal_json_output(array('status' => FALSE, 'pass' => ''));
-    }
-    
-
+    } 
+    return drupal_json_output(array('status' => FALSE, 'pass' => ''));
 }
