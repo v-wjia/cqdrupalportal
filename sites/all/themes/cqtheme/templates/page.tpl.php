@@ -104,25 +104,7 @@
   <?php endif; ?>
 
 
-  <header id="masthead" class="site-header container" role="banner">
-    <div class="row">
-      <div id="logo" class="site-branding col-sm-6">
-        <?php if ($logo): ?><div id="site-logo"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
-          <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-        </a></div><?php endif; ?>
-        <h1 id="site-title">
-          <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
-        </h1>
-      </div>
-      <div class="col-sm-6 mainmenu">
-        <div class="mobilenavi"></div>
-        <nav id="navigation" role="navigation">
 
-
-        </nav>
-      </div>
-    </div>
-  </header>
 
 
   <?php if ($is_front): ?>
@@ -205,7 +187,29 @@
 <!--    <div id="main-content">-->
 <!--    <div class="container"> -->
       <div class="row">
+
         <div class="con condetailbg">
+
+          <header id="masthead" class="site-header container" role="banner">
+            <div class="row">
+              <div id="logo" class="site-branding col-sm-6">
+                <?php if ($logo): ?><div id="site-logo"><a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>">
+                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+                  </a></div><?php endif; ?>
+                <h1 id="site-title">
+                  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>"><?php print $site_name; ?></a>
+                </h1>
+              </div>
+              <div class="col-sm-6 mainmenu">
+                <div class="mobilenavi"></div>
+                <nav id="navigation" role="navigation">
+
+
+                </nav>
+              </div>
+            </div>
+          </header>
+
           <div style="height:0px; overflow:hidden;">&nbsp;</div>
           <div class="condetail">
             <div style="height:0px; overflow:hidden;">&nbsp;</div>
