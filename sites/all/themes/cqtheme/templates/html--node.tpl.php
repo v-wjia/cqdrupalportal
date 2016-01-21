@@ -13,7 +13,17 @@
 //        jQuery(this).addClass("active");
 //      })
 //    });
+jQuery(document).ready(function(){
 
+    jQuery(".cd_nav li a").removeClass("active");
+    str = jQuery("nav.breadcrumb").find("a").eq(-1).text();
+    jQuery(".cd_nav li a").each(function(){
+        if(this.text==str) {
+            jQuery(this).addClass("active");
+        }
+    })
+
+});
   </script>
 <!--[if lt IE 9]><script src="<?php print base_path() . drupal_get_path('theme', 'cqtheme') . '/js/html5.js'; ?>"></script><![endif]-->
 </head>

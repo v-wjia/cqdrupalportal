@@ -58,8 +58,11 @@ www.devsaran.com
 .condetail .cd_nav ul li{ text-indent:2em;}
 .condetail .cd_nav ul{ margin: 0px;padding: 0px}
 .condetail .cd_nav ul li ul li{ text-indent:4em;}
-.condetail .cd_content .cd_content_file_list{ display:block; float:left; margin:0px 0px 0 0; border-radius: 7px;border:10px silver;height:auto; width: auto;background: #33CC33;padding: 0 9px 0 9px}
+.condetail .cd_content .cd_content_file_list{ display:block; float:left; margin:0 3px 3px 0; border-radius: 7px;border:10px;height:auto; width: auto;background: #33CC33;padding: 0 9px 0 9px}
+.condetail .cd_content .cd_content_file .clear{clear: both}
 .condetail .cd_content .cd_content_file_list a{ color: #ffffff;}
+
+.cd_main .breadcrumb{padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#fff;border-radius:4px}
 /*add end*/
 .condetail .cd_nav li.active a{ line-height:300%; color:#fff; background:#fd5f47; display:block; width:100%}
 .condetail .cd_nav li a{ text-decoration: none; color:#424242; display:block; width:100%}
@@ -73,7 +76,27 @@ www.devsaran.com
 .condetail .cd_content .cd_content_list .cd_content_listp{ color:#ababab; font-size:12px; line-height:180%; margin-top:10px}
 .condetail .cd_content .cd_content_list .cd_content_listspan{ position:absolute; bottom:12px; right:20px;color:#ababab; font-size:12px; line-height:200%;}
 .condetail .cd_content .cd_content_list img{ display:block; float:left; margin:0px 0px 0 0}
-  
+
+
+.condetail .cd_main{width:710px; float:left; background:#fff; padding-bottom:40px}
+/*.condetail .cd_main{width:800px; float:left; background:#fff; padding-bottom:40px}*/
+.condetail .cd_main .cd_main_nav{ font-size:14px; line-height:120%; color:#666; padding-top:30px; padding-bottom:20px; margin-left:20px; margin-right:10px}
+.condetail .cd_main .cd_main_nav a{ color:#666; padding:0 10px; border-right:1px solid #666; display:block; float:left}
+.condetail .cd_main .cd_main_nav span{ padding:0 10px;}
+.condetail .cd_main .cd_main_content{ border-top:1px solid #aaa; border-bottom:1px solid #aaa; margin-left:10px; margin-right:10px; padding-bottom:20px}
+.condetail .cd_main .cd_main_content h3{ font-size:18px; font-weight:bold; line-height:220%}
+.condetail .cd_main .cd_main_content p{ font-size:12px; font-weight:bold; line-height:200%; color:#999; margin-top:10px}
+.condetail .cd_main .cd_main_content .cd_main_foot{ margin-top:40px;}
+.condetail .cd_main .cd_main_content .cd_main_foot span{ float:right; font-weight:normal; font-size:12px; color:#666}
+
+.confoot{ width:1024px; height:160px; margin:0 auto; position:relative; color:#fff; }
+.confootbg{ background:#2e3139}
+.confoot .foot1{ float:left; width:590px; font-size:12px; font-family:Tahoma, Geneva, sans-serif; line-height:200%; margin-top:38px}
+.confoot .foot1 .foot12{ margin-top:18px}
+.confoot .foot2{ float:left; width:140px; margin-top:50px}
+.confoot .foot3{ float:right; width:240px; margin-top:18px}
+.confoot .foot3 .foot3div{ float:right; text-align:center}
+.confoot .foot3 .foot3div p{ margin-top:6px;}
 
 
 /* Reset

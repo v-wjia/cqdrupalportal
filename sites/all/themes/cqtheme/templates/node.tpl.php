@@ -73,6 +73,10 @@
  * @see template_preprocess_node()
  * @see template_process()
  */
+//module_load_include('module','devel');
+$vars= get_defined_vars();
+//print_r($vars);
+//dsm($vars);
 ?>
 <?php if (!$page): ?>
   <div class="cd_content_list" id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
@@ -85,13 +89,12 @@
       <h3 class="cd_content_listh3" <?php print $title_attributes; ?>><a href="<?php print $node_url; ?>"><?php print $title; ?></a></h3>
       <?php endif; ?>
       <?php print render($title_suffix); ?>
-  
-      <?php if ($display_submitted && $page): ?>
-        <ul class="meta clearfix">
-          <li><strong>Posted on:</strong> <?php print $date; ?></li>
-          <li><strong>By:</strong> <?php print $name; ?></li>   
-        </ul>
-      <?php endif; ?>
+
+<!--node page head-->
+  <?php if($page): ?>  <div class="cd_main"><?php endif; ?>
+    <?php if ($variables['breadcrumbs']): ?><div id="breadcrumbs"><?php print($variables['breadcrumbs']); ?></div><?php endif;?>
+
+
 
     <?php if (!$page): ?>
       </header>
@@ -99,18 +102,32 @@
 
 
     <?php if($page): ?>
-        <div class="content"<?php print $content_attributes; ?>>
+
+
+        <div class="content cd_main_content"<?php print $content_attributes; ?>>
+            <?php print render($title_prefix); ?>
+            <h3 <?php print $title_attributes; ?>><?php print $title; ?></h3>
+            <?php print render($title_suffix); ?>
+            <?php if ($display_submitted): ?>
+                <ul class="meta clearfix">
+                    <li><strong>By:</strong> <?php print $name; ?></li>
+                </ul>
+            <?php endif; ?>
         <?php
           // Hide comments and links now so that we can render them later.
+
           hide($content['comments']);
           hide($content['links']);
           print render($content);
         ?>
+            <div class="cd_main_foot">
+                <span><?php print $date; ?></span>
+            </div>
          </div>
+     </div>
     <?php endif; ?>
 
     <?php if(!$page): ?>
-        <p class="cd_content_listp">
         <?php
         // Hide comments and links now so that we can render them later.
         hide($content['comments']);
@@ -127,6 +144,8 @@
       <?php print render($content['links']); ?>
     </footer>
   <?php endif; ?>
+
+
 
 <!--  --><?php //print render($content['comments']); ?>
 <?php if (!$page): ?>
