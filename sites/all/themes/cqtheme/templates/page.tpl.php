@@ -67,40 +67,44 @@
 
 <div id="page">
 
+  <div class="row">
   <div class="con con0bg">
-    <div class="con0">
-      <div class="con0_1">
-        <div class="con0_logo">
-          <a href="/index.php"><img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con0_1_1"/>
-          <img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con0_1_2"/></a>
+      <div class="con0">
+        <div class="con0_1">
+          <div class="con0_logo">
+            <a href="/index.php"><img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con0_1_1"/>
+              <img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con0_1_2"/></a>
+          </div>
+          <ul class="con0_nav">
+            <?php
+            $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
+            print drupal_render($main_menu_tree); ?>
+          </ul>
+          <ul class="con0_nav">
+            <?php if ($page['front_side']): ?>
+              <?php print render($page['front_side']); ?>
+            <?php endif; ?>
+          </ul>
+          <!--                <div class="con0_user">
+                              <img src="img/user.png">
+                              <p class="con0_user_p"><span>hi, </span><span>rex</span><span> | 个人中心</span></p>
+                          </div>-->
         </div>
-        <ul class="con0_nav">
-          <?php
-          $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
-          print drupal_render($main_menu_tree); ?>
-        </ul>
-        <ul class="con0_nav">
-          <?php if ($page['front_side']): ?>
-            <?php print render($page['front_side']); ?>
-          <?php endif; ?>
-        </ul>
-        <!--                <div class="con0_user">
-                            <img src="img/user.png">
-                            <p class="con0_user_p"><span>hi, </span><span>rex</span><span> | 个人中心</span></p>
-                        </div>-->
       </div>
     </div>
   </div>
 
   <?php if($page['search']) : ?>
-    <div class="con con2bg">
-      <div class="con2">
-        <div style="height:0px; overflow:hidden;">&nbsp;</div>
-        <div class="c21">
-          <?php print render($page['search']); ?>
+      <div class="row">
+        <div class="con con2bg">
+          <div class="con2">
+            <div style="height:0px; overflow:hidden;">&nbsp;</div>
+            <div class="c21">
+              <?php print render($page['search']); ?>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
   <?php endif; ?>
 
 
@@ -185,7 +189,7 @@
   <?php endif; ?>
 
 <!--    <div id="main-content">-->
-<!--    <div class="container"> -->
+<!--    <div class="container">-->
       <div class="row">
 
         <div class="con condetailbg">
@@ -226,7 +230,7 @@
         <div id="primary" class="content-area col-sm-<?php print $primary_col; ?>">
 <!--          <section id="content" role="main" class="clearfix">-->
 
-            <?php if (theme_get_setting('breadcrumbs')&&!isset($node)): ?><?php if ($breadcrumb): ?><div id="breadcrumbs"><?php print $breadcrumb; ?></div><?php endif;?><?php endif; ?>
+
             <?php print $messages; ?>
             <?php if ($page['content_top']): ?><div id="content_top"><?php print render($page['content_top']); ?></div><?php endif; ?>
             <div id="content-wrap">
@@ -237,6 +241,7 @@
               <?php print render($page['help']); ?>
               <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
               <div class="cd_content">
+                <?php if (theme_get_setting('breadcrumbs')&&!isset($node)): ?><?php if ($breadcrumb): ?><div class="cd_content_list"><div id="breadcrumbs"><?php print $breadcrumb; ?></div></div><?php endif;?><?php endif; ?>
               <?php print render($page['content']); ?>
                 </div>
               </div>
@@ -265,7 +270,7 @@
   <?php if ($page['footer_first'] || $page['footer_second'] || $page['footer_third'] || $page['footer_fourth']): ?>
     <?php $footer_col = ( 12 / ( (bool) $page['footer_first'] + (bool) $page['footer_second'] + (bool) $page['footer_third'] + (bool) $page['footer_fourth'] ) ); ?>
     <div id="bottom">
-      <div class="container">
+
         <div class="row">
           <?php if($page['footer_first']): ?><div class="footer-block col-sm-<?php print $footer_col; ?>">
             <?php print render ($page['footer_first']); ?>
@@ -280,7 +285,7 @@
             <?php print render ($page['footer_fourth']); ?>
           </div><?php endif; ?>
         </div>
-      </div>
+
     </div>
   <?php endif; ?>
 
@@ -292,6 +297,7 @@
 <!--        </div>-->
 <!--      </div>-->
 <!--    </div>-->
+
   <div class="con confootbg">
     <div class="confoot">
       <div style="height:0px; overflow:hidden;">&nbsp;</div>
@@ -318,4 +324,6 @@
 
   </div>
 </div>
+
+
 

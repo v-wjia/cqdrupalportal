@@ -51,6 +51,9 @@ www.devsaran.com
 .condetail .cd_nav{width:224px; float:left;}
 .condetail .cd_nav li{ line-height:300%; color:#424242}
 /*add*/
+.condetail .cd_content .cd_content_list .breadcrumb{ padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#fff;border-radius:4px}
+.cd_main .breadcrumb{padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#fff;border-radius:4px}
+
 .condetail .cd_nav .field-content{ line-height:300%; color:#424242}
 .condetail .cd_nav .field-content a.active{ line-height:300%; color:#fff; background:#fd5f47; display:block; width:100%}
 .condetail .cd_nav ul li{list-style: outside none none;}
@@ -62,7 +65,6 @@ www.devsaran.com
 .condetail .cd_content .cd_content_file .clear{clear: both}
 .condetail .cd_content .cd_content_file_list a{ color: #ffffff;}
 
-.cd_main .breadcrumb{padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#fff;border-radius:4px}
 /*add end*/
 .condetail .cd_nav li.active a{ line-height:300%; color:#fff; background:#fd5f47; display:block; width:100%}
 .condetail .cd_nav li a{ text-decoration: none; color:#424242; display:block; width:100%}
@@ -78,7 +80,7 @@ www.devsaran.com
 .condetail .cd_content .cd_content_list img{ display:block; float:left; margin:0px 0px 0 0}
 
 
-.condetail .cd_main{width:710px; float:left; background:#fff; padding-bottom:40px}
+.condetail .cd_main{ ;width:710px; float:left; background:#fff; padding:20px 20px 40px 20px;}
 /*.condetail .cd_main{width:800px; float:left; background:#fff; padding-bottom:40px}*/
 .condetail .cd_main .cd_main_nav{ font-size:14px; line-height:120%; color:#666; padding-top:30px; padding-bottom:20px; margin-left:20px; margin-right:10px}
 .condetail .cd_main .cd_main_nav a{ color:#666; padding:0 10px; border-right:1px solid #666; display:block; float:left}

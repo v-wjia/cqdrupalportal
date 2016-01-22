@@ -90,9 +90,9 @@ $vars= get_defined_vars();
       <?php endif; ?>
       <?php print render($title_suffix); ?>
 
-<!--node page head-->
+<!--node page breadcrumbs-->
   <?php if($page): ?>  <div class="cd_main"><?php endif; ?>
-    <?php if ($variables['breadcrumbs']): ?><div id="breadcrumbs"><?php print($variables['breadcrumbs']); ?></div><?php endif;?>
+    <?php if (isset($variables['breadcrumbs'])): ?><div id="breadcrumbs"><?php print($variables['breadcrumbs']); ?></div><?php endif;?>
 
 
 
@@ -108,11 +108,11 @@ $vars= get_defined_vars();
             <?php print render($title_prefix); ?>
             <h3 <?php print $title_attributes; ?>><?php print $title; ?></h3>
             <?php print render($title_suffix); ?>
-            <?php if ($display_submitted): ?>
-                <ul class="meta clearfix">
-                    <li><strong>By:</strong> <?php print $name; ?></li>
-                </ul>
-            <?php endif; ?>
+<!--            --><?php //if ($display_submitted): ?>
+<!--                <ul class="meta clearfix">-->
+<!--                    <li><strong>By:</strong> --><?php //print $name; ?><!--</li>-->
+<!--                </ul>-->
+<!--            --><?php //endif; ?>
         <?php
           // Hide comments and links now so that we can render them later.
 
