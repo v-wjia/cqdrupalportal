@@ -250,19 +250,21 @@ function featured_display_node_view($node, $view_mode, $langcode = NULL)
 
     if($view_mode=='full') {
         $field_terms = current($node->field_resource);
-        $field_term = current($field_terms);
-        $breadcrumb = array();
-        if (isset($field_term)) {
-            //load taxonomy term
-            $term=taxonomy_term_load($field_term['tid']);
-            $breadcrumb[] = l(t('Home'), '<front>');
-            //add parent taxonomy term
-            add_breadcrumb_path($breadcrumb,$field_term['tid']);
-            $breadcrumb[] = l(t($term->name), drupal_get_path_alias('taxonomy/term/' . $field_term['tid']));
-// Set Breadcrumbs
-            drupal_set_breadcrumb($breadcrumb);
+        if(!empty($field_terms)) {
+            $field_term = current($field_terms);
+            $breadcrumb = array();
+            if (isset($field_term)) {
+                //load taxonomy term
+                $term = taxonomy_term_load($field_term['tid']);
+                $breadcrumb[] = l(t('Home'), '<front>');
+                //add parent taxonomy term
+                add_breadcrumb_path($breadcrumb, $field_term['tid']);
+                $breadcrumb[] = l(t($term->name), drupal_get_path_alias('taxonomy/term/' . $field_term['tid']));
+                // Set Breadcrumbs
+                drupal_set_breadcrumb($breadcrumb);
+            }
+            $node->breadcrumbs = theme('breadcrumb', array('breadcrumb' => drupal_get_breadcrumb()));
         }
-        $node->breadcrumbs= theme('breadcrumb', array('breadcrumb' => drupal_get_breadcrumb()));
     }
 }
 
