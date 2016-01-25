@@ -21,8 +21,8 @@ www.devsaran.com
 .con0bg{ background:#2e313a}
 .con0_logo{ width:200px; float:left; margin-top:12px}
 .con0_logo .con0_1_1{ display:block; float:left}
-.con0_logo .con0_1_2{ display:block; float:left}
-.con0 .con0_nav{ height:40px; color:#fff; float:left; margin-top:10px}
+.con0_logo .con0_1_2{ display:block; float:left;margin-left: 5px;margin-top: 6px;}
+.con0 .con0_nav{ height:40px; color:#fff; float:left; margin-top:25px}
 .con0 .con0_nav li{ padding:0 20px; line-height:40px; float:left}
 .con0 .con0_nav li a{ color:#fff; text-decoration:none}
 .con0 .con0_nav li a.active{ color:#fd5f47; text-decoration:none}
