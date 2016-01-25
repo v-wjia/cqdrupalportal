@@ -2,10 +2,10 @@
 <html lang="<?php print $language->language; ?>" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
 <head>
   <?php print $head; ?>
+  <title><?php print $head_title; ?></title>
   <?php print $styles; ?>
   <?php print $scripts; ?>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>海绵城市数据监控平台</title>
   <style>
 
 
