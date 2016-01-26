@@ -75,11 +75,11 @@
             <a href="/index.php"><img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo_70x55.png" class="con0_1_1"/>
               <img src="/<?php echo drupal_get_path('theme','cqtheme') ?>/img/logo.jpg" class="con0_1_2"/></a>
           </div>
-          <ul class="con0_nav">
+          <div class="con0_nav">
             <?php
             $main_menu_tree = menu_tree(variable_get('menu_main_links_source', 'main-menu'));
             print drupal_render($main_menu_tree); ?>
-          </ul>
+          </div>
           <ul class="con0_nav">
             <?php if ($page['front_side']): ?>
               <?php print render($page['front_side']); ?>
