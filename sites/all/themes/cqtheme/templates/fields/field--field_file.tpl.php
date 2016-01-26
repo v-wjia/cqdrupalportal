@@ -8,6 +8,11 @@
 ?>
 <?php
 $file_type=$variables['element']['#items'];
+//print_r($file_type);
+//render($variables['element']['#items']);
+//print_r(get_defined_vars());
+//print_r(theme('pdf_formatter_default',$variables['element']));
+
 ?>
 <!--<div class="field field-name-field-resource field-type-taxonomy-term-reference field-label-above">-->
     <div class="cd_content_file">
