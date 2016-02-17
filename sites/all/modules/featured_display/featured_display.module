@@ -151,10 +151,10 @@ function featured_display_block_view($delta = '')
         case 'login_bar' :  //登录bar,editor系统跳转
             if (user_is_logged_in()) {
                 global $user;
-                $userRole = '';
-                $sysUrl = 'http://www.microsoft.com/index.aspx?userid='.$user->uid.'&username='.$user->name;
+                $userRole = array('editor', 'manager');
+                $sysUrl = 'http://odweb.chinacloudapp.cn/ODWeb/';
                 $block['content'] = '<ul class="loginbar">';
-                
+//                var_dump($user->roles);
                 if (in_array('editor', $user->roles) || in_array('manager', $user->roles)){
                     if ($user->roles[4] == 'manager') {
                         $userRole = 'manager';
@@ -164,7 +164,7 @@ function featured_display_block_view($delta = '')
                         $sysUrl .= '&roleid=5';
                     }
                     if(!empty($userRole)) {
-                        $block['content'] .= '<li>'.'<a href="'.$sysUrl.'">系统对接</a>'.'</li>';
+                        $block['content'] .= '<li>'.l("管理系统", $sysUrl).'</li>';
                     }
                 }
                 
@@ -225,12 +225,12 @@ function featured_display_menu() {
   return $items;
 }
 
-function verifyUser($userid, $roleid) {
+function verifyUser($userid, $roleid) {var_dump($_SERVER);
     //set external allowed ip
-    $allowedIp = '';
-    if(ip_address != $allowedIp) {
+//    $allowedIp = '';
+//    if(ip_address != $allowedIp) {
 //        return drupal_json_output(array('status' => FALSE, 'pass' => ''));
-    }
+//    }
 
     if(!empty($userid) && !empty($roleid)) {
         $account = user_load($userid);
