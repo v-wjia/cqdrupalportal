@@ -164,6 +164,7 @@ function featured_display_block_view($delta = '')
                         $sysUrl .= '&roleid=5';
                     }
                     if(!empty($userRole)) {
+                        $sysUrl .= 'username='.urlencode($user->name);
                         $block['content'] .= '<li>'.l("数据处理", $sysUrl).'</li>';
                     }
                 }
