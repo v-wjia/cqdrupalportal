@@ -152,19 +152,19 @@ function featured_display_block_view($delta = '')
             if (user_is_logged_in()) {
                 global $user;
                 $userRole = array('editor', 'manager');
-                $sysUrl = 'http://odweb.chinacloudapp.cn/ODWeb/';
+                $sysUrl = 'http://odweb.chinacloudapp.cn/ODWeb/?userid='.$user->uid;
                 $block['content'] = '<ul class="loginbar">';
 //                var_dump($user->roles);
                 if (in_array('editor', $user->roles) || in_array('manager', $user->roles)){
-                    if ($user->roles[4] == 'manager') {
+                    if (!empty($user->roles[4]) && ($user->roles[4] == 'manager')) {
                         $userRole = 'manager';
                         $sysUrl .= '&roleid=4';
-                    } elseif ($user->roles[5] == 'editor') {
+                    } elseif (!empty($user->roles[5]) && ($user->roles[5] == 'editor')) {
                         $userRole = 'editor';
                         $sysUrl .= '&roleid=5';
                     }
                     if(!empty($userRole)) {
-                        $block['content'] .= '<li>'.l("管理系统", $sysUrl).'</li>';
+                        $block['content'] .= '<li>'.l("数据处理", $sysUrl).'</li>';
                     }
                 }
                 
@@ -225,7 +225,7 @@ function featured_display_menu() {
   return $items;
 }
 
-function verifyUser($userid, $roleid) {var_dump($_SERVER);
+function verifyUser($userid, $roleid) {
     //set external allowed ip
 //    $allowedIp = '';
 //    if(ip_address != $allowedIp) {
