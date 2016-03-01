@@ -122,10 +122,11 @@ if (drupal_is_front_page()) {
 
 function cqtheme_form_alter(&$form, &$form_state, $form_id) {
   if ($form_id == 'search_block_form') {
-    $form['search_block_form']['#title'] = t('Search'); 
-    $form['actions']['submit']['#attributes']['alt'] = "全站搜索"; 
+    $form['search_block_form']['#title'] = t('Search');
+    $form['actions']['submit']['#attributes']['alt'] = "全站搜索";
     $form['actions']['submit']['#value'] = "全站搜索";
     $form['search_block_form']['#attributes']['class'] = array("c211");
     $form['search_block_form']['#attributes']['placeholder'] = array("搜索相关数据");
-  }
+    $form['search_block_form']['#attributes']['x-webkit-speech'] = 'x-webkit-speech';
+    }
 }
