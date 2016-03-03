@@ -231,38 +231,35 @@
 
     <div id="slidebox" class="flexslider">
         <ul class="slides">
-            <li
-            >
-                <div class="banner-container">
+            <li>
+                <div class="banner-container" style="background: url(<?php echo cqtheme160301_get_path(); ?>/images/banner_1.png)">
                     <div class="banner">
                         <h3>BIG DATA MATCH1</h3>
                         <h4>重庆开放数据创新应用大赛</h4>
                         <p>发掘数据之智，引领巅峰对决，梦想之战一触即发。</p>
-                        <button>查看详情&gt;</button>
+                        <button>查看详情&nbsp;&nbsp;&gt;</button>
                     </div>
                 </div>
 
             </li>
-            <li
-            >
-                <div class="banner-container">
+            <li>
+                <div class="banner-container" style="background: url(<?php echo cqtheme160301_get_path(); ?>/images/banner_2.jpg)">
                     <div class="banner">
-                        <h3>BIG DATA MATCH2</h3>
-                        <h4>重庆开放数据创新应用大赛</h4>
-                        <p>发掘数据之智，引领巅峰对决，梦想之战一触即发。</p>
-                        <button>查看详情&gt;</button>
+                        <h3>应用</h3>
+                        <h4>交通大数据</h4>
+                        <p>大数据时代，政府部门通过监测和分析实时交通数据，再通过交通大数据简洁、直观的图形化界面展示出来，便可轻松、即时地获知优化交通的一切可能，并及时制定相应的疏通、导流方案。</p>
+                        <button>查看详情&nbsp;&nbsp;&gt;</button>
                     </div>
                 </div>
 
             </li>
-            <li
-            >
-                <div class="banner-container">
+            <li>
+                <div class="banner-container" style="background: url(<?php echo cqtheme160301_get_path(); ?>/images/banner_3.jpg)">
                     <div class="banner">
-                        <h3>BIG DATA MATCH3</h3>
-                        <h4>重庆开放数据创新应用大赛</h4>
-                        <p>发掘数据之智，引领巅峰对决，梦想之战一触即发。</p>
-                        <button>查看详情&gt;</button>
+                        <h3>签约</h3>
+                        <h4>渝北区政府携手微软共建重庆大数据平台</h4>
+                        <p>渝北区政府与微软（中国）有限公司、微软亚太科技有限公司签署战略合作备忘录，三方将在大数据平台、大数据学院、创新孵化加速器平台、大数据体验中心领域方面展开全面合作。</p>
+                        <button>查看详情&nbsp;&nbsp;&gt;</button>
                     </div>
                 </div>
 
