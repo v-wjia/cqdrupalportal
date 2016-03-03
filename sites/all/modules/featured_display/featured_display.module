@@ -208,6 +208,7 @@ function featured_display_block_view($delta = '')
                         //链接到推到首页的最近文章
                         $tid = taxonomy_select_nodes($child->tid);
                         $nodes = _get_promoted_nodes($tid, 1);
+                        unset($node);
                         foreach ($nodes as $entry) {
                             $node = $entry;
                         }
