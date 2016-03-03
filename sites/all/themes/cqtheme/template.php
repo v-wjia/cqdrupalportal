@@ -128,5 +128,6 @@ function cqtheme_form_alter(&$form, &$form_state, $form_id) {
     $form['search_block_form']['#attributes']['class'] = array("c211");
     $form['search_block_form']['#attributes']['placeholder'] = array("搜索相关数据");
     $form['search_block_form']['#attributes']['x-webkit-speech'] = 'x-webkit-speech';
+    $form['search_block_form']['#attributes']['speech'] = 'speech';
     }
 }
