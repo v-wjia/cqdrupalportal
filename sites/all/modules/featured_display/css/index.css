@@ -215,13 +215,25 @@ body{
 	right: 0;
 	background: url(../img/icon_search.png) no-repeat center center;
 	cursor: pointer;
-
+	border: 0;
 	/*font-size:12px;cursor:hand;background-color: #ffffff;background-repeat: repeat;background-attachment: scroll;background-position: center;border: 0 solid #000000;text-align: center;padding-top: 3px;*/
 }
 /*add*/
 .search-input input {
 	margin: 0;
 	padding: 0;
+}
+
+.search-input .search-btn:hover{
+	width: 35px;
+	height: 35px;
+	position: absolute;
+	top:0;
+	right: 0;
+	background: url(../img/icon_search.png) no-repeat center center;
+	cursor: pointer;
+	border: 0;
+	/*font-size:12px;cursor:hand;background-color: #ffffff;background-repeat: repeat;background-attachment: scroll;background-position: center;border: 0 solid #000000;text-align: center;padding-top: 3px;*/
 }
 /*add end*/
 
