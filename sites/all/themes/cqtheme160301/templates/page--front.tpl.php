@@ -234,7 +234,7 @@
             <li>
                 <div class="banner-container" style="background: url(<?php echo cqtheme160301_get_path(); ?>/images/banner_1.png)">
                     <div class="banner">
-                        <h3>BIG DATA MATCH1</h3>
+                        <h3>BIG DATA MATCH</h3>
                         <h4>重庆开放数据创新应用大赛</h4>
                         <p>发掘数据之智，引领巅峰对决，梦想之战一触即发。</p>
                         <button>查看详情&nbsp;&nbsp;&gt;</button>
