@@ -205,10 +205,22 @@ function featured_display_block_view($delta = '')
                     $children = taxonomy_get_children($term->tid);
                     $list['#theme'] = 'featured_resource_list';
                     foreach ($children as $child) {
+                        //链接到推到首页的最近文章
+                        $tid = taxonomy_select_nodes($child->tid);
+                        $nodes = _get_promoted_nodes($tid, 1);
+                        foreach ($nodes as $entry) {
+                            $node = $entry;
+                        }
+                        if (!empty($node)) {
+                            $child_link = drupal_get_path_alias('node/' . $node->nid);
+                        } else {
+                            $child_link = drupal_get_path_alias('taxonomy/term/' . $child->tid);
+                        }
+
                         $list['#items'][] = array(
                             'title' => $child->name,
                             'description' => $child->description,
-                            'link' => drupal_get_path_alias('taxonomy/term/' . $child->tid),
+                            'link' => $child_link,
                             'img' => variable_get('featured_taxonomy_pic_' . $child->tid, drupal_get_path('module', 'featured_display') . '/img/icon/icon_1_1.png'),
                         );
                     }
@@ -388,7 +400,7 @@ function featured_display_menu()
         'type' => MENU_CALLBACK,
     );
 
-    $items['admin/structure/featured_form']=array(
+    $items['admin/structure/featured_form'] = array(
         'title' => 'Featured taxonomy',
         'description' => '首页taxonomy对应的pic',
         'page callback' => 'drupal_get_form',
@@ -419,8 +431,9 @@ function verifyUser($userid, $roleid)
     return drupal_json_output(array('status' => FALSE, 'pass' => ''));
 }
 
-function featured_display_taxonomy_pic_form() {
-    $terms = taxonomy_term_load_multiple(FALSE,array('vid'=>2));
+function featured_display_taxonomy_pic_form()
+{
+    $terms = taxonomy_term_load_multiple(FALSE, array('vid' => 2));
     foreach ($terms as $term) {
         $form['featured_taxonomy_pic_' . $term->tid] = array(
             '#title' => '分类' . get_all_term_parents($term) . '{tid=' . $term->tid . '}',
@@ -619,7 +632,7 @@ function theme_featured_application($variables)
     $output .= '<div class="application-list">';
     //详细node
     foreach ($items as $item) {
-        $output .= '<a href="'.$item['link'].'"><img src="' . $item['img'] . '" alt="' . $item['title'] . '" /></a>';
+        $output .= '<a href="' . $item['link'] . '"><img src="' . $item['img'] . '" alt="' . $item['title'] . '" /></a>';
     }
     $output .= '</div>';
 
@@ -785,7 +798,7 @@ function theme_featured_perception_list($variables)
         $output .= '<div class="iot-list-item">';
         $item = current($items);
         if (!empty($item)) {
-            $output .= '<a href="' . $item['link'] . '">' . '<span>' . $item['title'] . '</span><img src="' . $item['img'] . '" /><p>'.$item['description'].'</p></a>';
+            $output .= '<a href="' . $item['link'] . '">' . '<span>' . $item['title'] . '</span><img src="' . $item['img'] . '" /><p>' . $item['description'] . '</p></a>';
         } else {
             break;
         }
@@ -797,17 +810,19 @@ function theme_featured_perception_list($variables)
     return $output;
 }
 
-function theme_featured_search_box($variables){
+function theme_featured_search_box($variables)
+{
 
 }
 
-function get_all_term_parents($term){
+function get_all_term_parents($term)
+{
     $parents_str = '';
     $parents = taxonomy_get_parents_all($term->tid);
-    if(!empty($parents)){
+    if (!empty($parents)) {
 
-        foreach(array_reverse($parents) as $parent){
-            $parents_str .='/'.$parent->name;
+        foreach (array_reverse($parents) as $parent) {
+            $parents_str .= '/' . $parent->name;
         }
     }
     return $parents_str;
