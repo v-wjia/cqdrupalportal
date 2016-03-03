@@ -199,7 +199,8 @@ function featured_display_block_view($delta = '')
                 $content = array();
                 $list = array();
                 $term = taxonomy_get_term_by_name('数据资源');
-                if (!empty(current($term))) {
+                $currentTerm = current($term);
+                if (!empty($currentTerm)) {
                     $term = current($term);
                     $children = taxonomy_get_children($term->tid);
                     $list['#theme'] = 'featured_resource_list';
@@ -280,7 +281,8 @@ function featured_display_block_view($delta = '')
                 $content = array();
                 $list = array();
                 $term = taxonomy_get_term_by_name('物联感知');
-                if (!empty(current($term))) {
+                $currentTerm = current($term);
+                if (!empty($currentTerm)) {
                     $term = current($term);
                     $children = taxonomy_get_children($term->tid);
                     $list['#theme'] = 'featured_perception_list';
