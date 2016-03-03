@@ -1316,3 +1316,22 @@ border-left: 1px solid; border-right: 1px solid; height: 40px; margin-left: -36p
     text-shadow: 0 0px 0 white;
     color:#ffffff
 }
+.index-btn:hover{
+    background: #ffb900;
+    box-shadow: 0 0 0;
+    border-radius: 3px;
+    border:0;
+}
+.index-btn{
+    background: #ffb900;
+    width: 120px;
+    height: 35px;
+    color: #464955;
+    font-size: 15px;
+    border-radius:3px;
+    border: 0;
+    position: absolute;
+    top: 270px;
+    box-shadow: 0 0 0;
+    text-shadow: 0 0 0;
+}
