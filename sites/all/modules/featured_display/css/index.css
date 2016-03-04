@@ -133,7 +133,7 @@ body{
 .banner p{
 	font-size: 14px;
 	position: absolute;
-	top: 220px;
+	top: 210px;
 }
 .banner button{
 	background: #ffb900;
@@ -144,7 +144,7 @@ body{
 	border-radius:3px;
 	border: 0;
 	position: absolute;
-	top: 270px;
+	top: 300px;
 }
 
 /*banner end search start*/
