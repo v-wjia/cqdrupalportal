@@ -232,7 +232,7 @@
     <div id="slidebox" class="flexslider">
         <ul class="slides">
             <li>
-                <div class="banner-container" style="background: url(<?php echo cqtheme160301_get_path(); ?>/images/banner_1.png)">
+                <div class="banner-container" style="background: #0076DB url(<?php echo cqtheme160301_get_path(); ?>/images/banner_1.png) no-repeat center center">
                     <div class="banner">
                         <h3>BIG DATA MATCH</h3>
                         <h4>重庆开放数据创新应用大赛</h4>
@@ -243,7 +243,7 @@
 
             </li>
             <li>
-                <div class="banner-container" style="background: url(<?php echo cqtheme160301_get_path(); ?>/images/banner_2.jpg)">
+                <div class="banner-container" style="background:#222258 url(<?php echo cqtheme160301_get_path(); ?>/images/banner_2.jpg) no-repeat center center">
                     <div class="banner">
                         <h3>应用</h3>
                         <h4>交通大数据</h4>
@@ -254,7 +254,7 @@
 
             </li>
             <li>
-                <div class="banner-container" style="background: url(<?php echo cqtheme160301_get_path(); ?>/images/banner_3.jpg)">
+                <div class="banner-container" style="background:#EA3D32 url(<?php echo cqtheme160301_get_path(); ?>/images/banner_3.jpg) no-repeat center center">
                     <div class="banner">
                         <h3>签约</h3>
                         <h4>渝北区政府携手微软共建重庆大数据平台</h4>
