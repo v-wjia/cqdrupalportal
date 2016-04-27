@@ -1,52 +1,52 @@
 
-.trade,.resource{
-    float:left;
-    color: #66ccff;
-    margin: 85px;
-    display: inline;
-    width: 200px;
-    height:250px;
-}
-.application{
-    float:left;
-    color: #66ccff;
-    margin: 20px;
-    display: inline;
-    width: 330px;
-    height:220px;
-}
-.perception{
-    float:left;
-    color: #66ccff;
-    margin: 85px;
-    display: inline;
-    width: 200px;
-    height:150px;}
-.trade ul li,.resource ul li,.resource p{
-    display: inline-block;
-}
+/*.trade,.resource{*/
+    /*float:left;*/
+    /*color: #66ccff;*/
+    /*margin: 85px;*/
+    /*display: inline;*/
+    /*width: 200px;*/
+    /*height:250px;*/
+/*}*/
+/*.application{*/
+    /*float:left;*/
+    /*color: #66ccff;*/
+    /*margin: 20px;*/
+    /*display: inline;*/
+    /*width: 330px;*/
+    /*height:220px;*/
+/*}*/
+/*.perception{*/
+    /*float:left;*/
+    /*color: #66ccff;*/
+    /*margin: 85px;*/
+    /*display: inline;*/
+    /*width: 200px;*/
+    /*height:150px;}*/
+/*.trade ul li,.resource ul li,.resource p{*/
+    /*display: inline-block;*/
+/*}*/
 
-.trade h3,.resource h3{
-    display: inline-block;
-    text-align: center;
-    margin:auto;
-}
-.trade-wrap,.resource-wrap{
-    margin: auto;
-    display: block;
-}
+/*.trade h3,.resource h3{*/
+    /*display: inline-block;*/
+    /*text-align: center;*/
+    /*margin:auto;*/
+/*}*/
+/*.trade-wrap,.resource-wrap{*/
+    /*margin: auto;*/
+    /*display: block;*/
+/*}*/
 
-#more{
-    text-align: center;
-}
+/*#more{*/
+    /*text-align: center;*/
+/*}*/
 
-.loginbar {
-    float: left;
-    margin: 0;
-}
-.loginbar li {    
-    float: left;
-    padding: 0 12px 0 0;
-    list-style: outside none none;
-}
+/*.loginbar {*/
+    /*float: left;*/
+    /*margin: 0;*/
+/*}*/
+/*.loginbar li {    */
+    /*float: left;*/
+    /*padding: 0 12px 0 0;*/
+    /*list-style: outside none none;*/
+/*}*/
 

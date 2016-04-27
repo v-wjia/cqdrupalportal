@@ -3,7 +3,7 @@
  * Implements hook_html_head_alter().
  * This will overwrite the default meta character type tag with HTML5 version.
  */
-function cqtheme_html_head_alter(&$head_elements) {
+function cqtheme160301_html_head_alter(&$head_elements) {
   $head_elements['system_meta_content_type']['#attributes'] = array(
     'charset' => 'utf-8'
   );
@@ -12,7 +12,7 @@ function cqtheme_html_head_alter(&$head_elements) {
 /**
  * Insert themed breadcrumb page navigation at top of the node content.
  */
-function cqtheme_breadcrumb($variables) {
+function cqtheme160301_breadcrumb($variables) {
   $breadcrumb = $variables['breadcrumb'];
   if (!empty($breadcrumb)) {
     // Use CSS to hide titile .element-invisible.
@@ -28,7 +28,7 @@ $breadcrumb[] = drupal_get_title();
 /**
  * Override or insert variables into the page template.
  */
-function cqtheme_preprocess_page(&$vars) {
+function cqtheme160301_preprocess_page(&$vars) {
   if (isset($vars['main_menu'])) {
     $vars['main_menu'] = theme('links__system_main_menu', array(
       'links' => $vars['main_menu'],
@@ -66,7 +66,7 @@ function cqtheme_preprocess_page(&$vars) {
 /**
  * Duplicate of theme_menu_local_tasks() but adds clearfix to tabs.
  */
-function cqtheme_menu_local_tasks(&$variables) {
+function cqtheme160301_menu_local_tasks(&$variables) {
   $output = '';
 
   if (!empty($variables['primary'])) {
@@ -87,7 +87,7 @@ function cqtheme_menu_local_tasks(&$variables) {
 /**
  * Override or insert variables into the node template.
  */
-function cqtheme_preprocess_node(&$variables) {
+function cqtheme160301_preprocess_node(&$variables) {
   $node = $variables['node'];
   if ($variables['view_mode'] == 'full' && node_is_page($variables['node'])) {
     $variables['classes_array'][] = 'node-full';
@@ -98,7 +98,7 @@ function cqtheme_preprocess_node(&$variables) {
 }
 
 
-function cqtheme_page_alter($page) {
+function cqtheme160301_page_alter($page) {
   // <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
   $viewport = array(
     '#type' => 'html_tag',
@@ -116,18 +116,19 @@ function cqtheme_page_alter($page) {
  * Add javascript files for front-page jquery slideshow.
  */
 if (drupal_is_front_page()) {
-  drupal_add_js(drupal_get_path('theme', 'cqtheme') . '/js/jquery.flexslider.js');
-  drupal_add_js(drupal_get_path('theme', 'cqtheme') . '/js/slide.js');
+  drupal_add_js(drupal_get_path('theme', 'cqtheme160301') . '/js/jquery.flexslider.js');
+  drupal_add_js(drupal_get_path('theme', 'cqtheme160301') . '/js/slide.js');
 }
 
-function cqtheme_form_alter(&$form, &$form_state, $form_id) {
+function cqtheme160301_form_alter(&$form, &$form_state, $form_id) {
+
   if ($form_id == 'search_block_form') {
     $form['search_block_form']['#title'] = t('Search');
     $form['actions']['submit']['#attributes']['alt'] = "全站搜索";
-    $form['actions']['submit']['#value'] = "全站搜索";
-    $form['search_block_form']['#attributes']['class'] = array("c211");
-    $form['search_block_form']['#attributes']['placeholder'] = array("搜索相关数据");
-    $form['search_block_form']['#attributes']['x-webkit-speech'] = 'x-webkit-speech';
-    $form['search_block_form']['#attributes']['speech'] = 'speech';
-    }
+    $form['actions']['submit']['#attributes']['class'][] = "search-btn";
+    $form['actions']['submit']['#value'] = "";
+    $form['search_block_form']['#attributes']['class'] = array("input-ban");
+    $form['search_block_form']['#attributes']['placeholder'] = array("搜索");
+  }
 }
+

@@ -23,33 +23,35 @@ function featured_display_block_info()
 function featured_display_page_build()
 {
     drupal_add_css(drupal_get_path('module', 'featured_display') . '/css/featured_display.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
+    drupal_add_css(drupal_get_path('module', 'featured_display') . '/css/index.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
+    drupal_add_css(drupal_get_path('module', 'featured_display') . '/css/cssreset-min.css.css', array('group' => CSS_DEFAULT, 'every_page' => TRUE));
 }
 
 /**
  * Implements hook_block_view
  */
-function featured_display_block_view($delta = '')
+function featured_display_block_views($delta = '')
 {
     switch ($delta) {
         case 'display_resource': // 如果调用了数据资源
             if (user_access('access content')) {
-                $category='数据资源';
+                $category = '数据资源';
                 $content_getter = new ContentGetter();
                 $content_wrap = new ContentData();
-                $content_getter->add_wrapped_div($content_wrap,'','con con3bg');
-                $content_getter->add_wrapped_div($content_wrap,'','con3');
-                $content_getter->add_content($content_wrap,'<div style="height:0px; overflow:hidden;">&nbsp;</div>');
-                $content_getter->add_head($content_wrap,'数据资源',3,'c31');
-                $content_getter->add_head($content_wrap,'提供各行业数据资源，以及大数据分析处理能力',4,'c32');
+                $content_getter->add_wrapped_div($content_wrap, '', 'con con3bg');
+                $content_getter->add_wrapped_div($content_wrap, '', 'con3');
+                $content_getter->add_content($content_wrap, '<div style="height:0px; overflow:hidden;">&nbsp;</div>');
+                $content_getter->add_head($content_wrap, '数据资源', 3, 'c31');
+                $content_getter->add_head($content_wrap, '提供各行业数据资源，以及大数据分析处理能力', 4, 'c32');
 
-                $content_data= new ContentData();
-                $content_getter->add_wrapped_div($content_data,'','c33');
-                foreach(variable_get('data_resource_data') as $item){
-                    $content_getter->get_resource_content($content_data,$item);
+                $content_data = new ContentData();
+                $content_getter->add_wrapped_div($content_data, '', 'c33');
+                foreach (variable_get('data_resource_data') as $item) {
+                    $content_getter->get_resource_content($content_data, $item);
                 }
-                $content_getter->add_content($content_wrap,$content_getter->execute($content_data));
+                $content_getter->add_content($content_wrap, $content_getter->execute($content_data));
 
-                $content_getter->add_content($content_wrap,$content_getter->get_more_button('数据资源'));
+                $content_getter->add_content($content_wrap, $content_getter->get_more_button('数据资源'));
                 $data = $content_getter->execute($content_wrap);
                 $block['content'] = $data;
                 unset($content_getter);
@@ -67,18 +69,18 @@ function featured_display_block_view($delta = '')
                 $content_getter = new ContentGetter();
                 $content_wrap = new ContentData();
 
-                $content_getter->add_wrapped_div($content_wrap,'','con con4bg');
-                $content_getter->add_wrapped_div($content_wrap,'','con4');
-                $content_getter->add_content($content_wrap,'<div style="height:0px; overflow:hidden;">&nbsp;</div>');
-                $content_getter->add_image($content_wrap,cqtheme_get_path().'/img/arrow_4.png','',' class="arr"');
-                $content_getter->add_head($content_wrap,'数据应用',3,'c41');
+                $content_getter->add_wrapped_div($content_wrap, '', 'con con4bg');
+                $content_getter->add_wrapped_div($content_wrap, '', 'con4');
+                $content_getter->add_content($content_wrap, '<div style="height:0px; overflow:hidden;">&nbsp;</div>');
+                $content_getter->add_image($content_wrap, cqtheme160301_get_path() . '/img/arrow_4.png', '', ' class="arr"');
+                $content_getter->add_head($content_wrap, '数据应用', 3, 'c41');
 
-                $content_data= new ContentData();
+                $content_data = new ContentData();
                 $content_getter->get_application_content($content_data);
                 //取出的数据添加到主内容
-                $content_getter->add_content($content_wrap,$content_getter->execute($content_data));
+                $content_getter->add_content($content_wrap, $content_getter->execute($content_data));
                 //添加『更多』按钮
-                $content_getter->add_content($content_wrap,$content_getter->get_more_button($category));
+                $content_getter->add_content($content_wrap, $content_getter->get_more_button($category));
 
                 $block['content'] = $content_getter->execute($content_wrap);
                 unset($content_getter);
@@ -95,20 +97,20 @@ function featured_display_block_view($delta = '')
                 $content_wrap_2 = new ContentData();
                 $content_data = new ContentData();
 
-                $content_getter->add_wrapped_div($content_wrap,'','con con5bg');
-                $content_getter->add_wrapped_div($content_wrap,'','con5');
-                $content_getter->add_content($content_wrap,'<div style="height:0px; overflow:hidden;">&nbsp;</div>');
-                $content_getter->add_image($content_wrap,cqtheme_get_path().'/img/arrow_5.png','',' class="arr"');
-                $content_getter->add_head($content_wrap,'数据交易',3,'c51');
+                $content_getter->add_wrapped_div($content_wrap, '', 'con con5bg');
+                $content_getter->add_wrapped_div($content_wrap, '', 'con5');
+                $content_getter->add_content($content_wrap, '<div style="height:0px; overflow:hidden;">&nbsp;</div>');
+                $content_getter->add_image($content_wrap, cqtheme_get_path() . '/img/arrow_5.png', '', ' class="arr"');
+                $content_getter->add_head($content_wrap, '数据交易', 3, 'c51');
 
-                $content_getter->add_wrapped_div($content_wrap_2,'','c52');
+                $content_getter->add_wrapped_div($content_wrap_2, '', 'c52');
 
-                $content_getter->add_content($content_wrap_2,$content_getter->get_trade_content($content_data,'数据下载排行',array('theme'=>'ordered_ul','max_length'=>20))) ;
-                $content_getter->add_content($content_wrap_2,$content_getter->get_trade_content($content_data,'最新发布数据',array('theme'=>'time_ul','max_length'=>14))) ;
-                $content_getter->add_content($content_wrap_2,$content_getter->get_trade_content($content_data,'平台动态',array('theme'=>'simple_ul','max_length'=>20),'c52div end'));
+                $content_getter->add_content($content_wrap_2, $content_getter->get_trade_content($content_data, '数据下载排行', array('theme' => 'ordered_ul', 'max_length' => 20)));
+                $content_getter->add_content($content_wrap_2, $content_getter->get_trade_content($content_data, '最新发布数据', array('theme' => 'time_ul', 'max_length' => 14)));
+                $content_getter->add_content($content_wrap_2, $content_getter->get_trade_content($content_data, '平台动态', array('theme' => 'simple_ul', 'max_length' => 20), 'c52div end'));
 
-                $content_getter->add_content($content_wrap,$content_getter->execute($content_wrap_2));
-                $content_getter->add_content($content_wrap,'<p class="c53">注：上述数据已通过重庆政府数据服务网开放，如需下载请登陆 <span>www.datachongqing.gov.cn</span></p>');
+                $content_getter->add_content($content_wrap, $content_getter->execute($content_wrap_2));
+                $content_getter->add_content($content_wrap, '<p class="c53">注：上述数据已通过重庆政府数据服务网开放，如需下载请登陆 <span>www.datachongqing.gov.cn</span></p>');
 
                 $block['content'] = $content_getter->execute($content_wrap);
                 unset($content_getter);
@@ -126,18 +128,18 @@ function featured_display_block_view($delta = '')
 
                 $content_getter = new ContentGetter();
                 $content_wrap = new ContentData();
-                $content_getter->add_wrapped_div($content_wrap,'','con con6bg');
-                $content_getter->add_wrapped_div($content_wrap,'','con6');
-                $content_getter->add_content($content_wrap,'<div style="height:0px; overflow:hidden;">&nbsp;</div>');
-                $content_getter->add_image($content_wrap,cqtheme_get_path().'/img/arrow_6.png','',' class="arr"');
-                $content_getter->add_head($content_wrap,'物联感知',3,'c61');
+                $content_getter->add_wrapped_div($content_wrap, '', 'con con6bg');
+                $content_getter->add_wrapped_div($content_wrap, '', 'con6');
+                $content_getter->add_content($content_wrap, '<div style="height:0px; overflow:hidden;">&nbsp;</div>');
+                $content_getter->add_image($content_wrap, cqtheme_get_path() . '/img/arrow_6.png', '', ' class="arr"');
+                $content_getter->add_head($content_wrap, '物联感知', 3, 'c61');
 
-                $content_data= new ContentData();
-                $content_getter->add_wrapped_div($content_data,'','c62');
-                foreach(variable_get('data_perception_data') as $item){
-                    $content_getter->get_resource_content($content_data,$item);
+                $content_data = new ContentData();
+                $content_getter->add_wrapped_div($content_data, '', 'c62');
+                foreach (variable_get('data_perception_data') as $item) {
+                    $content_getter->get_resource_content($content_data, $item);
                 }
-                $content_getter->add_content($content_wrap,$content_getter->execute($content_data));
+                $content_getter->add_content($content_wrap, $content_getter->execute($content_data));
 
                 $data = $content_getter->execute($content_wrap);
                 $block['content'] = $data;
@@ -151,45 +153,218 @@ function featured_display_block_view($delta = '')
         case 'login_bar' :  //登录bar,editor系统跳转
             if (user_is_logged_in()) {
                 global $user;
-                $userRole = '';
-                $sysUrl = 'http://www.microsoft.com/index.aspx?userid='.$user->uid.'&username='.$user->name;
+                $userRole = array('editor', 'manager');
+                $sysUrl = 'http://odweb.chinacloudapp.cn/ODWeb/?userid=' . $user->uid;
                 $block['content'] = '<ul class="loginbar">';
-                
-                if (in_array('editor', $user->roles) || in_array('manager', $user->roles)){
-                    if ($user->roles[4] == 'manager') {
+//                var_dump($user->roles);
+                if (in_array('editor', $user->roles) || in_array('manager', $user->roles)) {
+                    if (!empty($user->roles[4]) && ($user->roles[4] == 'manager')) {
                         $userRole = 'manager';
                         $sysUrl .= '&roleid=4';
-                    } elseif ($user->roles[5] == 'editor') {
+                    } elseif (!empty($user->roles[5]) && ($user->roles[5] == 'editor')) {
                         $userRole = 'editor';
                         $sysUrl .= '&roleid=5';
                     }
-                    if(!empty($userRole)) {
-                        $block['content'] .= '<li>'.'<a href="'.$sysUrl.'">系统对接</a>'.'</li>';
+                    if (!empty($userRole)) {
+                        $sysUrl .= '&username=' . urlencode($user->name);
+                        $block['content'] .= '<li>' . l("数据处理", $sysUrl) . '</li>';
                     }
                 }
-                
-                
+
+
                 //如果登录了
-                $block['content'] .= '<li>'.l(t('My account'),drupal_get_path_alias('user')).'</li>'.'<li>'.l(t('Log out'),drupal_get_path_alias('user/logout')).'</li>'.'</ul>';
-                
+                $block['content'] .= '<li>' . l(t('My account'), drupal_get_path_alias('user')) . '</li>' . '<li>' . l(t('Log out'), drupal_get_path_alias('user/logout')) . '</li>' . '</ul>';
+
                 return $block;
             } else {
                 //如果未登录
-                $block['content']='<ul class="loginbar"><li>'.l(t('User login'),drupal_get_path_alias('user/login')).'</li><li>'.l(t('Create new account'),drupal_get_path_alias('user/register')).'</li></ul>';
+                $block['content'] = '<ul class="loginbar"><li>' . l(t('User login'), drupal_get_path_alias('user/login')) . '</li><li>' . l(t('Create new account'), drupal_get_path_alias('user/register')) . '</li></ul>';
                 return $block;
             }
 
             break;
-        default :
-            ;
     }
 
 }
 
+/**
+ * Implements hook_block_view
+ */
+function featured_display_block_view($delta = '')
+{
+    $block = '';
+    switch ($delta) {
+        case 'display_resource': // 如果调用了数据资源
+            if (user_access('access content')) {
+                $content = array();
+                $list = array();
+                $term = taxonomy_get_term_by_name('数据资源');
+                $currentTerm = current($term);
+                if (!empty($currentTerm)) {
+                    $term = current($term);
+                    $children = taxonomy_get_children($term->tid);
+                    $list['#theme'] = 'featured_resource_list';
+                    foreach ($children as $child) {
+                        //链接到推到首页的最近文章
+                        $tid = taxonomy_select_nodes($child->tid);
+                        $nodes = _get_promoted_nodes($tid, 1);
+                        unset($node);
+                        foreach ($nodes as $entry) {
+                            $node = $entry;
+                        }
+                        if (!empty($node)) {
+                            $child_link = drupal_get_path_alias('node/' . $node->nid);
+                        } else {
+                            $child_link = drupal_get_path_alias('taxonomy/term/' . $child->tid);
+                        }
 
-function cqtheme_get_path(){
+                        $list['#items'][] = array(
+                            'title' => $child->name,
+                            'description' => $child->description,
+                            'link' => $child_link,
+                            'img' => variable_get('featured_taxonomy_pic_' . $child->tid, drupal_get_path('module', 'featured_display') . '/img/icon/icon_1_1.png'),
+                        );
+                    }
+                    $content['#list'] = $list;
+                    $content['#theme'] = 'featured_resource';
+                    $content['#title'] = $term->name;
+                    $content['#more'] = array('title' => t('更多'), 'link' => drupal_get_path_alias('taxonomy/term/' . $term->tid));
+                    $block['content'] = $content;
+                    return $block;
+                }
+            }
+            break;
+        case 'display_application': // 如果调用了数据应用
+            if (user_access('access content')) {
 
-    return drupal_get_path('theme','cqtheme');
+                $category = '数据应用';
+
+                $term = current(taxonomy_get_term_by_name($category));
+                if (isset($term)) {
+                    $nids = taxonomy_select_nodes($term->tid);
+                    $nodes = _get_promoted_nodes($nids);
+                    $items = array();
+                    foreach ($nodes as $node) {
+                        $items[] = array('title' => $node->title, 'img' => get_node_image_url($node->nid), 'link' => drupal_get_path_alias('node/' . $node->nid));
+                    }
+                    $block['content'] = array('#theme' => 'featured_application', '#title' => $term->name, "#items" => $items, "#more" => array('title' => '更多', 'link' => drupal_get_path_alias('taxonomy/term/' . $term->tid)));
+                    return $block;
+                }
+
+            }
+            break;
+
+        case 'display_trade' : // 如果调用了数据交易
+            if (user_access('access content')) {
+                $category = '数据交易';
+                $term = current(taxonomy_get_term_by_name($category));
+                if (isset($term)) {
+                    $terms = taxonomy_get_children($term->tid);
+                    $list = array();
+                    //获取3个term的node
+                    for ($i = 0; $i < 3; $i++) {
+                        $_term = current($terms);
+                        if ($_term) {
+                            $nids = taxonomy_select_nodes($_term->tid);
+                            $nodes = _get_promoted_nodes($nids);
+                            $node_items = array();
+                            foreach ($nodes as $node) {
+                                $node_items['#items'][] = array('title' => $node->title, 'link' => drupal_get_path_alias('node/' . $node->nid));
+                            }
+                            $node_items['#title'] = $_term->name;
+                            $node_items['#theme'] = 'featured_trade_list';
+                            $node_items['#more'] = array('title' => $term->name, 'link' => drupal_get_path_alias('taxonomy/term/' . $_term->tid));
+                            $list['#list'][] = $node_items;
+                        }
+                        next($terms);
+                    }
+                }
+                $list['#theme'] = 'featured_trade';
+                $list['#title'] = $term->name;
+                $list['#more'] = array('title' => '更多', 'link' => 'http://cqshop.chinacloudsites.cn/');
+                $block['content'] = $list;
+                return $block;
+
+            }
+            break;
+
+        case 'display_perception': // 如果调用了物联感知
+
+            if (user_access('access content')) {
+                $content = array();
+                $list = array();
+                $term = taxonomy_get_term_by_name('物联感知');
+                $currentTerm = current($term);
+                if (!empty($currentTerm)) {
+                    $term = current($term);
+                    $children = taxonomy_get_children($term->tid);
+                    $list['#theme'] = 'featured_perception_list';
+                    foreach ($children as $child) {
+                        $list['#items'][] = array(
+                            'title' => $child->name,
+                            'description' => $child->description,
+                            'link' => drupal_get_path_alias('taxonomy/term/' . $child->tid),
+                            'img' => variable_get('featured_taxonomy_pic_' . $child->tid, drupal_get_path('module', 'featured_display') . '/img/icon/icon_1_1.png'),
+                        );
+                    }
+                    $content['#list'] = $list;
+                    $content['#theme'] = 'featured_perception';
+                    $content['#title'] = $term->name;
+                    $content['#more'] = array('title' => t('更多'), 'link' => 'http://cqiot.chinacloudsites.cn/Partials/monitor.html');
+                    $block['content'] = $content;
+                    return $block;
+                }
+            }
+            break;
+
+        case 'login_bar' :  //登录bar,editor系统跳转
+            if (user_is_logged_in()) {
+                global $user;
+                $userRole = array('editor', 'manager');
+                $sysUrl = 'http://odweb.chinacloudapp.cn/ODWeb/?userid=' . $user->uid;
+                $block['content'] = '<ul class="loginbar">';
+//                var_dump($user->roles);
+                if (in_array('editor', $user->roles) || in_array('manager', $user->roles)) {
+                    if (!empty($user->roles[4]) && ($user->roles[4] == 'manager')) {
+                        $userRole = 'manager';
+                        $sysUrl .= '&roleid=4';
+                    } elseif (!empty($user->roles[5]) && ($user->roles[5] == 'editor')) {
+                        $userRole = 'editor';
+                        $sysUrl .= '&roleid=5';
+                    }
+                    if (!empty($userRole)) {
+                        $sysUrl .= '&username=' . urlencode($user->name);
+                        $block['content'] .= '<li>' . l("数据处理", $sysUrl) . '</li>';
+                    }
+                }
+
+
+                //如果登录了
+                $block['content'] .= '<li>' . l(t('My account'), drupal_get_path_alias('user')) . '</li>' . '<li>' . l(t('Log out'), drupal_get_path_alias('user/logout')) . '</li>' . '</ul>';
+
+                return $block;
+            } else {
+                //如果未登录
+                $block['content'] = '<ul class="loginbar"><li>' . l(t('User login'), drupal_get_path_alias('user/login')) . '</li><li>' . l(t('Create new account'), drupal_get_path_alias('user/register')) . '</li></ul>';
+                return $block;
+            }
+
+            break;
+    }
+
+    return $block;
+}
+
+function cqtheme_get_path()
+{
+
+    return drupal_get_path('theme', 'cqtheme');
+}
+
+function cqtheme160301_get_path()
+{
+
+    return drupal_get_path('theme', 'cqtheme160301');
 }
 
 //variable_set('data_resource_data',array(
@@ -212,35 +387,65 @@ function cqtheme_get_path(){
 //
 //));
 
-function featured_display_menu() {
-  $items['verifyuser/userid/%/roleid/%'] = array(
-    'title' => 'verify user by external system',
-    'page callback' => 'verifyUser',
-    'page arguments' => array(2, 4),
-    "access callback" => TRUE,
+/**
+ * Implements hook_menu().
+ */
+function featured_display_menu()
+{
+    $items['verifyuser/userid/%/roleid/%'] = array(
+        'title' => 'verify user by external system',
+        'page callback' => 'verifyUser',
+        'page arguments' => array(2, 4),
+        "access callback" => TRUE,
 //    'access arguments' => array('access content'),
-    'type' => MENU_CALLBACK,
-  );
+        'type' => MENU_CALLBACK,
+    );
 
-  return $items;
+    $items['admin/structure/featured_form'] = array(
+        'title' => 'Featured taxonomy',
+        'description' => '首页taxonomy对应的pic',
+        'page callback' => 'drupal_get_form',
+        'page arguments' => array('featured_display_taxonomy_pic_form'),
+        "access callback" => TRUE,
+        'access arguments' => array('access administration pages'),
+
+    );
+
+    return $items;
 }
 
-function verifyUser($userid, $roleid) {
-    //set external allowed ip
-    $allowedIp = '';
-    if(ip_address != $allowedIp) {
-//        return drupal_json_output(array('status' => FALSE, 'pass' => ''));
-    }
 
-    if(!empty($userid) && !empty($roleid)) {
+function verifyUser($userid, $roleid)
+{
+    //set external allowed ip
+//    $allowedIp = '';
+//    if(ip_address != $allowedIp) {
+//        return drupal_json_output(array('status' => FALSE, 'pass' => ''));
+//    }
+
+    if (!empty($userid) && !empty($roleid)) {
         $account = user_load($userid);
-        if ($account->roles[$roleid] == 'manager' || $account->roles[$roleid] == 'editor'){
+        if ($account->roles[$roleid] == 'manager' || $account->roles[$roleid] == 'editor') {
             return drupal_json_output(array('status' => TRUE, 'pass' => $account->pass));
         }
-    } 
+    }
     return drupal_json_output(array('status' => FALSE, 'pass' => ''));
 }
 
+function featured_display_taxonomy_pic_form()
+{
+    $terms = taxonomy_term_load_multiple(FALSE, array('vid' => 2));
+    foreach ($terms as $term) {
+        $form['featured_taxonomy_pic_' . $term->tid] = array(
+            '#title' => '分类' . get_all_term_parents($term) . '{tid=' . $term->tid . '}',
+            '#type' => 'textfield',
+            '#default_value' => variable_get('featured_taxonomy_pic_' . $term->tid, drupal_get_path('module', 'featured_display') . '/img/icon/icon_1_1.png'),
+            '#required' => FALSE,
+        );
+
+    }
+    return system_settings_form($form);
+}
 
 /**
  * Implements hook_node_view().
@@ -248,9 +453,9 @@ function verifyUser($userid, $roleid) {
 function featured_display_node_view($node, $view_mode, $langcode = NULL)
 {
 
-    if($view_mode=='full') {
+    if ($view_mode == 'full') {
         $field_terms = current($node->field_resource);
-        if(!empty($field_terms)) {
+        if (!empty($field_terms)) {
             $field_term = current($field_terms);
             $breadcrumb = array();
             if (isset($field_term)) {
@@ -269,15 +474,358 @@ function featured_display_node_view($node, $view_mode, $langcode = NULL)
 }
 
 
-
 /**
  * find all parents and add to breadcrumb path
  */
-function add_breadcrumb_path(&$breadcrumb,$tid){
-    $parents=taxonomy_get_parents($tid);
-    if(!empty($parents)){
+function add_breadcrumb_path(&$breadcrumb, $tid)
+{
+    $parents = taxonomy_get_parents($tid);
+    if (!empty($parents)) {
         $parent = current($parents);
-        add_breadcrumb_path($breadcrumb,$parent->tid);
-        $breadcrumb[]= l(t($parent->name),drupal_get_path_alias('taxonomy/term/'.$parent->tid));
+        add_breadcrumb_path($breadcrumb, $parent->tid);
+        $breadcrumb[] = l(t($parent->name), drupal_get_path_alias('taxonomy/term/' . $parent->tid));
     }
 }
+
+
+/**
+ * 根据nid获得对应node的image的url
+ * @param $nid
+ * @param string $image_style
+ * @return bool|string
+ */
+function get_node_image_url($nid, $image_style = 'application_display')
+{
+    $image_url = '';
+    $query = db_select('file_managed', 'fm');
+    $query->join('file_usage', 'fu', 'fu.fid = fm.fid');
+    $query->condition('fu.id', $nid, '=');
+    $query->fields('fm', array('uri'));
+    $query->range(0, 1);
+    $result = $query->execute();
+    foreach ($result as $uri) {
+        $image_url = image_style_url($image_style, $uri->uri);
+    }
+
+    return $image_url;
+}
+
+function _get_promoted_nodes($nids, $limit = 3)
+{
+    if (count($nids) < 1) {
+        return array();
+    }
+    $query = db_select('node', 'n')->fields('n', array(
+        'title',
+        'nid',
+        'created'
+    ))->orderBy('created', 'DESC')->range(0, $limit);
+    return $query->condition('nid', $nids, 'IN')
+        //只显示推上首页内容
+        ->condition('promote', 1)->execute();
+}
+
+///**
+// * Implements hook_theme().
+// */
+//function featured_display_theme($existing, $type, $theme, $path)
+//{
+//    return array(
+//        'featured_side_nav' => array(
+//            'variables' => array(
+//                'items' => NULL,
+//                'title' => NULL,
+//                'active' => array(),
+//                'type' => 'ul',
+//                'attributes' => array(),
+//            ),
+//        )
+//    );
+//}
+
+
+/**
+ * Implements hook_theme().
+ */
+function featured_display_theme($existing, $type, $theme, $path)
+{
+
+    return array(
+        'featured_application' => array(
+            'variables' => array(
+                'items' => NULL,
+                'title' => NULL,
+                'more' => '',
+                'type' => 'ul',
+                'attributes' => array(),
+            ),
+        ),
+        'featured_trade' => array(
+            'variables' => array(
+                'items' => NULL,
+                'title' => NULL,
+                'more' => array(),
+                'list' => array(),
+                'attributes' => array(),
+            ),
+        ),
+        'featured_trade_list' => array(
+            'variables' => array(
+                'items' => NULL,
+                'title' => NULL,
+                'more' => array(),
+                'attributes' => array(),
+            ),
+        ),
+        'featured_resource' => array(
+            'variables' => array(
+                'items' => NULL,
+                'title' => NULL,
+                'list' => array(),
+                'more' => array(),
+                'attributes' => array(),
+            ),
+        ),
+        'featured_resource_list' => array(
+            'variables' => array(
+                'items' => NULL,
+                'attributes' => array(),
+            ),
+        ),
+        'featured_perception' => array(
+            'variables' => array(
+                'items' => NULL,
+                'title' => NULL,
+                'list' => array(),
+                'more' => array(),
+                'attributes' => array(),
+            ),
+        ),
+        'featured_perception_list' => array(
+            'variables' => array(
+                'items' => NULL,
+                'attributes' => array(),
+            ),
+        ),
+    );
+}
+
+/**
+ * 数据应用样式
+ */
+function theme_featured_application($variables)
+{
+    $items = $variables['items'];
+    $title = $variables['title'];
+    $more = $variables['more'];
+
+
+    $output = '<div class="application-container">';
+    $output .= '<div class="application">';
+
+    $output .= '<div class="application-title">';
+    //标题
+    $output .= '<h3>' . $title . '</h3>';
+    //more
+    $output .= '<span>' . l($more['title'], $more['link']) . '</span>';
+    $output .= '</div>';
+
+    $output .= '<div class="application-list">';
+    //详细node
+    foreach ($items as $item) {
+        $output .= '<a href="' . $item['link'] . '"><img src="' . $item['img'] . '" alt="' . $item['title'] . '" /></a>';
+    }
+    $output .= '</div>';
+
+    $output .= '</div>';
+    $output .= '</div>';
+
+    return $output;
+}
+
+/**
+ * 数据交易样式
+ */
+function theme_featured_trade($variables)
+{
+    $title = $variables['title'];
+    $more = $variables['more'];
+    $list = $variables['list'];
+
+    $output = '<div class="trade-container">';
+    $output .= '<div class="trade">';
+
+    $output .= '<div class="trade-title">';
+    $output .= '<h3>' . $title . '</h3>';
+    //more
+    $output .= '<span>' . l($more['title'], $more['link']) . '</span>';
+    $output .= '</div>';
+
+    $output .= '<div class="trade-list">';
+    if (!empty($list)) {
+        $i = 0;
+        $lis = current($list);
+        while ($i < 3 && !empty($lis)) {
+            $output .= drupal_render($lis);
+            $lis = next($list);
+            $i++;
+        }
+    }
+    $output .= '</div>';
+
+    $output .= '</div>';
+    $output .= '</div>';
+    return $output;
+}
+
+/**
+ * 数据交易列表样式
+ */
+function theme_featured_trade_list($variables)
+{
+    $items = $variables['items'];
+    $title = $variables['title'];
+    $more = $variables['more'];
+
+    $output = '<div class="trade-list-item">';
+    $output .= '<span>' . l($title, $more['link']) . '</span>';
+    foreach ($items as $item) {
+        $output .= '<p>' . l(substring_dot($item['title']), $item['link']) . '</p>';
+    }
+    $output .= '</div>';
+    return $output;
+}
+
+/**
+ * 数据资源样式
+ */
+function theme_featured_resource($variables)
+{
+    $title = $variables['title'];
+    $more = $variables['more'];
+    $list = $variables['list'];
+
+    $output = '<div class="source-container">';
+    $output .= '<div class="source">';
+
+    $output .= '<div class="source-title">';
+    $output .= '<h3>' . $title . '</h3>';
+    //more
+    $output .= '<span>' . l($more['title'], $more['link']) . '</span>';
+    $output .= '</div>';
+    //列表样式
+    if (!empty($list)) {
+        $output .= drupal_render($list);
+    }
+
+    $output .= '</div>';
+    $output .= '</div>';
+    return $output;
+}
+
+/**
+ * 数据资源列表样式
+ */
+function theme_featured_resource_list($variables)
+{
+    $items = $variables['items'];
+
+    $output = '';
+    if (empty($items)) {
+        return $output;
+    }
+    for ($i = 0; $i < 2; $i++) {
+        $output .= '<div class="source-list">';
+        $output .= '<ul>';
+        for ($j = 0; $j < 5; $j++) {
+            $item = current($items);
+            if (!empty($item)) {
+                $output .= '<li>' . '<a href="' . $item['link'] . '">' . '<span>' . $item['title'] . '</span><img src="' . $item['img'] . '" /></a></li>';
+            } else {
+                break;
+            }
+            next($items);
+        }
+
+        $output .= '</ul>';
+        $output .= '</div>';
+
+    }
+    return $output;
+}
+
+/**
+ * 物联感知样式
+ */
+function theme_featured_perception($variables)
+{
+    $title = $variables['title'];
+    $more = $variables['more'];
+    $list = $variables['list'];
+
+    $output = '<div class="iot-container">';
+    $output .= '<div class="iot">';
+
+    $output .= '<div class="iot-title">';
+    $output .= '<h3>' . $title . '</h3>';
+    //more
+    $output .= '<span>' . l($more['title'], $more['link']) . '</span>';
+    $output .= '</div>';
+    //列表样式
+    if (!empty($list)) {
+        $output .= drupal_render($list);
+    }
+
+    $output .= '</div>';
+    $output .= '</div>';
+    return $output;
+}
+
+/**
+ * 物联感知列表样式
+ */
+function theme_featured_perception_list($variables)
+{
+    $items = $variables['items'];
+
+    $output = '';
+    if (empty($items)) {
+        return $output;
+    }
+
+    $output .= '<div class="iot-list">';
+    for ($j = 0; $j < 3; $j++) {
+
+        $output .= '<div class="iot-list-item">';
+        $item = current($items);
+        if (!empty($item)) {
+            $output .= '<a href="' . $item['link'] . '">' . '<span>' . $item['title'] . '</span><img src="' . $item['img'] . '" /><p>' . $item['description'] . '</p></a>';
+        } else {
+            break;
+        }
+        next($items);
+
+        $output .= '</div>';
+    }
+    $output .= '</div>';
+    return $output;
+}
+
+function theme_featured_search_box($variables)
+{
+
+}
+
+function get_all_term_parents($term)
+{
+    $parents_str = '';
+    $parents = taxonomy_get_parents_all($term->tid);
+    if (!empty($parents)) {
+
+        foreach (array_reverse($parents) as $parent) {
+            $parents_str .= '/' . $parent->name;
+        }
+    }
+    return $parents_str;
+}
+

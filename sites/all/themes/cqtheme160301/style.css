@@ -45,7 +45,31 @@ www.devsaran.com
 .c21 .c212{ display:block; float:left; width:210px; height:43px; background: url(img/icon-search.png) no-repeat 25px center #fd5f47; border:1px solid #c52a13; text-align:center; }
 .c21 .c212 span{ color:#fff; line-height:43px; font-size:18px;}
 
+/*0310*/
+.condetail .cd_nav li{ line-height:300%; color:#555555}
+.condetail .cd_nav li.active a{ line-height:300%; color:#555555; background:#dbdbdb; display:block; width:100%}
+.condetail .cd_nav li a{ text-decoration: none; color:#555555; display:block; width:100%}
+.condetail .cd_nav li a:hover{ color:#555555;}
+.condetail .cd_nav li.active a:hover{ color:#555555;}
+.condetail .cd_nav .cd_nav_p_node{ text-indent:2em;}
+.condetail .cd_nav .cd_nav_s_node{ text-indent:4em;}
+.condetail .cd_content{width:800px; float:left; border-top:1px solid #ebebeb}
+.condetail .cd_content .cd_content_list{ border-bottom:1px solid #ebebeb; padding:20px; background:#fff; overflow:hidden; position:relative}
+.condetail .cd_content .cd_content_list .cd_content_listh3{ color:#313131; font-size:15px; font-weight:bold;}
+.condetail .cd_content .cd_content_list .cd_content_listp{ color:#ababab; font-size:12px; line-height:180%; margin-top:10px}
+.condetail .cd_content .cd_content_list .cd_content_listspan{ position:absolute; bottom:12px; right:20px;color:#ababab; font-size:12px; line-height:200%;}
+.condetail .cd_content .cd_content_list img{ display:block; float:left; margin:20px 20px 0 0}
+.cd_nav .cd_nav_title{
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 300%;
+  color: #555;
+  font-family: "微软雅黑";
+  text-indent: 1em;
+  margin-top: 30px;
+}
 
+/*0310 end*/
 .condetail{ width:1024px; margin:0 auto; position:relative; margin-top:20px; overflow:hidden; padding-bottom:30px}
 .condetailbg{ background:url(img/c3bg.png) repeat-y center center #f1f2f6}
 .condetail .cd_nav{width:224px; float:left;}
@@ -55,7 +79,8 @@ www.devsaran.com
 .cd_main .breadcrumb{padding:8px 15px;margin-bottom:20px;list-style:none;background-color:#fff;border-radius:4px}
 
 .condetail .cd_nav .field-content{ line-height:300%; color:#424242}
-.condetail .cd_nav .field-content a.active{ line-height:300%; color:#fff; background:#fd5f47; display:block; width:100%}
+/*.condetail .cd_nav .field-content a.active{ line-height:300%; color:#fff; background:#fd5f47; display:block; width:100%}*/
+.condetail .cd_nav .field-content a.active{ line-height:300%; color:#555555; background:#dbdbdb; display:block; width:100%}
 .condetail .cd_nav ul li{list-style: outside none none;}
 .condetail .cd_nav ul li ul li{list-style: outside none none;}
 .condetail .cd_nav ul li{ text-indent:2em;}
@@ -151,11 +176,11 @@ body {
 
 /* Links */
 a {
-  color: #0099FF;
+  color: #f4473a;
 
 }
 a:visited {
-  color: #0099FF;
+  color: #f4473a;
 }
 a:hover,
 a:focus,
@@ -519,7 +544,7 @@ h1#site-title a:link, h1#site-title a:visited{
 /* Slider */
 
 #slidebox{
-  height: 710px;
+  height: 400px;
   position: relative;
   background: #2e3139;
 }
@@ -1290,4 +1315,23 @@ border-left: 1px solid; border-right: 1px solid; height: 40px; margin-left: -36p
     box-shadow: 0 0px 0 0 white inset;
     text-shadow: 0 0px 0 white;
     color:#ffffff
+}
+.index-btn:hover{
+    background: #ffb900;
+    box-shadow: 0 0 0;
+    border-radius: 3px;
+    border:0;
+}
+.index-btn{
+    background: #ffb900;
+    width: 120px;
+    height: 35px;
+    color: #464955;
+    font-size: 15px;
+    border-radius:3px;
+    border: 0;
+    position: absolute;
+    top: 270px;
+    box-shadow: 0 0 0;
+    text-shadow: 0 0 0;
 }
