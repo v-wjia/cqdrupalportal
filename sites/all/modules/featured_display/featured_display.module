@@ -323,7 +323,7 @@ function featured_display_block_view($delta = '')
                 $userRole = array('editor', 'manager');
                 $sysUrl = 'http://odweb.chinacloudapp.cn/ODWeb/?userid=' . $user->uid;
                 $block['content'] = '<ul class="loginbar">';
-//                var_dump($user->roles);
+                
                 if (in_array('editor', $user->roles) || in_array('manager', $user->roles)) {
                     if (!empty($user->roles[4]) && ($user->roles[4] == 'manager')) {
                         $userRole = 'manager';
@@ -336,11 +336,15 @@ function featured_display_block_view($delta = '')
                         $sysUrl .= '&username=' . urlencode($user->name);
                         $block['content'] .= '<li>' . l("数据处理", $sysUrl) . '</li>';
                     }
+                } 
+
+                if (in_array('administrator', $user->roles)) {
+                    //超级管理员登录不显示该区块
+                    $block['content'] = '';
+                } else {
+                    //如果其他角色登录了
+                    $block['content'] .= '<li>' . l(t('My account'), drupal_get_path_alias('user')) . '</li>' . '<li>' . l(t('Log out'), drupal_get_path_alias('user/logout')) . '</li>' . '</ul>';
                 }
-
-
-                //如果登录了
-                $block['content'] .= '<li>' . l(t('My account'), drupal_get_path_alias('user')) . '</li>' . '<li>' . l(t('Log out'), drupal_get_path_alias('user/logout')) . '</li>' . '</ul>';
 
                 return $block;
             } else {
