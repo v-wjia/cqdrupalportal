@@ -310,7 +310,7 @@ function featured_display_block_view($delta = '')
                     $content['#list'] = $list;
                     $content['#theme'] = 'featured_perception';
                     $content['#title'] = $term->name;
-                    $content['#more'] = array('title' => t('更多'), 'link' => 'http://cqiot.chinacloudsites.cn/Partials/monitor.html');
+                    $content['#more'] = array('title' => t('更多'), 'link' => drupal_get_path_alias('taxonomy/term/' . $term->tid));
                     $block['content'] = $content;
                     return $block;
                 }
