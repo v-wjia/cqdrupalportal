@@ -198,7 +198,7 @@ function featured_display_block_view($delta = '')
             if (user_access('access content')) {
                 $content = array();
                 $list = array();
-                $term = taxonomy_get_term_by_name('数据资源');
+                $term = taxonomy_get_term_by_name('数据开放');
                 $currentTerm = current($term);
                 if (!empty($currentTerm)) {
                     $term = current($term);
@@ -404,6 +404,15 @@ function featured_display_menu()
 //    'access arguments' => array('access content'),
         'type' => MENU_CALLBACK,
     );
+    
+    $items['verifyuser/username/%'] = array(
+        'title' => 'verify username by external system',
+        'page callback' => 'verifyUsername',
+        'page arguments' => array(2),
+        "access callback" => TRUE,
+//    'access arguments' => array('access content'),
+        'type' => MENU_CALLBACK,
+    );    
 
     $items['admin/structure/featured_form'] = array(
         'title' => 'Featured taxonomy',
@@ -434,6 +443,22 @@ function verifyUser($userid, $roleid)
         }
     }
     return drupal_json_output(array('status' => FALSE, 'pass' => ''));
+}
+
+function verifyUsername($username) {
+    if (!empty($username)) {
+        $account = user_load_by_name($username);
+        $roleid = 0;
+        if (!empty($account->roles)) {
+            foreach($account->roles as $key => $value) {
+                if ($key != 2 && $value != 'authenticated user') {
+                    $roleid = $key;
+                }
+            }
+            return drupal_json_output(array('userid' => $account->uid, 'roleid' => $roleid));
+        }
+    }
+    return drupal_json_output(array('userid' => 0, 'roleid' => 0));
 }
 
 function featured_display_taxonomy_pic_form()
