@@ -321,21 +321,22 @@ function featured_display_block_view($delta = '')
             if (user_is_logged_in()) {
                 global $user;
                 $userRole = array('editor', 'manager');
-                $sysUrl = 'http://odweb.chinacloudapp.cn/ODWeb/?userid=' . $user->uid;
+                //$sysUrl = 'http://odweb.chinacloudapp.cn/ODWeb/?userid=' . $user->uid;
+                $sysUrl = 'http://odweb.chinacloudapp.cn/ODWeb';
                 $block['content'] = '<ul class="loginbar">';
                 
                 if (in_array('editor', $user->roles) || in_array('manager', $user->roles)) {
-                    if (!empty($user->roles[4]) && ($user->roles[4] == 'manager')) {
-                        $userRole = 'manager';
-                        $sysUrl .= '&roleid=4';
-                    } elseif (!empty($user->roles[5]) && ($user->roles[5] == 'editor')) {
-                        $userRole = 'editor';
-                        $sysUrl .= '&roleid=5';
-                    }
-                    if (!empty($userRole)) {
-                        $sysUrl .= '&username=' . urlencode($user->name);
+//                    if (!empty($user->roles[4]) && ($user->roles[4] == 'manager')) {
+//                        $userRole = 'manager';
+//                        $sysUrl .= '&roleid=4';
+//                    } elseif (!empty($user->roles[5]) && ($user->roles[5] == 'editor')) {
+//                        $userRole = 'editor';
+//                        $sysUrl .= '&roleid=5';
+//                    }
+//                    if (!empty($userRole)) {
+//                        $sysUrl .= '&username=' . urlencode($user->name);
                         $block['content'] .= '<li>' . l("数据处理", $sysUrl) . '</li>';
-                    }
+//                    }
                 } 
 
                 if (in_array('administrator', $user->roles)) {
@@ -349,7 +350,7 @@ function featured_display_block_view($delta = '')
                 return $block;
             } else {
                 //如果未登录
-                $block['content'] = '<ul class="loginbar"><li>' . l(t('User login'), drupal_get_path_alias('user/login')) . '</li><li>' . l(t('Create new account'), drupal_get_path_alias('user/register')) . '</li></ul>';
+                $block['content'] = '<ul class="loginbar"><li>' . l(t('User login'), drupal_get_path_alias('cas/login')) . '</li><li>' . l(t('Create new account'), drupal_get_path_alias('user/register')) . '</li></ul>';
                 return $block;
             }
 
